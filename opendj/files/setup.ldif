@@ -1,0 +1,55 @@
+dn: dc=ojbc-local,dc=org
+dc: ojbc-local
+objectClass: domain
+objectClass: top
+
+dn: ou=People,dc=ojbc-local,dc=org
+objectClass: organizationalUnit
+objectClass: top
+ou: People
+
+dn: cn=demoadmin,ou=People,dc=ojbc-local,dc=org
+cn: demoadmin
+employeeType: IT Administrator
+givenName: Demo
+mail: demoadmin@ojbc-local.org
+o: Demostate Government
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+ou: Office of Information Technology
+sn: Admin
+uid: demoadmin
+userPassword: password
+
+dn: cn=demouser1,ou=People,dc=ojbc-local,dc=org
+cn: demouser1
+employeeType: Staff Person
+givenName: Demo
+mail: demouser1@ojbc-local.org
+o: Demostate Government
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+ou: Office of Information Technology
+sn: User1
+uid: demouser1
+userPassword: password
+
+dn: cn=demouser2,ou=People,dc=ojbc-local,dc=org
+cn: demouser2
+employeeType: Staff Person
+givenName: Demo
+mail: demouser2@ojbc-local.org
+o: Demostate Government
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+ou: Office of Information Technology
+sn: User2
+uid: demouser2
+userPassword: password
+
