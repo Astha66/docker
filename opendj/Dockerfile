@@ -27,8 +27,11 @@ RUN /opt/opendj/bin/start-ds && \
     /opt/opendj/bin/import-ldif -b dc=ojbc-local,dc=org -n userRoot -l /tmp/setup.ldif -t 0 -p 4444 --trustAll -w password -h localhost && \
     /opt/opendj/bin/stop-ds
 
-#    /opt/opendj/bin/ldappasswordmodify -p 1389 --trustAll -D cn=Directory\ Manager -w password -h localhost --currentPassword --newPassword=password -a "dn: cn=demoadmin,ou=People,dc=ojbc-local,dc=org" && \
-
+# to test this container:
+# docker build -t opendj .
+# docker run -P opendj
+# substitute the appropriate IP address and port for your setup...
+# ldapwhoami -x -h 192.168.99.101 -p 32769 -D "cn=demoadmin,ou=People,dc=ojbc-local,dc=org" -w password -v
     
 CMD ["/opt/opendj/bin/start-ds", "--nodetach"]
 
