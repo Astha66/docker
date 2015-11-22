@@ -1,8 +1,8 @@
-FROM java-server-base
+FROM java7-server-base
 
 COPY bin/opendj-server-2.6.0.zip /opt/
 
-RUN apt-get install -y unzip
+RUN apk add --update unzip
 RUN cd /opt && unzip opendj-server-2.6.0.zip
 
 ENV ROOT_USER_DN cn=Directory\ Manager
