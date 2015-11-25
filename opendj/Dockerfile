@@ -11,14 +11,12 @@ ENV BASE_DN dc=ojbc-local,dc=org
 
 WORKDIR /opt/opendj
 RUN ./setup --cli -v \
-  --ldapPort 1389 \
+  --ldapPort 389 \
   --adminConnectorPort 4444 \
   --rootUserDN "$ROOT_USER_DN" \
   --rootUserPassword $ROOT_USER_PASS \
   --no-prompt --noPropertiesFile \
   --doNotStart
-
-EXPOSE 1389 4444
 
 COPY files/setup.ldif /tmp/
   
