@@ -30,7 +30,7 @@
     
 	<!-- Identity Provider -->
 
-    <EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" entityID="https://idp-demoserver.ojbc-local.org:9443/idp/shibboleth">
+    <EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" entityID="https://idp.ojbc.local/idp/shibboleth">
 
         <Extensions xmlns:alg="urn:oasis:names:tc:SAML:metadata:algsupport">
             <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
@@ -40,7 +40,7 @@
         <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" WantAuthnRequestsSigned="true">
 
             <Extensions>
-                <shibmd:Scope regexp="false">ojbc-local.org</shibmd:Scope>
+                <shibmd:Scope regexp="false">ojbc.local</shibmd:Scope>
             </Extensions>
 
             <KeyDescriptor>
@@ -74,9 +74,9 @@ SkakRA==
             <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
             <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
 
-            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://idp-demoserver.ojbc-local.org:9443/idp/profile/SAML2/POST/SSO"/>
+            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://idp.ojbc.local/idp/profile/SAML2/POST/SSO"/>
 
-            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://idp-demoserver.ojbc-local.org:9443/idp/profile/SAML2/Redirect/SSO"/>
+            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://idp.ojbc.local/idp/profile/SAML2/Redirect/SSO"/>
 
         </IDPSSODescriptor>
 
@@ -92,7 +92,7 @@ SkakRA==
 
   <!-- Service Provider Metadata -->
 
-    <EntityDescriptor ID="_a0dc09018e3c07e954c620cd34e5ec575f24db51" entityID="https://sp-demoserver.ojbc-local.org/shibboleth">
+    <EntityDescriptor ID="_a0dc09018e3c07e954c620cd34e5ec575f24db51" entityID="https://sp.ojbc.local/shibboleth">
 
         <Extensions xmlns:alg="urn:oasis:names:tc:SAML:metadata:algsupport">
             <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
@@ -102,7 +102,7 @@ SkakRA==
         <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" WantAssertionsSigned="true">
 
             <Extensions>
-                <idpdisc:DiscoveryResponse xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://www-demoserver.ojbc-local.org/Shibboleth.sso/Login" index="1"/>
+                <idpdisc:DiscoveryResponse xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://www.ojbc.local/Shibboleth.sso/Login" index="1"/>
             </Extensions>
 
             <KeyDescriptor>
@@ -139,7 +139,7 @@ Z3CPz9n06d5Y8ReLBtz5zLcfBVgql8quaoTOztznLftQ2m6Ay30ESY5c4k73uWH2
             <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
             <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
 
-            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://demoserver.ojbc-local.org/Shibboleth.sso/SAML2/POST" index="1"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://demoserver.ojbc.local/Shibboleth.sso/SAML2/POST" index="1"/>
 
         </SPSSODescriptor>
 
@@ -155,7 +155,7 @@ Z3CPz9n06d5Y8ReLBtz5zLcfBVgql8quaoTOztznLftQ2m6Ay30ESY5c4k73uWH2
     
     <!-- Intermediary as consumer -->
     
-    <EntityDescriptor ID="intermediary-consumer" entityID="https://demoserver.ojbc-local.org/intermediary-consumer">
+    <EntityDescriptor ID="intermediary-consumer" entityID="https://demoserver.ojbc.local/intermediary-consumer">
     
         <RoleDescriptor xsi:type="gfipmws:GFIPMWebServiceConsumerType" protocolSupportEnumeration="http://gfipm.net/standards/webservices/1.0/user-consumer-provider-sip.html">
         
@@ -209,7 +209,7 @@ s4BNNjf6FrD4HpOnocet5BZtdgk1Yb+q0TIra4uyVWxJlc4TVP5ohVVH23u460ImwNHEJFketnQp
     
     <!-- Intermediary as provider -->
 
-    <EntityDescriptor ID="intermediary-provider" entityID="https://demoserver.ojbc-local.org/intermediary-provider">
+    <EntityDescriptor ID="intermediary-provider" entityID="https://demoserver.ojbc.local/intermediary-provider">
     
         <RoleDescriptor xsi:type="gfipmws:GFIPMWebServiceProviderType" protocolSupportEnumeration="http://gfipm.net/standards/webservices/1.0/user-consumer-provider-sip.html">
         
@@ -263,7 +263,7 @@ s4BNNjf6FrD4HpOnocet5BZtdgk1Yb+q0TIra4uyVWxJlc4TVP5ohVVH23u460ImwNHEJFketnQp
     
     <!-- Adapter as provider -->
 
-    <EntityDescriptor ID="adapter-provider" entityID="https://demoserver.ojbc-local.org/adapter-provider">
+    <EntityDescriptor ID="adapter-provider" entityID="https://demoserver.ojbc.local/adapter-provider">
     
         <RoleDescriptor xsi:type="gfipmws:GFIPMWebServiceProviderType" protocolSupportEnumeration="http://gfipm.net/standards/webservices/1.0/user-consumer-provider-sip.html">
         
@@ -317,7 +317,7 @@ jrTooe4xuZU=
     
     <!-- Adapter as consumer -->
 
-    <EntityDescriptor ID="adapter-consumer" entityID="https://demoserver.ojbc-local.org/adapter-consumer">
+    <EntityDescriptor ID="adapter-consumer" entityID="https://demoserver.ojbc.local/adapter-consumer">
     
         <RoleDescriptor xsi:type="gfipmws:GFIPMWebServiceConsumerType" protocolSupportEnumeration="http://gfipm.net/standards/webservices/1.0/user-consumer-provider-sip.html">
         
@@ -371,7 +371,7 @@ jrTooe4xuZU=
 
     <!-- Portal as consumer -->
 
-    <EntityDescriptor ID="portal-consumer" entityID="https://demoserver.ojbc-local.org/portal-consumer">
+    <EntityDescriptor ID="portal-consumer" entityID="https://demoserver.ojbc.local/portal-consumer">
     
         <RoleDescriptor xsi:type="gfipmws:GFIPMWebServiceConsumerType" protocolSupportEnumeration="http://gfipm.net/standards/webservices/1.0/user-consumer-provider-sip.html">
         
@@ -425,7 +425,7 @@ I1I=
 
     <!-- Portal as provider -->
 
-    <EntityDescriptor ID="portal-provider" entityID="https://demoserver.ojbc-local.org/portal-provider">
+    <EntityDescriptor ID="portal-provider" entityID="https://demoserver.ojbc.local/portal-provider">
     
         <RoleDescriptor xsi:type="gfipmws:GFIPMWebServiceProviderType" protocolSupportEnumeration="http://gfipm.net/standards/webservices/1.0/user-consumer-provider-sip.html">
         

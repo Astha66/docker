@@ -1,13 +1,10 @@
 # Dockerfile to setup a container with the Shibboleth IDP 
 
-FROM java-server-base
+FROM java7-server-base
 
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
-ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get update -y
-RUN apt-get install -y unzip
+RUN apk add --update unzip zip tar
 
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
@@ -27,13 +24,29 @@ WORKDIR /tmp
 RUN unzip shibboleth-identityprovider-2.4.4-bin.zip
 WORKDIR /tmp/shibboleth-identityprovider-2.4.4
 
-RUN echo "/opt/shibboleth-idp\nidp.ojbc-local.org\npassword" | ./install.sh
+RUN printf "/opt/shibboleth-idp\nidp.ojbc.local\npassword" | ./install.sh
 
-RUN find /opt/shibboleth-idp
+WORKDIR /opt/shibboleth-idp/war
+RUN mkdir tmp && mv idp.war tmp
+WORKDIR /opt/shibboleth-idp/war/tmp
+RUN unzip idp.war
+COPY files/web.xml WEB-INF/web.xml
+RUN zip -f idp.war && mv idp.war ..
+WORKDIR /opt/shibboleth-idp/war
+RUN rm -rf tmp
+
+COPY files/demostate-ctf.xml /opt/shibboleth-idp/metadata/demostate-ctf.xml
+
+COPY files/attribute-filter.xml /opt/shibboleth-idp/conf/attribute-filter.xml
+COPY files/attribute-resolver.xml /opt/shibboleth-idp/conf/attribute-resolver.xml
+COPY files/handler.xml /opt/shibboleth-idp/conf/handler.xml
+COPY files/login.config /opt/shibboleth-idp/conf/login.config
+COPY files/logging.xml /opt/shibboleth-idp/conf/logging.xml
+COPY files/relying-party.xml /opt/shibboleth-idp/conf/relying-party.xml
 
 RUN mkdir -p /opt/tomcat/conf/Catalina/localhost
 RUN echo '<Context docBase="/opt/shibboleth-idp/war/idp.war" privileged="true" antiResourceLocking="false" antiJARLocking="false" unpackWAR="false" swallowOutput="true" />' > /opt/tomcat/conf/Catalina/localhost/idp.xml
 
-EXPOSE 9080
-EXPOSE 9443
+#EXPOSE 9080
+#EXPOSE 9443
 CMD ["catalina.sh", "run"]
