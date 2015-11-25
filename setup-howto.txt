@@ -4,6 +4,10 @@
    (instead of the default weave.local.) you pass an option to weave launch:
 
    weave launch --dns-domain="ojbc.local."
+   
+   After doing this, you need to set weave environment variables:
+   
+   eval $(weave env)
 
 3. The weave router acts as a full-fledged virtual switch and firewall between the "uber host" (your Mac), docker machine hosts, and containers running
    inside the docker machines.  However, the intra-host network (that allows inter-container communication between containers running on the same
@@ -25,8 +29,24 @@
    docker-machine ip weave-1
 
    (Assuming you called your docker machine weave-1, as in the tutorial.)
+   
+   So...actually, a better way to add the route is:
+   
+   sudo route add -net 10.32.0.0/16 $(docker-machine ip weave-1)
 
-5. After completing steps 1-4, assuming you've started the "pingme" container as described in the tutorial, you should be able to ping its IP address from
+5. For the bridged adapter in the docker-machine VM to be able to deal with packets from other subnets, you need to set its promiscuous mode to "allow".
+
+   You can do this through the VirtualBox Manager GUI (select the VM, Network, the bridged adapter, and use the drop-down to set it).
+   
+   Or you can do it from the command line:
+   
+   	VBoxManage modifyvm weave-1 --nicpromisc2 allow-all
+   	
+   Note that you have to shut down the VM before you do this (either command-line or GUI):
+   
+    docker-machine stop weave-1
+
+After completing steps 1-5, assuming you've started the "pingme" container as described in the tutorial, you should be able to ping its IP address from
    your Mac.  Assume it is 10.32.0.1 (which it should be if it's the only container you have running):
 
 $ traceroute 10.32.0.1
@@ -44,6 +64,10 @@ traceroute to 10.32.0.1 (10.32.0.1), 64 hops max, 52 byte packets
 
    172.17.0.1 is the IP addy of the weave router (which also has a DNS server for names running in the weave fabric) on the default docker bridge network.
    For whatever reason, weave does not expose weavedns via the 10.32.x.x IP address, so you have to use the docker bridge.
+   
+   You also need to add the 172.17.0.0/16 subnet to route through the docker-machine gateway:
+   
+   sudo route add -net 172.17.0.0/16 $(docker-machine ip weave-1)
 
    Anyway after completing this step, you should be able to do:
 
@@ -58,3 +82,19 @@ PING pingme.weave.local (10.32.0.1): 56 data bytes
 round-trip min/avg/max/stddev = 0.189/0.310/0.373/0.085 ms
 
    Note that the name of the machine in WeaveDNS will be whatever you called it when you started/ran the container
+
+# # # #
+
+A few notes:
+
+ * You can get the status of the weave service with:
+ 
+ 	  weave status
+ 	  
+   In particular, under the DNS section, you should see an entry counted for each container you've started up
+   
+ * You can see detailed status of the weave dns service with:
+ 
+      weave status dns
+      
+ * The process of auto-registering containers with weave does not seem to work if you just start them.  You have to run them, with the weave containers up.
