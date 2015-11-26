@@ -1,5 +1,7 @@
 FROM java7-server-base
 
+MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
+
 COPY bin/opendj-server-2.6.0.zip /opt/
 
 RUN apk add --update unzip
