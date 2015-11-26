@@ -35,7 +35,7 @@ RUN zip -f idp.war && mv idp.war ..
 WORKDIR /opt/shibboleth-idp/war
 RUN rm -rf tmp
 
-COPY files/demostate-ctf.xml /opt/shibboleth-idp/metadata/demostate-ctf.xml
+COPY ../shared/demostate-ctf.xml /opt/shibboleth-idp/metadata/demostate-ctf.xml
 
 COPY files/attribute-filter.xml /opt/shibboleth-idp/conf/attribute-filter.xml
 COPY files/attribute-resolver.xml /opt/shibboleth-idp/conf/attribute-resolver.xml
