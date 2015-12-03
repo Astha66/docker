@@ -21,17 +21,6 @@
 4. That is only half of the puzzle, though.  The IP stack on your Mac still doesn't know what to do with an address like 10.32.0.1.  You need to tell it
    to use the weave router's host as the gateway for that subnet:
 
-   sudo route add -net 10.32.0.0/16 192.168.99.103
-
-   Note: the gateway IP address in your setup may be different than .103, as it depends on how many other VMs you have running in virtualbox.  You can find
-   the gateway IP addy thusly:
-
-   docker-machine ip weave-1
-
-   (Assuming you called your docker machine weave-1, as in the tutorial.)
-   
-   So...actually, a better way to add the route is:
-   
    sudo route add -net 10.32.0.0/16 $(docker-machine ip weave-1)
 
 5. For the bridged adapter in the docker-machine VM to be able to deal with packets from other subnets, you need to set its promiscuous mode to "allow".
