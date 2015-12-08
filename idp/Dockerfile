@@ -31,6 +31,8 @@ COPY files/login.config /opt/shibboleth-idp/conf/login.config
 COPY files/logging.xml /opt/shibboleth-idp/conf/logging.xml
 COPY files/relying-party.xml /opt/shibboleth-idp/conf/relying-party.xml
 
+COPY files/idp.* /opt/shibboleth-idp/credentials/
+
 RUN mkdir -p /opt/tomcat/conf/Catalina/localhost
 RUN echo '<Context docBase="/opt/shibboleth-idp/war/idp.war" privileged="true" antiResourceLocking="false" antiJARLocking="false" unpackWAR="false" swallowOutput="true" />' > /opt/tomcat/conf/Catalina/localhost/idp.xml
 
