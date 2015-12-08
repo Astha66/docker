@@ -2,7 +2,7 @@ FROM frolvlad/alpine-glibc
 
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
-RUN apk add --update bash apache2 apache2-ssl alpine-sdk openssl openssl-dev boost-dev curl-dev bzip2-dev
+RUN apk add --update bash apache2 apache2-ssl apache2-proxy alpine-sdk openssl openssl-dev boost-dev curl-dev bzip2-dev
 
 # This loosely follows the steps documented at https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLinuxSourceBuild
 
@@ -84,9 +84,11 @@ RUN wget http://shibboleth.net/downloads/service-provider/latest/shibboleth-sp-2
 COPY files/* /opt/shibboleth-sp/etc/shibboleth/
 
 RUN sed -i s/SSLMutex/#SSLMutex/g /etc/apache2/conf.d/ssl.conf && \
-	sed -i "s/#ServerName.*/ServerName www.ojbc.local:80/g" /etc/apache2/httpd.conf && \
+	sed -i "s/#ServerName.*/ServerName portal.ojbc.local:80/g" /etc/apache2/httpd.conf && \
 	sed -i "s/UseCanonicalName Off/UseCanonicalName On/g" /etc/apache2/httpd.conf && \
-	ln -s /opt/shibboleth-sp/etc/shibboleth/shib.conf /etc/apache2/conf.d/shib.conf
+	ln -s /opt/shibboleth-sp/etc/shibboleth/shib.conf /etc/apache2/conf.d/shib.conf && \
+	printf "\n<Location /ojb-web-util>\n\tAuthType shibboleth\n\tShibRequestSetting requireSession 1\n\tShibUseHeaders On\n\trequire shib-session\n</Location>\n" >> /etc/apache2/conf.d/shib.conf && \
+	echo "ProxyPass /ojb-web-util ajp://tomcat.ojbc.local:8009/ojb-web-util" >> /etc/apache2/conf.d/proxy.conf
 	
 # Make startup script
 	
