@@ -99,3 +99,4 @@ A few notes:
       weave status dns
       
  * The process of auto-registering containers with weave does not seem to work if you just start them.  You have to run them, with the weave containers up.
+ * To determine the IP address of a container: docker-machine ip weave-1
