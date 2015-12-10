@@ -35,7 +35,7 @@
    
     docker-machine stop weave-1
     
-  You will then need to restart the VM
+  You will then need to start the VM
     docker-machine start weave-1
 
   Since your restarted the VM, you will then need to run 
