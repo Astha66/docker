@@ -40,7 +40,7 @@
 
   Since your restarted the VM, you will then need to run 
       weave launch
-      eval $(weave env
+      eval $(weave env)
       weave expose
 
 After completing steps 1-5, assuming you've started the "pingme"  (run "docker start pingme") container as described in the tutorial, you should be able to ping its IP address from your Mac.  Assume it is 10.32.0.1 (which it should be if it's the only container you have running).  
