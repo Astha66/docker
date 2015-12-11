@@ -2,7 +2,7 @@ FROM frolvlad/alpine-glibc
 
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
-RUN apk add --update bash wget ca-certificates
+RUN apk add --update bash curl ca-certificates
 
 # Install JDK from a local install file in the bin directory
 
@@ -19,8 +19,7 @@ ENV PATH $PATH:$JAVA_HOME/bin
 
 RUN  mkdir -p /opt/jdk && \
 
-     cd /tmp && \
-     wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
+     cd /tmp && curl -O -L -H "Cookie: oraclelicense=accept-securebackup-cookie;" \
         "http://download.oracle.com/otn-pub/java/jdk/7u80-b15/jdk-7u80-linux-x64.tar.gz" && \
 
      tar -zxf /tmp/jdk-7u80-linux-x64.tar.gz -C /opt/jdk && \
@@ -56,7 +55,7 @@ RUN  mkdir -p /opt/jdk && \
            "$JAVA_HOME/jre/lib/jfr.jar" \
            "$JAVA_HOME/jre/lib/jfr" \
            "$JAVA_HOME/jre/lib/oblique-fonts" && \
-    apk del wget ca-certificates && \
+    apk del ca-certificates && \
     rm /var/cache/apk/*
 
 # default command
