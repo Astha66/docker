@@ -34,9 +34,21 @@
    Note that you have to shut down the VM before you do this (either command-line or GUI):
    
     docker-machine stop weave-1
+    
+  You will then need to start the VM
+    docker-machine start weave-1
 
-After completing steps 1-5, assuming you've started the "pingme" container as described in the tutorial, you should be able to ping its IP address from
-   your Mac.  Assume it is 10.32.0.1 (which it should be if it's the only container you have running):
+  Since your restarted the VM, you will then need to run 
+      weave launch
+      eval $(weave env)
+      weave expose
+
+After completing steps 1-5, assuming you've started the "pingme"  (run "docker start pingme") container as described in the tutorial, you should be able to ping its IP address from your Mac.  Assume it is 10.32.0.1 (which it should be if it's the only container you have running).  
+   
+*If you are unable to ping 10.32.0.1 from your Mac and you're certain you followed the steps above, chances are the static route is incorrect (this could happen if you end up having to install the weave-1 docker machine a couple times, since each time ou install it, it VB gives it a new IP Address).  So, try the following to remove the existing static route and add a new one:
+      sudo route delete -net 10.32.0.0/16 $(docker-machine ip weave-1)
+      sudo route add -net 10.32.0.0/16 $(docker-machine ip weave-1)
+
 
 $ traceroute 10.32.0.1
 traceroute to 10.32.0.1 (10.32.0.1), 64 hops max, 52 byte packets
@@ -87,3 +99,4 @@ A few notes:
       weave status dns
       
  * The process of auto-registering containers with weave does not seem to work if you just start them.  You have to run them, with the weave containers up.
+ * To determine the IP address of a container: docker-machine ip weave-1
