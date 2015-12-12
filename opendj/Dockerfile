@@ -1,4 +1,4 @@
-FROM java7-server-base
+FROM ojbc/java7-server-base
 
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
