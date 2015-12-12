@@ -1,6 +1,6 @@
 # Dockerfile to setup a container with the Shibboleth IDP 
 
-FROM java7-tomcat
+FROM ojbc/java7-tomcat
 
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
