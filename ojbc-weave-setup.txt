@@ -1,0 +1,59 @@
+# Abbreviated set of commands to get up and running with Docker for OJBC
+
+# Step 1.  Install Docker Toolbox.  This is a manual process, described at:
+
+	https://www.docker.com/docker-toolbox
+	
+# Step 2.  Install Weave
+
+curl -L git.io/weave -o /usr/local/bin/weave
+chmod a+x /usr/local/bin/weave
+
+# Step 3.  Create OJB Docker Machine.
+
+docker-machine create --driver virtualbox --virtualbox-cpu-count 2 --virtualbox-memory 2048 --virtualbox-hostonly-nicpromisc allow-all ojb-machine
+eval $(docker-machine env ojb-machine)
+
+# Note:  the eval command above has to be re-run in any new login shell you create.  So if you open a new terminal window, you have to re-execute it.
+
+# Step 4.  Launch Weave proxy
+
+weave launch --dns-domain=ojbc.local
+eval $(weave env)
+weave expose
+
+# Note:  the eval command above has to be re-run in any new login shell you create.  So if you open a new terminal window, you have to re-execute it.
+
+# to check, run docker ps, and you should see weaveexec (weaveproxy) and weave containers running
+# another check:  run weave status.
+
+# Step 5.  Setup static routes
+
+sudo route add -net 10.32.0.0/16 $(docker-machine ip ojb-machine)
+sudo route add -net 172.17.0.0/16 $(docker-machine ip ojb-machine)
+
+# Note:  this needs to be redone anytime you reboot your Mac
+
+# Step 6.  Setup DNS
+
+sudo mkdir -p /etc/resolver/
+echo "nameserver 172.17.0.1" | sudo tee -a /etc/resolver/ojbc.local
+
+# Step 7.  Test
+
+The easiest way is to pull the ojbc/java7-tomcat image from Docker Hub, run it, and then ping it and hit the Tomcat home page in your browser
+
+docker run -d --name=tomcat ojbc/java7-tomcat
+
+# Note: the name in DNS will be the same as the name of the container (i.e. the value of the --name= option).
+
+# Check 1:  docker ps
+	Should show the tomcat container running
+	
+# Check 2:  ping tomcat.ojbc.local
+	Should ping
+	
+# Check 3:  Open http://tomcat.ojbc.local in a browser
+
+	3a:  curl http://tomcat.ojbc.local # will give you a dump of that page in your shell
+	3b:  Hit http://tomcat.ojbc.local in browser
