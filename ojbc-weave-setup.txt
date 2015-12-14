@@ -43,6 +43,7 @@ sudo mkdir -p /etc/resolver/
 sudo rm /etc/resolver/ojbc.local && echo "nameserver 172.17.0.1" | sudo tee -a /etc/resolver/ojbc.local
 
 # Note:  The /etc/resolver/ojbc.local file will persist across reboots, but it's fine to run these commands whenever...
+# Note:  If you are running OSX Yosemite you will need to run the following command:"sudo discoveryutil mdnsactivedirectory yes".  This is due to the way Yosemite handles .local domain names.  You can read more about it here if interested: http://daniel.hepper.net/blog/2014/12/local-domains-and-mac-os-x-10-10-yosemite/ 
 
 # Step 7.  Test
 
