@@ -9,6 +9,9 @@
 curl -L git.io/weave -o /usr/local/bin/weave
 chmod a+x /usr/local/bin/weave
 
+# Note: This install, like Docker Toolbox, only needs to be done once on your machine.  Of course, if they update either Weave
+	or DT you'll want to update...
+
 # Step 3.  Create OJB Docker Machine.
 
 docker-machine create --driver virtualbox --virtualbox-cpu-count 2 --virtualbox-memory 2048 --virtualbox-hostonly-nicpromisc allow-all ojb-machine
@@ -37,7 +40,9 @@ sudo route add -net 172.17.0.0/16 $(docker-machine ip ojb-machine)
 # Step 6.  Setup DNS
 
 sudo mkdir -p /etc/resolver/
-echo "nameserver 172.17.0.1" | sudo tee -a /etc/resolver/ojbc.local
+sudo rm /etc/resolver/ojbc.local && echo "nameserver 172.17.0.1" | sudo tee -a /etc/resolver/ojbc.local
+
+# Note:  The /etc/resolver/ojbc.local file will persist across reboots, but it's fine to run these commands whenever...
 
 # Step 7.  Test
 
