@@ -11,9 +11,9 @@ ENV PATH $CATALINA_HOME/bin:$PATH
 RUN mkdir -p "$CATALINA_HOME"
 WORKDIR /tmp
 
-RUN curl -O https://www.apache.org/dist/tomcat/tomcat-7/v7.0.67/bin/apache-tomcat-7.0.67.tar.gz && \
-	tar -xvf /tmp/apache-tomcat-7.0.67.tar.gz -C /opt/tomcat --strip-components=1 && \
-    rm $CATALINA_HOME/bin/*.bat && rm /tmp/apache-tomcat-7.0.67.tar.gz
+RUN curl -O https://www.apache.org/dist/tomcat/tomcat-8/v8.0.30/bin/apache-tomcat-8.0.30.tar.gz && \
+	tar -xvf /tmp/apache-tomcat-8.0.30.tar.gz -C /opt/tomcat --strip-components=1 && \
+    rm $CATALINA_HOME/bin/*.bat && rm /tmp/apache-tomcat-8.0.30.tar.gz
 
 WORKDIR $CATALINA_HOME
 
