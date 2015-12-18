@@ -1,9 +1,9 @@
 # Docker Compose file that creates SAML sandbox environment
 # To run:  docker-compose -f saml-sandbox-compose.yaml up -d
 
-opendj:
-  container_name: opendj
-  image: ojbc/opendj
+apacheds:
+  container_name: apacheds
+  image: ojbc/apacheds
   
 idp:
   container_name: idp

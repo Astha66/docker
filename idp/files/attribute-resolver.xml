@@ -67,9 +67,9 @@
 	</resolver:AttributeDefinition>
 
 	<resolver:DataConnector id="myLDAP" xsi:type="dc:LDAPDirectory"
-		ldapURL="ldap://opendj.ojbc.local:389" baseDN="ou=people,dc=ojbc-local,dc=org" principal="cn=Directory Manager" principalCredential="password">
+		ldapURL="ldap://apacheds.ojbc.local:389" baseDN="ou=people,dc=ojbc,dc=local" principal="uid=admin,ou=system" principalCredential="secret">
 		<dc:FilterTemplate> <![CDATA[
-  (uid=$requestContext.principalName) ]]>
+  (uid=$resolutionContext.principal) ]]>
   		</dc:FilterTemplate>
 	</resolver:DataConnector>
 
