@@ -11,7 +11,6 @@ ENV PATH $KARAF_HOME/bin:$PATH
 RUN mkdir -p "$KARAF_HOME"
 WORKDIR /tmp
 
-# TODO replace with karaf
 RUN curl -O https://www.apache.org/dist/karaf/3.0.5/apache-karaf-3.0.5.tar.gz && \
 	tar -xvf /tmp/apache-karaf-3.0.5.tar.gz -C /opt/karaf --strip-components=1 && \
     rm /tmp/apache-karaf-3.0.5.tar.gz
@@ -23,4 +22,5 @@ COPY files/org.ops4j.pax.web.cfg etc/
 COPY files/org.ops4j.pax.url.mvn.cfg etc/
 COPY files/ojbc.context.services.cfg etc/
 
-CMD ["karaf.sh"]
+# can be run via:  docker run -d ojbc/java8-karaf3
+CMD ["karaf", "server"]
