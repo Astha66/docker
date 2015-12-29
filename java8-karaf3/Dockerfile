@@ -1,3 +1,6 @@
+
+
+
 # Dockerfile to build a Karaf container
 
 FROM ojbc/java8-server-base
@@ -22,5 +25,8 @@ COPY files/org.ops4j.pax.web.cfg etc/
 COPY files/org.ops4j.pax.url.mvn.cfg etc/
 COPY files/ojbc.context.services.cfg etc/
 
-# can be run via:  docker run -d ojbc/java8-karaf3
+# can be run "weave friendly"(sets name) via:  docker run --name=karaf -d ojbc/java8-karaf3
 CMD ["karaf", "server"]
+
+# can connect via:  ./bin/client -a 8101 -h 10.32.0.3 -u karaf -v
+# NOTE:  above, replace 10.32.0.3 with the weave address of the karaf image exposed by weave
