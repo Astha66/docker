@@ -22,6 +22,6 @@ FROM ojbc/java8-tomcat8
 
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
-COPY bin/ojb-web-util.war /opt/tomcat/webapps/
+RUN curl -sSL https://repo1.maven.org/maven2/org/ojbc/web/ojb-web-util/1.0.0/ojb-web-util-1.0.0.war -o /opt/tomcat/webapps/ojb-web-util.war
 
 CMD ["catalina.sh", "run"]
