@@ -23,7 +23,6 @@ WORKDIR $KARAF_HOME
 COPY files/setenv bin/
 COPY files/org.ops4j.pax.web.cfg etc/
 COPY files/org.ops4j.pax.url.mvn.cfg etc/
-COPY files/ojbc.context.services.cfg etc/
 
 # can be run "weave friendly"(sets name) via:  docker run --name=karaf -d ojbc/java8-karaf3
 CMD ["karaf", "server"]
