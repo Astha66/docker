@@ -51,6 +51,14 @@ RUN curl -O http://repo1.maven.org/maven2/org/ojbc/bundles/shared/ojb-osgi-commo
 RUN curl -O http://repo1.maven.org/maven2/org/ojbc/bundles/shared/ojb-common/3.0.0/ojb-common-3.0.0.jar
 RUN curl -O http://repo1.maven.org/maven2/org/ojbc/bundles/shared/ojb-camel-common/2.0.0/ojb-camel-common-2.0.0.jar
 RUN curl -O http://repo1.maven.org/maven2/org/ojbc/bundles/shared/ojb-fedquery-common/2.0.0/ojb-fedquery-common-2.0.0.jar
+RUN curl -O http://repo1.maven.org/maven2/org/ojbc/bundles/intermediaries/policy-acknowledgement-service-intermediary/1.0.1/policy-acknowledgement-service-intermediary-1.0.1.jar
+RUN curl -O http://repo1.maven.org/maven2/org/ojbc/bundles/shared/ojb-policy-decision-point-service/1.0.1/ojb-policy-decision-point-service-1.0.1.jar
+RUN curl -O http://repo1.maven.org/maven2/org/ojbc/bundles/adapters/static-mock-adapter-osgi/1.0.16/static-mock-adapter-osgi-1.0.16.jar
+RUN curl -O http://repo1.maven.org/maven2/org/ojbc/bundles/adapters/static-mock-adapter/1.0.7/static-mock-adapter-1.0.7.jar
+RUN curl -O http://repo1.maven.org/maven2/org/ojbc/bundles/intermediaries/person-search-request-service-intermediary/1.1.0/person-search-request-service-intermediary-1.1.0.jar
+RUN curl -O http://repo1.maven.org/maven2/org/ojbc/bundles/intermediaries/subscription-notification-service-intermediary-common/2.0.0/subscription-notification-service-intermediary-common-2.0.0.jar
+RUN curl -O http://repo1.maven.org/maven2/org/ojbc/bundles/adapters/rapback-data-store-adapter/1.0.1/rapback-data-store-adapter-1.0.1.jar
+RUN curl -O http://repo1.maven.org/maven2/org/ojbc/bundles/intermediaries/identification-reporting-service-intermediary/1.0.0/identification-reporting-service-intermediary-1.0.0.jar
 
 # see parent for run comments
 CMD ["karaf", "server"]
