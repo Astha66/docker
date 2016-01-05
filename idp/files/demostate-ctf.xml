@@ -22,7 +22,7 @@
     xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
     xmlns:shibmd="urn:mace:shibboleth:metadata:1.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="urn:oasis:names:tc:SAML:2.0:metadata saml-2.0-os-xsd/saml-schema-metadata-2.0.xsd" Name="Demostate Federation CTF" validUntil="2015-12-31T12:00:00">
+    xsi:schemaLocation="urn:oasis:names:tc:SAML:2.0:metadata saml-2.0-os-xsd/saml-schema-metadata-2.0.xsd" Name="Demostate Federation CTF" validUntil="2020-12-31T12:00:00">
 
 	<!-- This is just a place-holder signature for now -->
     <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
