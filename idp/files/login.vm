@@ -62,6 +62,7 @@
 
             #if ($passwordEnabled)
             	<h3 style="padding-top: 25px; padding-bottom: 25px">Please authenticate with a Demostate user's credentials:</h3>
+            	
               <div class="form-element-wrapper">
                 <label for="username">#springMessageText("idp.login.username", "Username")</label>
                 <input class="form-element form-field" id="username" name="j_username" type="text"
@@ -83,6 +84,9 @@
                 #springMessageText("idp.attribute-release.revoke", "Clear prior granting of permission for release of your information to this service.")
               </div>
 -->
+
+			<input id="_shib_idp_revokeConsent" type="hidden" name="_shib_idp_revokeConsent" value="true"/>
+
             #if ($passwordEnabled)
               <div class="form-element-wrapper">
                 <button class="form-element form-button" type="submit" name="_eventId_proceed"
