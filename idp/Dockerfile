@@ -23,6 +23,8 @@ MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
 WORKDIR /tmp
 
+COPY files/ojbc-logo.png /tmp/
+
 RUN apk add --update unzip zip tar curl && \
 	curl -O http://shibboleth.net/downloads/identity-provider/3.2.0/shibboleth-identity-provider-3.2.0.zip && \
 	unzip shibboleth-identity-provider-3.2.0.zip && cd shibboleth-identity-provider-3.2.0 && \
@@ -35,6 +37,7 @@ RUN apk add --update unzip zip tar curl && \
 	unzip idp.war && \
 	curl -O https://repo1.maven.org/maven2/jstl/jstl/1.2/jstl-1.2.jar && \
 	mv jstl-1.2.jar WEB-INF/lib && \
+	mv /tmp/ojbc-logo.png images && \
 	cd .. && jar -cvfM idp.war -C tmp/ . && \
 	rm -rf tmp && rm -rf /tmp/*
 
@@ -48,6 +51,8 @@ COPY files/metadata-providers.xml /opt/shibboleth-idp/conf/metadata-providers.xm
 COPY files/ldap.properties /opt/shibboleth-idp/conf/ldap.properties
 
 COPY files/idp-signing.* /opt/shibboleth-idp/credentials/
+
+COPY files/login.vm /opt/shibboleth-idp/views/
 
 COPY files/catalina.properties /opt/tomcat/conf/
 
