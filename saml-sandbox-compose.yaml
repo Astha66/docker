@@ -26,6 +26,10 @@ idp:
   container_name: idp
   image: ojbc/idp
   
+samlds:
+  container_name: samlds
+  image: ojbc/samlds
+  
 portal:
   container_name: portal
   image: ojbc/portal
