@@ -8,9 +8,7 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
-gitHubAPIURLToDownloadFrom=$1
-
-DIRS=$(curl -s $gitHubURLToDownloadFrom | grep html_url | grep -v gitignore | sed "s/.*\(https.*\)\".*/\1/g")
+DIRS=$(curl -s $1 | grep html_url | grep -v gitignore | sed "s/.*\(https.*\)\".*/\1/g")
 
 for dir in $DIRS
 do
