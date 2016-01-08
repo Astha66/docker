@@ -9,6 +9,9 @@ MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
 RUN apk add --update unzip zip tar curl
 
+COPY files/git-download.sh /tmp/git-download.sh
+RUN cd && mkdir ojb-certs && cd ojb-certs && /tmp/git-download.sh https://api.github.com/repos/ojbc/main/contents/shared/ojb-certs
+
 ENV KARAF_HOME /opt/karaf
 ENV PATH $KARAF_HOME/bin:$PATH
 RUN mkdir -p "$KARAF_HOME"
@@ -22,7 +25,9 @@ WORKDIR $KARAF_HOME
 
 COPY files/setenv bin/
 COPY files/org.ops4j.pax.web.cfg etc/
-COPY files/org.ops4j.pax.url.mvn.cfg etc/
+#COPY files/org.ops4j.pax.url.mvn.cfg etc/
+COPY files/org.apache.cxf.osgi.cfg etc/
+#COPY files/ojbc.context.services.cfg etc/
 
 # can be run "weave friendly"(sets name) via:  docker run --name=karaf -d ojbc/java8-karaf3
 CMD ["karaf", "server"]
