@@ -97,6 +97,7 @@
 
     <feature name="karaf-demostate" version="1.0.0" resolver="(obr)">    
         <feature version="1.0.0">ojb-shared-bundles</feature>
+        <feature version="1.0.0">ojb-access-control</feature>
         <feature version="1.0.0">ojb-federated-query-adapters</feature>
         <feature version="1.0.0">ojb-federated-query-intermediaries</feature>
         <feature version="1.0.0">ojb-subscription-notification</feature>
