@@ -63,6 +63,16 @@
         <feature version="1.0.0">ojb-shared-bundles</feature>
         <bundle>mvn:org.ojbc.bundles.intermediaries/person-query-service-warrants-intermediary</bundle>
 		<bundle>mvn:org.ojbc.bundles.intermediaries/person-query-service-criminal-history-intermediary</bundle>
+		<bundle>mvn:org.ojbc.bundles.intermediaries/firearm-registration-query-request-service-intermediary</bundle>
+		<bundle>mvn:org.ojbc.bundles.intermediaries/incident-report-request-service-intermediary</bundle>
+		<bundle>mvn:org.ojbc.bundles.intermediaries/juvenile-history-service-intermediary</bundle>
+		
+		<!-- Add these once ER bundles migrated 
+		<bundle>mvn:org.ojbc.bundles.intermediaries/firearm-search-request-service-intermediary</bundle>
+		<bundle>mvn:org.ojbc.bundles.intermediaries/person-search-request-service-intermediary</bundle>
+		<bundle>mvn:org.ojbc.bundles.intermediaries/incident-search-request-service-intermediary</bundle>
+		<bundle>mvn:org.ojbc.bundles.intermediaries/vehicle-search-request-service-intermediary</bundle>
+		-->
     </feature>
 
     <feature name="ojb-federated-query-adapters" version="1.0.0" resolver="(obr)">    
