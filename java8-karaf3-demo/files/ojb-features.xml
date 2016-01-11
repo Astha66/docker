@@ -59,7 +59,7 @@
         <bundle>mvn:org.ojbc.bundles.shared/ojb-fedquery-common</bundle>
     </feature>
 
-    <feature name="ojb-federated-query-bundles" version="1.0.0" resolver="(obr)">    
+    <feature name="karaf-demostate" version="1.0.0" resolver="(obr)">    
         <feature version="1.0.0">ojb-shared-bundles</feature>
         <bundle>mvn:org.ojbc.bundles.intermediaries/policy-acknowledgement-service-intermediary/1.0.1</bundle>
         <bundle>mvn:org.ojbc.bundles.shared/ojb-policy-decision-point-service/1.0.1</bundle>
