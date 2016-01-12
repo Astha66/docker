@@ -66,13 +66,11 @@
 		<bundle>mvn:org.ojbc.bundles.intermediaries/firearm-registration-query-request-service-intermediary</bundle>
 		<bundle>mvn:org.ojbc.bundles.intermediaries/incident-report-request-service-intermediary</bundle>
 		<bundle>mvn:org.ojbc.bundles.intermediaries/juvenile-history-service-intermediary</bundle>
-		
-		<!-- Add these once ER bundles migrated 
+		 
 		<bundle>mvn:org.ojbc.bundles.intermediaries/firearm-search-request-service-intermediary</bundle>
 		<bundle>mvn:org.ojbc.bundles.intermediaries/person-search-request-service-intermediary</bundle>
 		<bundle>mvn:org.ojbc.bundles.intermediaries/incident-search-request-service-intermediary</bundle>
 		<bundle>mvn:org.ojbc.bundles.intermediaries/vehicle-search-request-service-intermediary</bundle>
-		-->
     </feature>
 
     <feature name="ojb-federated-query-adapters" version="1.0.0" resolver="(obr)">    
@@ -96,9 +94,16 @@
         <bundle>mvn:org.ojbc.bundles.intermediaries/identification-reporting-service-intermediary</bundle>
     </feature>
 
+    <feature name="entity-resolution" version="1.0.0" resolver="(obr)">    
+        <bundle>mvn:org.ojbc.bundles.shared/Entity_Resolution_Resources</bundle>
+        <bundle>mvn:org.ojbc.bundles.intermediaries/Entity_Resolution_Service_Intermediary_OSGi</bundle>
+        <bundle>mvn:org.ojbc.bundles.intermediaries/Entity_Resolution_Service_Intermediary</bundle>
+    </feature>
+
     <feature name="karaf-demostate" version="1.0.0" resolver="(obr)">    
         <feature version="1.0.0">ojb-shared-bundles</feature>
         <feature version="1.0.0">ojb-access-control</feature>
+        <feature version="1.0.0">entity-resolution</feature>
         <feature version="1.0.0">ojb-federated-query-adapters</feature>
         <feature version="1.0.0">ojb-federated-query-intermediaries</feature>
         <feature version="1.0.0">ojb-subscription-notification</feature>
