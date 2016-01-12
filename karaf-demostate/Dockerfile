@@ -15,7 +15,10 @@ COPY files/ojb-features.xml etc/
 WORKDIR $KARAF_HOME/etc
 
 RUN curl -sSL http://raw.githubusercontent.com/ojbc/main/master/shared/ojb-policy-decision-point-service/src/main/config/dev/ojb_policy_decision_point_service.cfg -o ojb_policy_decision_point_service.cfg  && \
-	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' ojb_policy_decision_point_service.cfg
+	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' ojb_policy_decision_point_service.cfg && \
+	
+	curl -sSL http://raw.githubusercontent.com/ojbc/main/master/intermediaries/policy-acknowledgement-service-intermediary/src/main/config/dev/policy_acknowledgement_service_intermediary.cfg -o policy_acknowledgement_service_intermediary.cfg && \
+	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' policy_acknowledgement_service_intermediary.cfg
 
 # see parent for run comments
 CMD ["karaf", "server"]
