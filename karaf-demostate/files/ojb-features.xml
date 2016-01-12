@@ -92,6 +92,7 @@
     <feature name="ojb-subscription-notification" version="1.0.0" resolver="(obr)">    
         <feature version="1.0.0">ojb-shared-bundles</feature>
         <bundle>mvn:org.ojbc.bundles.intermediaries/subscription-notification-service-intermediary-common</bundle>
+        <bundle>mvn:org.ojbc.bundles.intermediaries/subscription-notification-service-intermediary</bundle>
         <bundle>mvn:org.ojbc.bundles.intermediaries/identification-reporting-service-intermediary</bundle>
     </feature>
 

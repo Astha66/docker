@@ -18,7 +18,10 @@ RUN curl -sSL http://raw.githubusercontent.com/ojbc/main/master/shared/ojb-polic
 	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' ojb_policy_decision_point_service.cfg && \
 	
 	curl -sSL http://raw.githubusercontent.com/ojbc/main/master/intermediaries/policy-acknowledgement-service-intermediary/src/main/config/dev/policy_acknowledgement_service_intermediary.cfg -o policy_acknowledgement_service_intermediary.cfg && \
-	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' policy_acknowledgement_service_intermediary.cfg
+	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' policy_acknowledgement_service_intermediary.cfg && \
+
+	curl -sSL http://raw.githubusercontent.com/ojbc/main/master/intermediaries/subscription-notification-service-intermediary/src/main/resources/subscription_notification_service_intermediary.cfg -o subscription_notification_service_intermediary.cfg && \
+	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' subscription_notification_service_intermediary.cfg
 
 # see parent for run comments
 CMD ["karaf", "server"]
