@@ -36,6 +36,7 @@ RUN cd && mkdir ojb-certs && cd ojb-certs && /tmp/git-download.sh https://api.gi
 #Get external web resource
 RUN cd && mkdir ojb-web-external-resource && cd ojb-web-external-resource && \ 
 	/tmp/git-download.sh https://api.github.com/repos/ojbc/main/contents/web/ojb-web-external-resource && \
+	/tmp/git-download.sh https://api.github.com/repos/ojbc/main/contents/web/ojb-web-external-resource/velocity && \
 	rm /tmp/git-download.sh && \
 	sed -i 's/intermediary\.request\.hostName\=localhost/intermediary\.request\.hostName\=karaf\-demostate\.ojbc\.local/g' /root/ojb-web-external-resource/config/ojbc-web-application-connector.cfg && \
 	sed -i 's/webapplication\.response\.hostName\=localhost/webapplication\.response\.hostName\=ojb\-web\-portal\.ojbc\.local/g' /root/ojb-web-external-resource/config/ojbc-web-application-connector.cfg
