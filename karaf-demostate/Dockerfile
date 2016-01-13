@@ -1,18 +1,19 @@
 
-# Dockerfile to build a Karaf container
+# Dockerfile to build a Karaf container, you should run this build with the no cache option: docker build --no-cache -t ojbc/karaf-demostate .
 
 FROM ojbc/java8-karaf3
 
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
+#Copy karaf install script to image
 COPY files/karf-feature-bundle-install-script.sh /tmp/karf-feature-bundle-install-script.sh
 
+#Copy karaf specific files
 WORKDIR $KARAF_HOME
 
 COPY files/org.apache.karaf.features.cfg etc/
 COPY files/ojbc.context.services.cfg etc/
 COPY files/org.ops4j.pax.url.mvn.cfg etc/
-COPY files/ojb-features.xml etc/
 
 WORKDIR $KARAF_HOME/etc
 
@@ -52,6 +53,9 @@ RUN curl -sSL http://raw.githubusercontent.com/ojbc/main/master/shared/ojb-polic
 
 	curl -sSL http://raw.githubusercontent.com/ojbc/main/master/intermediaries/juvenile-history-service-intermediary/src/main/resources/juvenile_history_service_intermediary.cfg -o juvenile_history_service_intermediary.cfg && \
 	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' juvenile_history_service_intermediary.cfg
+
+# Run the karaf instance.  The first start / sleep / stop will make sure supporting container bundles are installed
+# That is followed by a script that will install the karaf demostate bundles
 
 RUN /opt/karaf/bin/start; \
 	until /opt/karaf/bin/client -u karaf -h 127.0.0.1 version; do sleep 10s; done; \
