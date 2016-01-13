@@ -5,6 +5,8 @@ FROM ojbc/java8-karaf3
 
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
+COPY files/karf-feature-bundle-install-script.sh /tmp/karf-feature-bundle-install-script.sh
+
 WORKDIR $KARAF_HOME
 
 COPY files/org.apache.karaf.features.cfg etc/
@@ -51,6 +53,10 @@ RUN curl -sSL http://raw.githubusercontent.com/ojbc/main/master/shared/ojb-polic
 	curl -sSL http://raw.githubusercontent.com/ojbc/main/master/intermediaries/juvenile-history-service-intermediary/src/main/resources/juvenile_history_service_intermediary.cfg -o juvenile_history_service_intermediary.cfg && \
 	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' juvenile_history_service_intermediary.cfg
 
-
+RUN /opt/karaf/bin/start; \
+	until /opt/karaf/bin/client -u karaf -h 127.0.0.1 version; do sleep 10s; done; \
+	/opt/karaf/bin/client -u karaf -h 127.0.0.1 -f /tmp/karf-feature-bundle-install-script.sh \
+	/opt/karaf/bin/stop 
+	
 # see parent for run comments
 CMD ["karaf", "server"]
