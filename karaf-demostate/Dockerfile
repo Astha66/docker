@@ -41,6 +41,9 @@ RUN curl -sSL http://raw.githubusercontent.com/ojbc/main/master/shared/ojb-polic
 	curl -sSL http://raw.githubusercontent.com/ojbc/main/master/intermediaries/person-search-request-service-intermediary/src/main/config/dev/person_search_request_service_intermediary.cfg -o person_search_request_service_intermediary.cfg && \
 	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' person_search_request_service_intermediary.cfg && \
 
+	curl -sSL http://raw.githubusercontent.com/ojbc/main/master/intermediaries/organization-identification-results-search-service-intermediary/src/main/resources/organization_identification_results_search_service_intermediary.cfg  -o organization_identification_results_search_service_intermediary.cfg && \
+	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' organization_identification_results_search_service_intermediary.cfg && \
+
 # query intermediaries
 	curl -sSL http://raw.githubusercontent.com/ojbc/main/master/intermediaries/person-query-service-criminal-history-intermediary/src/main/resources/person_query_service_criminal_history_intermediary.cfg -o person_query_service_criminal_history_intermediary.cfg && \
 	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' person_query_service_criminal_history_intermediary.cfg && \
@@ -52,7 +55,10 @@ RUN curl -sSL http://raw.githubusercontent.com/ojbc/main/master/shared/ojb-polic
 	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' firearm_registration_query_request_service_intermediary.cfg && \
 
 	curl -sSL http://raw.githubusercontent.com/ojbc/main/master/intermediaries/juvenile-history-service-intermediary/src/main/resources/juvenile_history_service_intermediary.cfg -o juvenile_history_service_intermediary.cfg && \
-	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' juvenile_history_service_intermediary.cfg
+	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' juvenile_history_service_intermediary.cfg && \
+
+	curl -sSL http://raw.githubusercontent.com/ojbc/main/master/intermediaries/organization-identification-results-query-service-intermediary/src/main/resources/organization_identification_results_query_service_intermediary.cfg -o organization_identification_results_query_service_intermediary.cfg && \
+	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' organization_identification_results_query_service_intermediary.cfg
 
 # Run the karaf instance.  The first start / sleep / stop will make sure supporting container bundles are installed
 # That is followed by a script that will install the karaf demostate bundles

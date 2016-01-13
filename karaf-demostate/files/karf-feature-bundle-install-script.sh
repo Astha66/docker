@@ -62,6 +62,9 @@ bundle:install -s mvn:org.ojbc.bundles.adapters/static-mock-adapter
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/subscription-notification-service-intermediary-common
 bundle:install -s mvn:org.ojbc.bundles.adapters/rapback-data-store-adapter
 
+bundle:install -s mvn:org.ojbc.bundles.intermediaries/organization-identification-results-query-service-intermediary
+bundle:install -s mvn:org.ojbc.bundles.intermediaries/organization-identification-results-search-service-intermediary
+
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/policy-acknowledgement-service-intermediary
 bundle:install -s mvn:org.ojbc.bundles.shared/ojb-policy-decision-point-service
 
