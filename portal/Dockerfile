@@ -108,6 +108,8 @@ RUN sed -i s/SSLMutex/#SSLMutex/g /etc/apache2/conf.d/ssl.conf && \
 	ln -s /opt/shibboleth-sp/etc/shibboleth/shib.conf /etc/apache2/conf.d/shib.conf && \
 	printf "\n<Location /ojb-web-util>\n\tAuthType shibboleth\n\tShibRequestSetting requireSession 1\n\tShibUseHeaders On\n\trequire shib-session\n</Location>\n" >> /etc/apache2/conf.d/shib.conf && \
 	echo "ProxyPass /ojb-web-util ajp://tomcat.ojbc.local:8009/ojb-web-util" >> /etc/apache2/conf.d/proxy.conf
+	printf "\n<Location /ojb-web-portal>\n\tAuthType shibboleth\n\tShibRequestSetting requireSession 1\n\tShibUseHeaders On\n\trequire shib-session\n</Location>\n" >> /etc/apache2/conf.d/shib.conf && \
+	echo "ProxyPass /ojb-web-portal ajp://ojb-web-portal.ojbc.local:8009/ojb-web-portal/portal/index" >> /etc/apache2/conf.d/proxy.conf
 	
 # Make startup script
 	
