@@ -37,7 +37,7 @@ ou: Office of Information Technology
 sn: Admin
 uid: demoadmin
 userPassword: password
-ORI: DS1234567
+ORI: 1234567890
 
 dn: cn=demouser1,ou=People,dc=ojbc,dc=local
 cn: demouser1
@@ -54,7 +54,7 @@ ou: Office of Information Technology
 sn: User1
 uid: demouser1
 userPassword: password
-ORI: DS1234567
+ORI: 1234567890
 
 dn: cn=demouser2,ou=People,dc=ojbc,dc=local
 cn: demouser2
@@ -71,4 +71,4 @@ ou: Office of Information Technology
 sn: User2
 uid: demouser2
 userPassword: password
-ORI: DS1234568
+ORI: 1234567890
