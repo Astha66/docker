@@ -31,6 +31,7 @@
         <AttributeRule attributeID="ou"><PermitValueRule xsi:type="ANY"/></AttributeRule>
         <AttributeRule attributeID="employeePositionName"><PermitValueRule xsi:type="ANY"/></AttributeRule>
         <AttributeRule attributeID="fid"><PermitValueRule xsi:type="ANY"/></AttributeRule>
+        <AttributeRule attributeID="ORI"><PermitValueRule xsi:type="ANY"/></AttributeRule>
     </AttributeFilterPolicy>
 
 </AttributeFilterPolicyGroup>

@@ -29,6 +29,7 @@ givenName: Demo
 mail: demoadmin@ojbc.org
 o: Demostate Government
 objectClass: person
+objectClass: demostatePerson
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: top
@@ -36,6 +37,7 @@ ou: Office of Information Technology
 sn: Admin
 uid: demoadmin
 userPassword: password
+ORI: DS1234567
 
 dn: cn=demouser1,ou=People,dc=ojbc,dc=local
 cn: demouser1
@@ -44,6 +46,7 @@ givenName: Demo
 mail: demouser1@ojbc.org
 o: Demostate Government
 objectClass: person
+objectClass: demostatePerson
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: top
@@ -51,6 +54,7 @@ ou: Office of Information Technology
 sn: User1
 uid: demouser1
 userPassword: password
+ORI: DS1234567
 
 dn: cn=demouser2,ou=People,dc=ojbc,dc=local
 cn: demouser2
@@ -59,6 +63,7 @@ givenName: Demo
 mail: demouser2@ojbc.org
 o: Demostate Government
 objectClass: person
+objectClass: demostatePerson
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: top
@@ -66,3 +71,4 @@ ou: Office of Information Technology
 sn: User2
 uid: demouser2
 userPassword: password
+ORI: DS1234568

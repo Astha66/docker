@@ -35,10 +35,13 @@ WORKDIR /opt/apacheds-2.0.0-M20
 
 COPY files/config.ldif /opt/apacheds-2.0.0-M20/instances/default/conf/
 COPY files/setup.ldif /tmp/
+COPY files/demostate-schema.ldif /tmp/
 
 RUN chmod ugo+x bin/apacheds.sh
 
-RUN bin/apacheds.sh start && sleep 10 && ldapmodify -h 127.0.0.1 -p 389 -x -a -v < /tmp/setup.ldif && \
+RUN bin/apacheds.sh start && sleep 10 && ldapmodify -h 127.0.0.1 -p 389 -x -a -v < /tmp/demostate-schema.ldif && \
+	bin/apacheds.sh stop && sleep 10 && \
+	bin/apacheds.sh start && sleep 10 && ldapmodify -h 127.0.0.1 -p 389 -x -a -v < /tmp/setup.ldif && \
 	bin/apacheds.sh stop && sleep 10 && \
 	rm /tmp/setup.ldif
 	
