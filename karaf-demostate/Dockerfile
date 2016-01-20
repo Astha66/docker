@@ -58,7 +58,7 @@ RUN curl -sSL http://raw.githubusercontent.com/ojbc/main/master/shared/ojb-polic
 	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' juvenile_history_service_intermediary.cfg && \
 
 	curl -sSL http://raw.githubusercontent.com/ojbc/main/master/intermediaries/organization-identification-results-query-service-intermediary/src/main/resources/organization_identification_results_query_service_intermediary.cfg -o organization_identification_results_query_service_intermediary.cfg && \
-	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' organization_identification_results_query_service_intermediary.cfg
+	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' organization_identification_results_query_service_intermediary.cfg && \
 
 	curl -sSL https://raw.githubusercontent.com/ojbc/main/master/intermediaries/incident-report-request-service-intermediary/src/main/config/dev/incident_report_request_service_intermediary.cfg -o incident_report_request_service_intermediary.cfg && \
 	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' incident_report_request_service_intermediary.cfg
