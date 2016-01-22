@@ -23,10 +23,10 @@ RUN apk add --update bash mariadb mariadb-client
 
 WORKDIR /usr
 
-# Allow other machines in the Weave network to connect, but no others
-# In a secured setup, you would not allow the root user to connect, but for demo purposes, works fine...
-RUN	echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'10.32.0.%' WITH GRANT OPTION;" > /tmp/grant.sql
-
 RUN bin/mysql_install_db --user=root
 
-CMD ["bin/mysqld_safe", "--user=root", "--init-file=/tmp/grant.sql"]
+COPY files/server-config.sh /tmp
+RUN chmod a+x /tmp/server-config.sh
+RUN /tmp/server-config.sh
+
+CMD ["bin/mysqld_safe", "--user=root"]
