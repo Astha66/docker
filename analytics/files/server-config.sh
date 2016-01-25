@@ -42,6 +42,7 @@ curl -s -u Admin:password http://localhost/pentaho/plugin/data-access/api/dataso
 
 echo "Installing demo Mondrian schema..."
 curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/incident-arrest/OJBMondrianSchema.xml -o /tmp/OJBMondrianSchema.xml
+sed -i "s/OJBC Analytics/OJBC Analytics Demo/g" /tmp/OJBMondrianSchema.xml
 curl -s -u Admin:password -F parameters="Datasource=ojbc_analytics_demo;overwrite=true" -F uploadAnalysis="@/tmp/OJBMondrianSchema.xml;filename=OJBMondrianSchema.xml;type=text/xml" http://localhost/pentaho/plugin/data-access/api/mondrian/postAnalysis
 echo "Analysis Data Sources:"
 curl -s -u Admin:password http://localhost/pentaho/plugin/data-access/api/datasource/analysis/catalog | xmllint --format --recover -
