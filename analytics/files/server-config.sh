@@ -51,5 +51,28 @@ echo "Installing Saiku plugin..."
 curl -s -u Admin:password -X POST http://localhost/pentaho/plugin/marketplace/api/plugin/saiku/STABLE
 cp /tmp/saiku.min.js /opt/pentaho/biserver-ce/pentaho-solutions/system/saiku/ui/
 
+echo "Installing OJB Demo Dashboards..."
+curl -s -u Admin:password -X PUT http://localhost/pentaho/api/repo/dirs/%3Apublic%3AOJB%2520Dashboards
+curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/incident-arrest/dashboards/IncidentDashboard.cda -o /tmp/IncidentDashboard.cda
+curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/incident-arrest/dashboards/IncidentDashboard.cdfde -o /tmp/IncidentDashboard.cdfde
+curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/incident-arrest/dashboards/IncidentDashboard.wcdf -o /tmp/IncidentDashboard.wcdf
+curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/incident-arrest/dashboards/DrugCrimeDashboard.cda -o /tmp/DrugCrimeDashboard.cda
+curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/incident-arrest/dashboards/DrugCrimeDashboard.cdfde -o /tmp/DrugCrimeDashboard.cdfde
+curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/incident-arrest/dashboards/DrugCrimeDashboard.wcdf -o /tmp/DrugCrimeDashboard.wcdf
+curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/incident-arrest/dashboards/PretrialServicesDashboard.cda -o /tmp/PretrialServicesDashboard.cda
+curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/incident-arrest/dashboards/PretrialServicesDashboard.cdfde -o /tmp/PretrialServicesDashboard.cdfde
+curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/incident-arrest/dashboards/PretrialServicesDashboard.wcdf -o /tmp/PretrialServicesDashboard.wcdf
+sleep 3
+curl -s -u Admin:password -F fileUpload='@/tmp/IncidentDashboard.cda;filename="IncidentDashboard.cda"' -F importDir="/public/OJB Dashboards" http://localhost/pentaho/api/repo/files/import
+curl -s -u Admin:password -F fileUpload='@/tmp/IncidentDashboard.cdfde;filename="IncidentDashboard.cdfde"' -F importDir="/public/OJB Dashboards" http://localhost/pentaho/api/repo/files/import
+curl -s -u Admin:password -F fileUpload='@/tmp/IncidentDashboard.wcdf;filename="IncidentDashboard.wcdf"' -F importDir="/public/OJB Dashboards" http://localhost/pentaho/api/repo/files/import
+curl -s -u Admin:password -F fileUpload='@/tmp/DrugCrimeDashboard.cda;filename="DrugCrimeDashboard.cda"' -F importDir="/public/OJB Dashboards" http://localhost/pentaho/api/repo/files/import
+curl -s -u Admin:password -F fileUpload='@/tmp/DrugCrimeDashboard.cdfde;filename="DrugCrimeDashboard.cdfde"' -F importDir="/public/OJB Dashboards" http://localhost/pentaho/api/repo/files/import
+curl -s -u Admin:password -F fileUpload='@/tmp/DrugCrimeDashboard.wcdf;filename="DrugCrimeDashboard.wcdf"' -F importDir="/public/OJB Dashboards" http://localhost/pentaho/api/repo/files/import
+curl -s -u Admin:password -F fileUpload='@/tmp/PretrialServicesDashboard.cda;filename="PretrialServicesDashboard.cda"' -F importDir="/public/OJB Dashboards" http://localhost/pentaho/api/repo/files/import
+curl -s -u Admin:password -F fileUpload='@/tmp/PretrialServicesDashboard.cdfde;filename="PretrialServicesDashboard.cdfde"' -F importDir="/public/OJB Dashboards" http://localhost/pentaho/api/repo/files/import
+curl -s -u Admin:password -F fileUpload='@/tmp/PretrialServicesDashboard.wcdf;filename="PretrialServicesDashboard.wcdf"' -F importDir="/public/OJB Dashboards" http://localhost/pentaho/api/repo/files/import
+sleep 3
+
 # Put the server startup script back in "foreground" mode
 sed -i "s/sh startup.sh/.\/catalina.sh run/g" start-pentaho.sh
