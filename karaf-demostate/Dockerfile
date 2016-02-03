@@ -14,6 +14,7 @@ WORKDIR $KARAF_HOME
 COPY files/org.apache.karaf.features.cfg etc/
 COPY files/ojbc.context.services.cfg etc/
 COPY files/org.ops4j.pax.url.mvn.cfg etc/
+COPY files/org.ops4j.pax.web.cfg etc/
 
 WORKDIR $KARAF_HOME/etc
 
