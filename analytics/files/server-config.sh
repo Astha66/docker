@@ -50,6 +50,10 @@ curl -s -u Admin:password http://localhost/pentaho/plugin/data-access/api/dataso
 echo "Installing Saiku plugin..."
 curl -s -u Admin:password -X POST http://localhost/pentaho/plugin/marketplace/api/plugin/saiku/STABLE
 cp /tmp/saiku.min.js /opt/pentaho/biserver-ce/pentaho-solutions/system/saiku/ui/
+echo "Installing IvyBC plugin..."
+curl -s -u Admin:password -X POST http://localhost/pentaho/plugin/marketplace/api/plugin/IvyBC/STABLE
+echo "Installing Pivot4j plugin..."
+curl -s -u Admin:password -X POST http://localhost/pentaho/plugin/marketplace/api/plugin/pivot4j/Development
 
 echo "Installing OJB Demo Dashboards..."
 curl -s -u Admin:password -X PUT http://localhost/pentaho/api/repo/dirs/%3Apublic%3AOJB%2520Dashboards
