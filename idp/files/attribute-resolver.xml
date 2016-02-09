@@ -67,6 +67,11 @@
 		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:EmployerSubUnitName" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
 	</resolver:AttributeDefinition>
 	
+	<resolver:AttributeDefinition xsi:type="ad:Simple" id="mail" sourceAttributeID="mail">
+		<resolver:Dependency ref="myLDAP" />
+		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:EmailAddressText" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+	</resolver:AttributeDefinition>
+	
 	<resolver:AttributeDefinition xsi:type="ad:Script" id="fid">
 		<resolver:Dependency ref="myLDAP" />
 		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:FederationId" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
