@@ -23,9 +23,9 @@ eval $CURLTEST
 
 echo "Adding users to Pentaho..."
 
-echo "<user><userName>demoadmin</userName><password>password</password></user>" | curl -s -u Admin:password --header "Content-Type: application/xml" -T - http://localhost/pentaho/api/userroledao/createUser
-echo "<user><userName>demouser1</userName><password>password</password></user>" | curl -s -u Admin:password --header "Content-Type: application/xml" -T - http://localhost/pentaho/api/userroledao/createUser
-echo "<user><userName>demouser2</userName><password>password</password></user>" | curl -s -u Admin:password --header "Content-Type: application/xml" -T - http://localhost/pentaho/api/userroledao/createUser
+echo "<user><userName>demoadmin@ojbc.org</userName><password>password</password></user>" | curl -s -u Admin:password --header "Content-Type: application/xml" -T - http://localhost/pentaho/api/userroledao/createUser
+echo "<user><userName>demouser1@ojbc.org</userName><password>password</password></user>" | curl -s -u Admin:password --header "Content-Type: application/xml" -T - http://localhost/pentaho/api/userroledao/createUser
+echo "<user><userName>demouser2@ojbc.org</userName><password>password</password></user>" | curl -s -u Admin:password --header "Content-Type: application/xml" -T - http://localhost/pentaho/api/userroledao/createUser
 
 echo "Removing fake Pentaho users..."
 
