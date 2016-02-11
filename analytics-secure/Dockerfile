@@ -15,25 +15,12 @@
 
 # Dockerfile for OJB analytics platform server, secured via SAML
 
-FROM ojbc/pentaho
+FROM ojbc/analytics
 
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
 WORKDIR /opt/pentaho/biserver-ce
 
-COPY files/server-config.sh /tmp/
-COPY files/ojbc_analytics_demo-connection.json /tmp/
-COPY files/validation.properties /tmp/
-COPY files/welcome/img/* /opt/pentaho/biserver-ce/tomcat/webapps/pentaho/mantle/home/content/welcome/img/
-COPY files/welcome/index.html /opt/pentaho/biserver-ce/tomcat/webapps/pentaho/mantle/home/content/welcome/
-COPY files/saiku.min.js /tmp/
 COPY files/applicationContext-spring-security.xml /opt/pentaho/biserver-ce/pentaho-solutions/system/
-
-
-RUN apk add --update libxml2-utils
-
-RUN mkdir /root/.esapi && cp /tmp/validation.properties /root/.esapi
-
-RUN /tmp/server-config.sh
 
 CMD ["./start-pentaho.sh"]
