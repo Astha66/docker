@@ -6,7 +6,7 @@ FROM ojbc/java8-karaf3
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
 #Copy karaf install script to image
-COPY files/karf-feature-bundle-install-script.sh /tmp/karf-feature-bundle-install-script.sh
+COPY files/karaf-feature-bundle-install-script.sh /tmp/karaf-feature-bundle-install-script.sh
 
 #Copy karaf specific files
 WORKDIR $KARAF_HOME
@@ -69,7 +69,7 @@ RUN curl -sSL http://raw.githubusercontent.com/ojbc/main/master/shared/ojb-polic
 
 RUN /opt/karaf/bin/start; \
 	until /opt/karaf/bin/client -u karaf -h 127.0.0.1 version; do sleep 10s; done; \
-	/opt/karaf/bin/client -u karaf -h 127.0.0.1 -f /tmp/karf-feature-bundle-install-script.sh \
+	/opt/karaf/bin/client -u karaf -h 127.0.0.1 -f /tmp/karaf-feature-bundle-install-script.sh \
 	/opt/karaf/bin/stop 
 	
 # see parent for run comments
