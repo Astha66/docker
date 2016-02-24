@@ -17,6 +17,8 @@ chmod a+x /usr/local/bin/weave
 docker-machine create --driver virtualbox --virtualbox-cpu-count 2 --virtualbox-memory 2048 --virtualbox-hostonly-nicpromisc allow-all ojb-machine
 eval $(docker-machine env ojb-machine)
 
+If necessary, use this setting --virtualbox-no-vtx-check=true
+
 # Note:  the eval command above has to be re-run in any new login shell you create.  So if you open a new terminal window, you have to re-execute it.
 
 # Step 4.  Launch Weave proxy
