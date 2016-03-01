@@ -1,5 +1,5 @@
 #This script can be run from a karaf client as follows.  The dockerFile runs this as part of the build:
-#/opt/karaf/bin/client -u karaf -h 127.0.0.1 -f /tmp/karf-feature-bundle-install-script.sh
+#/opt/karaf/bin/client -u karaf -h 127.0.0.1 -f /tmp/karaf-feature-bundle-install-script.sh
 
 feature:install cxf/3.0.6
 feature:install camel/2.14.4
