@@ -59,7 +59,7 @@
         -->
         <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
                   checkAddress="false" handlerSSL="true" cookieProps="https"
-		  exportLocation="https://secure-resource.search.org/Shibboleth.sso/GetAssertion" exportACL="127.0.0.1 ::1 10.32.0.0/16">
+		  exportLocation="https://secure-resource.search.org/Shibboleth.sso/GetAssertion" exportACL="52.86.232.229">
 
             <!--
             Configures SSO for a default IdP. To allow for >1 IdP, remove
@@ -88,7 +88,7 @@
             <Handler type="MetadataGenerator" Location="/Metadata" signing="false"/>
 
             <!-- Status reporting service. -->
-            <Handler type="Status" Location="/Status" acl="127.0.0.1 ::1 10.32.0.0/16"/>
+            <Handler type="Status" Location="/Status" acl="127.0.0.1"/>
 
             <!-- Session diagnostic service. -->
             <Handler type="Session" Location="/Session" showAttributeValues="true"/>
