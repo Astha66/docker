@@ -24,9 +24,14 @@ MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 WORKDIR /tmp
 RUN wget http://meteorite.bi/downloads/saiku-latest.zip
 
+#Below we move the 'ROOT' application to sauki-ui to make it easier to proxy with Apache
+#The saiku-beans.xml are modified a path that references 'ROOT' to 'saiku-ui'
 RUN	unzip saiku-latest.zip && \
 	mv saiku-server /opt && \
 	rm -f saiku-latest.zip && \
-	sed -i "s/sh startup.sh/\/opt\/saiku-server\/tomcat\/bin\/catalina.sh run/g" /opt/saiku-server/start-saiku.sh
+	sed -i "s/sh startup.sh/\/opt\/saiku-server\/tomcat\/bin\/catalina.sh run/g" /opt/saiku-server/start-saiku.sh && \
+	mv /opt/saiku-server/tomcat/webapps/ROOT /opt/saiku-server/tomcat/webapps/saiku-ui
+
+COPY files/saiku-beans.xml /opt/saiku-server/tomcat/webapps/saiku/WEB-INF
 
 CMD ["/opt/saiku-server/start-saiku.sh"]
