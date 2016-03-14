@@ -15,9 +15,9 @@
 # Copyright 2012-2016 Open Justice Broker Consortium
 # 
 
-# Docker Compose file that creates SAML sandbox environment
-# To run:  docker-compose -f saml-sandbox-compose.yaml up -d
-# Then visit https://portal.ojbc.local/ojb-web-util/index.jsp
+# Docker Compose file that creates Analytics Opencpu environment
+# To run:  docker-compose -f analytics-opencpu-compose.yaml up -d
+# Then visit https://portal.ojbc.local/ocpu/library/OJBDashboardDemo/www/index.html
 # You will prompted for a userid/password and can enter: demouser1 and password
 
 apacheds:
@@ -35,8 +35,7 @@ samlds:
 portal:
   container_name: portal
   image: ojbc/portal
-  
-ojb-web-util:
-  container_name: tomcat
-  image: ojbc/ojb-web-util
-  
+    
+analytics-opencpu-demo:
+  container_name: analytics-opencpu-demo
+  image: ojbc/analytics-opencpu-demo
