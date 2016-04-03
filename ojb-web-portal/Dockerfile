@@ -15,8 +15,7 @@
 # Copyright 2012-2016 Open Justice Broker Consortium
 # 
 
-# Dockerfile for a Tomcat container with the ojbc-web-util webapp installed
-# Note that you need to build the ojb-web-util war file first, and copy into the bin directory before building
+# Dockerfile for a Tomcat container with the ojbc-web-portal webapp installed
 
 FROM ojbc/java8-tomcat8
 
