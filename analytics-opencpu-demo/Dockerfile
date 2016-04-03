@@ -20,10 +20,9 @@ FROM ojbc/analytics-opencpu
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
 COPY bin/OJBDashboardDemo_0.1.tar.gz /tmp/
+COPY bin/JailBookingDashboard_0.1.tar.gz /tmp/
 
 WORKDIR /tmp
 
-RUN apt-get install -y libcairo-dev
-
-RUN R -e 'install.packages(c("ggrepel", "svglite", "tidyr", "ggthemes"), repos="http://cran.us.r-project.org")'
 RUN R -e 'install.packages("/tmp/OJBDashboardDemo_0.1.tar.gz", repos=NULL, type="source")'
+RUN R -e 'install.packages("/tmp/JailBookingDashboard_0.1.tar.gz", repos=NULL, type="source")'
