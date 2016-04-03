@@ -21,4 +21,6 @@ MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
 WORKDIR /tmp
 
-RUN R -e 'install.packages(c("dplyr", "ggplot2"), repos="http://cran.us.r-project.org")'
+RUN apt-get install -y libcairo-dev
+
+RUN R -e 'install.packages(c("dplyr", "ggplot2", "ggrepel", "svglite", "tidyr", "ggthemes", "lubridate", "scales"), repos="http://cran.us.r-project.org")'
