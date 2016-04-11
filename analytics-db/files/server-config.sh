@@ -11,3 +11,9 @@ until /usr/bin/mysqladmin -u root status > /dev/null 2>&1; do sleep 1; done
 echo "create database ojbc_analytics_demo" | mysql -u root
 mysql -u root ojbc_analytics_demo < /tmp/ojbc_analytics_demo.sql
 rm -f /tmp/ojbc_analytics_demo.sql
+
+gunzip ojbc_analytics_booking_jail_demo.sql.gz
+
+echo "create database ojbc_analytics_booking_jail_demo" | mysql -u root
+mysql -u root ojbc_analytics_booking_jail_demo < /tmp/ojbc_analytics_booking_jail_demo.sql
+rm -f /tmp/ojbc_analytics_booking_jail_demo.sql
