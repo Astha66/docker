@@ -3,7 +3,7 @@
 # Step 1.  Install Docker Toolbox.  This is a manual process, described at:
 
 	https://www.docker.com/docker-toolbox
-	
+
 # Step 2.  Install Weave
 
 curl -L git.io/weave -o /usr/local/bin/weave
@@ -24,6 +24,11 @@ If necessary, use this setting --virtualbox-no-vtx-check=true
 # Step 4.  Launch Weave proxy
 
 weave launch --dns-domain=ojbc.local
+
+# Note: weave may be launched to use a specific private ip address range by using this sample command parameter
+# weave launch --dns-domain=ojbc.local --ipalloc-range 172.18.0.0/16
+# http://docs.weave.works/weave/latest_release/ipam.html#range
+
 eval $(weave env)
 weave expose
 
@@ -45,7 +50,7 @@ sudo mkdir -p /etc/resolver/
 sudo rm -f /etc/resolver/ojbc.local && echo "nameserver 172.17.0.1" | sudo tee -a /etc/resolver/ojbc.local
 
 # Note:  The /etc/resolver/ojbc.local file will persist across reboots, but it's fine to run these commands whenever...
-# Note:  If you are running OSX Yosemite you will need to run the following command:"sudo discoveryutil mdnsactivedirectory yes".  This is due to the way Yosemite handles .local domain names.  You can read more about it here if interested: http://daniel.hepper.net/blog/2014/12/local-domains-and-mac-os-x-10-10-yosemite/ 
+# Note:  If you are running OSX Yosemite you will need to run the following command:"sudo discoveryutil mdnsactivedirectory yes".  This is due to the way Yosemite handles .local domain names.  You can read more about it here if interested: http://daniel.hepper.net/blog/2014/12/local-domains-and-mac-os-x-10-10-yosemite/
 
 # Step 7.  Test
 
@@ -57,10 +62,10 @@ docker run -d --name=tomcat ojbc/java7-tomcat
 
 # Check 1:  docker ps
 	Should show the tomcat container running
-	
+
 # Check 2:  ping tomcat.ojbc.local
 	Should ping
-	
+
 # Check 3:  Open http://tomcat.ojbc.local in a browser
 
 	3a:  curl http://tomcat.ojbc.local # will give you a dump of that page in your shell
