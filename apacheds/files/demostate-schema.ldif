@@ -40,6 +40,15 @@ m-name: ORI
 m-syntax: 1.3.6.1.4.1.1466.115.121.1.15
 m-singleValue: TRUE
 
+dn: m-oid=1.2.3.4.5.7, ou=attributetypes, cn=demostate, ou=schema
+objectclass: metaAttributeType
+objectclass: metaTop
+objectclass: top
+m-oid: 1.2.3.4.5.7
+m-name: queryUser
+m-syntax: 1.3.6.1.4.1.1466.115.121.1.15
+m-singleValue: TRUE
+
 dn: ou=comparators, cn=demostate, ou=schema
 objectclass: organizationalUnit
 objectclass: top
@@ -88,6 +97,7 @@ m-oid: 1.2.3.4.5
 m-name: demostatePerson
 m-supObjectClass: inetOrgPerson
 m-must: ORI
+m-must:queryUser
 
 dn: ou=syntaxcheckers, cn=demostate, ou=schema
 objectclass: organizationalUnit
@@ -98,4 +108,3 @@ dn: ou=syntaxes, cn=demostate, ou=schema
 objectclass: organizationalUnit
 objectclass: top
 ou: syntaxes
-

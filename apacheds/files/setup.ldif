@@ -38,6 +38,7 @@ sn: Admin
 uid: demoadmin
 userPassword: password
 ORI: 1234567890
+queryUser: true
 
 dn: cn=demouser1,ou=People,dc=ojbc,dc=local
 cn: demouser1
@@ -55,6 +56,7 @@ sn: User1
 uid: demouser1
 userPassword: password
 ORI: 1234567890
+queryUser: true
 
 dn: cn=demouser2,ou=People,dc=ojbc,dc=local
 cn: demouser2
@@ -72,3 +74,4 @@ sn: User2
 uid: demouser2
 userPassword: password
 ORI: 1234567890
+queryUser: false

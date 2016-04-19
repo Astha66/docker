@@ -61,6 +61,11 @@
 		<resolver:Dependency ref="myLDAP" />
 		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:EmployerORI" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
 	</resolver:AttributeDefinition>
+	
+	<resolver:AttributeDefinition xsi:type="ad:Simple" id="queryUser" sourceAttributeID="queryUser">
+		<resolver:Dependency ref="myLDAP" />
+		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:ext:user:FederatedQueryUserIndicator" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+	</resolver:AttributeDefinition>
 
 	<resolver:AttributeDefinition xsi:type="ad:Simple" id="ou" sourceAttributeID="ou">
 		<resolver:Dependency ref="myLDAP" />

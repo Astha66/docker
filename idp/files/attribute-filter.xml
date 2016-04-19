@@ -32,6 +32,7 @@
         <AttributeRule attributeID="employeePositionName"><PermitValueRule xsi:type="ANY"/></AttributeRule>
         <AttributeRule attributeID="fid"><PermitValueRule xsi:type="ANY"/></AttributeRule>
         <AttributeRule attributeID="ORI"><PermitValueRule xsi:type="ANY"/></AttributeRule>
+        <AttributeRule attributeID="queryUser"><PermitValueRule xsi:type="ANY"/></AttributeRule>
         <AttributeRule attributeID="mail"><PermitValueRule xsi:type="ANY"/></AttributeRule>
     </AttributeFilterPolicy>
 
