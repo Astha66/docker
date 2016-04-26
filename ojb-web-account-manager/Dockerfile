@@ -26,5 +26,6 @@ RUN curl -sSL https://repo1.maven.org/maven2/org/ojbc/web/ojb-web-account-manage
 #Copy catalina.properties files that points to ojb shared loader
 
 COPY files/catalina.properties /opt/tomcat/conf
+COPY files/banner.jpg /root/ojb-web-account-manager/web-resources/images/
 
 CMD ["catalina.sh", "run"]
