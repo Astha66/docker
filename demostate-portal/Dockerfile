@@ -30,4 +30,6 @@ RUN sed -i "s/ServerName portal.ojbc.local:80/ServerName secure-resource.search.
 	
 # Copy config files over
 	
-COPY files/* /opt/shibboleth-sp/etc/shibboleth/
+COPY files/shibboleth2.xml /opt/shibboleth-sp/etc/shibboleth/
+COPY files/server.pem /etc/ssl/apache2/
+COPY files/server.key /etc/ssl/apache2/

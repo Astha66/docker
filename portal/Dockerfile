@@ -40,7 +40,9 @@ RUN sed -i s/SSLMutex/#SSLMutex/g /etc/apache2/conf.d/ssl.conf && \
 	echo "ProxyPassReverse /saiku-ui ajp://saiku.ojbc.local:8009/saiku-ui" >> /etc/apache2/conf.d/proxy.conf && \
 	printf "\n<Location /saiku>\n\tAuthType shibboleth\n\tShibRequestSetting requireSession 1\n\tShibUseHeaders On\n\trequire shib-session\n</Location>\n" >> /etc/apache2/conf.d/shib.conf && \
 	echo "ProxyPass /saiku ajp://saiku.ojbc.local:8009/saiku" >> /etc/apache2/conf.d/proxy.conf && \
-	echo "ProxyPassReverse /saiku ajp://saiku.ojbc.local:8009/saiku" >> /etc/apache2/conf.d/proxy.conf
+	echo "ProxyPassReverse /saiku ajp://saiku.ojbc.local:8009/saiku" >> /etc/apache2/conf.d/proxy.conf && \
+	echo "ProxyPass /discovery ajp://samlds.ojbc.local:8009/discovery" >> /etc/apache2/conf.d/proxy.conf && \
+	echo "ProxyPassReverse /discovery ajp://samlds.ojbc.local:8009/discovery" >> /etc/apache2/conf.d/proxy.conf
 
 #Saiku has two web apps to proxy saiku-ui and saiku.  Proxy entries are entered for both
 

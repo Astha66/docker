@@ -76,7 +76,7 @@
             
             <!-- DS method: -->
             <SSO 
-                 discoveryProtocol="SAMLDS" discoveryURL="https://secure-resource.search.org:8443/discovery/WAYF">
+                 discoveryProtocol="SAMLDS" discoveryURL="https://secure-resource.search.org/discovery/WAYF">
               SAML2 SAML1
             </SSO>
             
