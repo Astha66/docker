@@ -15,7 +15,7 @@
 # Copyright 2012-2016 Open Justice Broker Consortium
 # 
 
-# Dockerfile for the OJBC sandbox service provider at https://secure-resource.search.org
+# Dockerfile for the OJBC sandbox service provider at https://demo.ojbc.org
 
 FROM ojbc/portal
 
@@ -24,12 +24,14 @@ MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 WORKDIR /tmp
 
 # change apache server name and retrieve the demostate trust fabric
-RUN sed -i "s/ServerName portal.ojbc.local:80/ServerName secure-resource.search.org:80/g" /etc/apache2/httpd.conf && \
+RUN sed -i "s/ServerName portal.ojbc.local:80/ServerName demo.ojbc.org:80/g" /etc/apache2/httpd.conf && \
 	curl -O https://raw.githubusercontent.com/ojbc/main/master/shared/ojb-saml-metadata/demostate-ctf.xml && \
 	cp -f demostate-ctf.xml /opt/shibboleth-sp/etc/shibboleth/
 	
 # Copy config files over
 	
 COPY files/shibboleth2.xml /opt/shibboleth-sp/etc/shibboleth/
+COPY files/server.key /opt/shibboleth-sp/etc/shibboleth/sp-key.pem
+COPY files/server.pem /opt/shibboleth-sp/etc/shibboleth/sp-cert.pem
 COPY files/server.pem /etc/ssl/apache2/
 COPY files/server.key /etc/ssl/apache2/

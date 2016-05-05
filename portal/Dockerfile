@@ -29,6 +29,7 @@ RUN sed -i s/SSLMutex/#SSLMutex/g /etc/apache2/conf.d/ssl.conf && \
 	echo "ProxyPass /ojb-web-util ajp://tomcat.ojbc.local:8009/ojb-web-util" >> /etc/apache2/conf.d/proxy.conf && \
 	printf "\n<Location /ojb-web-portal>\n\tAuthType shibboleth\n\tShibRequestSetting requireSession 1\n\tShibUseHeaders On\n\trequire shib-session\n</Location>\n" >> /etc/apache2/conf.d/shib.conf && \
 	echo "ProxyPass /ojb-web-portal ajp://ojb-web-portal.ojbc.local:8009/ojb-web-portal" >> /etc/apache2/conf.d/proxy.conf && \
+	echo "ProxyPassReverse /ojb-web-portal ajp://ojb-web-portal.ojbc.local:8009/idp" >> /etc/apache2/conf.d/proxy.conf && \
 	printf "\n<Location /pentaho>\n\tAuthType shibboleth\n\tShibRequestSetting requireSession 1\n\tShibUseHeaders On\n\trequire shib-session\n</Location>\n" >> /etc/apache2/conf.d/shib.conf && \
 	echo "ProxyPass /pentaho ajp://analytics-secure.ojbc.local:8009/pentaho" >> /etc/apache2/conf.d/proxy.conf && \
 	echo "ProxyPassReverse /pentaho ajp://analytics-secure.ojbc.local:8009/pentaho" >> /etc/apache2/conf.d/proxy.conf  && \
