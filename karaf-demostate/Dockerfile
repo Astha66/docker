@@ -44,6 +44,12 @@ RUN curl -sSL http://raw.githubusercontent.com/ojbc/main/master/shared/ojb-polic
 
 	curl -sSL http://raw.githubusercontent.com/ojbc/main/master/intermediaries/organization-identification-results-search-service-intermediary/src/main/resources/organization_identification_results_search_service_intermediary.cfg  -o organization_identification_results_search_service_intermediary.cfg && \
 	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' organization_identification_results_search_service_intermediary.cfg && \
+	
+		curl -sSL https://raw.githubusercontent.com/ojbc/main/master/intermediaries/court-case-search-service-intermediary/src/main/resources/court_case_search_service_intermediary.cfg -o court_case_search_service_intermediary.cfg  && \
+	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' court_case_search_service_intermediary.cfg && \
+
+	curl -sSL https://raw.githubusercontent.com/ojbc/main/master/intermediaries/custody-search-request-service-intermediary/src/main/resources/custody_search_request_service_intermediary.cfg -o custody_search_request_service_intermediary.cfg  && \
+	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' custody_search_request_service_intermediary.cfg && \
 
 # query intermediaries
 	curl -sSL http://raw.githubusercontent.com/ojbc/main/master/intermediaries/person-query-service-criminal-history-intermediary/src/main/resources/person_query_service_criminal_history_intermediary.cfg -o person_query_service_criminal_history_intermediary.cfg && \
@@ -62,7 +68,17 @@ RUN curl -sSL http://raw.githubusercontent.com/ojbc/main/master/shared/ojb-polic
 	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' organization_identification_results_query_service_intermediary.cfg && \
 
 	curl -sSL https://raw.githubusercontent.com/ojbc/main/master/intermediaries/incident-report-request-service-intermediary/src/main/config/dev/incident_report_request_service_intermediary.cfg -o incident_report_request_service_intermediary.cfg && \
-	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' incident_report_request_service_intermediary.cfg
+	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' incident_report_request_service_intermediary.cfg && \
+
+	curl -sSL https://raw.githubusercontent.com/ojbc/main/master/intermediaries/court-case-query-service-intermediary/src/main/resources/court_case_query_service_intermediary.cfg -o court_case_query_service_intermediary.cfg && \
+	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' court_case_query_service_intermediary.cfg && \
+	
+	curl -sSL https://raw.githubusercontent.com/ojbc/main/master/intermediaries/custody-query-service-intermediary/src/main/resources/custody_query_intermediary.cfg -o custody_query_intermediary.cfg  && \
+	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' custody_query_intermediary.cfg && \
+
+	curl -sSL https://raw.githubusercontent.com/ojbc/main/master/intermediaries/person-query-service-vehicle-crash-intermediary/src/main/resources/person_query_service_vehicle_crash_intermediary.cfg -o  person_query_service_vehicle_crash_intermediary.cfg && \
+	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' person_query_service_vehicle_crash_intermediary.cfg
+		
 
 # Run the karaf instance.  The first start / sleep / stop will make sure supporting container bundles are installed
 # That is followed by a script that will install the karaf demostate bundles

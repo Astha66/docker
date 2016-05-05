@@ -72,3 +72,8 @@ bundle:install mvn:org.ojbc.bundles.intermediaries/subscription-notification-ser
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/subscription-notification-service-intermediary
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/identification-reporting-service-intermediary
 
+bundle:install -s mvn:org.ojbc.bundles.intermediaries/court-case-search-service-intermediary
+bundle:install -s mvn:org.ojbc.bundles.intermediaries/court-case-query-service-intermediary
+bundle:install -s mvn:org.ojbc.bundles.intermediaries/custody-search-request-service-intermediary
+bundle:install -s mvn:org.ojbc.bundles.intermediaries/custody-query-service-intermediary
+#bundle:install -s mvn:org.ojbc.bundles.intermediaries/person-query-service-vehicle-crash-intermediary
