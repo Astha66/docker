@@ -76,4 +76,4 @@ bundle:install -s mvn:org.ojbc.bundles.intermediaries/court-case-search-service-
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/court-case-query-service-intermediary
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/custody-search-request-service-intermediary
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/custody-query-service-intermediary
-#bundle:install -s mvn:org.ojbc.bundles.intermediaries/person-query-service-vehicle-crash-intermediary
+bundle:install -s mvn:org.ojbc.bundles.intermediaries/person-query-service-vehicle-crash-intermediary
