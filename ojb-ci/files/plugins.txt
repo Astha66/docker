@@ -1,0 +1,10 @@
+disk-usage:0.25
+email-ext:2.39.3
+external-monitor-job:1.4
+git-client:1.16.1
+git:2.3.5
+github-api:1.67
+github:1.11.3
+scm-api:0.2
+thinBackup:1.7.4
+token-macro:1.10
