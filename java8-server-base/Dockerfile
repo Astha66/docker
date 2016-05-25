@@ -29,10 +29,10 @@ ENV JAVA_HOME /opt/jdk/jdk1.8.0_66
 ENV PATH $PATH:$JAVA_HOME/bin
 
 # You can run this Dockerfile in one of two ways.  Once you've accepted the Oracle license agreement,
-# you can run it as-is, using wget inside the RUN directive below.  This will result in a smaller image because
+# you can run it as-is, using curl inside the RUN directive below.  This will result in a smaller image because
 # the temporary JDK install file is removed after the image build.  However, note that this requires you to be online
 # when you do the build.  Alternatively, you can download the JDK yourself, put it in the bin directory, and uncomment
-# the COPY directive below (but then remove the wget directive inside RUN.)
+# the COPY directive below (but then remove the curl directive inside RUN.)
 
 #COPY bin/jdk-8u66-linux-x64.tar.gz /tmp/
 
