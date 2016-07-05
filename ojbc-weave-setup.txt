@@ -14,7 +14,7 @@ chmod a+x /usr/local/bin/weave
 
 # Step 3.  Create OJB Docker Machine.
 
-docker-machine create --driver virtualbox --virtualbox-cpu-count 2 --virtualbox-memory 2048 --virtualbox-hostonly-nicpromisc allow-all ojb-machine
+docker-machine create --driver virtualbox --virtualbox-cpu-count 2 --virtualbox-memory 4096 --virtualbox-hostonly-nicpromisc allow-all ojb-machine
 eval $(docker-machine env ojb-machine)
 
 If necessary, use this setting --virtualbox-no-vtx-check=true
