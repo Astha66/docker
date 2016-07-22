@@ -35,23 +35,28 @@ curl -s -u Admin:password --header "Content-Type: application/xml" -X PUT http:/
 echo "New user list:"
 eval $CURLTEST
 
-echo "Installing default database connection..."
+echo "Installing default database connections..."
 curl -s -u Admin:password --header "Content-Type: application/json" -T /tmp/ojbc_analytics_demo-connection.json http://localhost/pentaho/plugin/data-access/api/datasource/jdbc/connection/ojbc_analytics_demo
+curl -s -u Admin:password --header "Content-Type: application/json" -T /tmp/nibrs_analytics-connection.json http://localhost/pentaho/plugin/data-access/api/datasource/jdbc/connection/nibrs_analytics
 echo "Database connections:"
 curl -s -u Admin:password http://localhost/pentaho/plugin/data-access/api/datasource/jdbc/connection
 
-echo "Installing demo Mondrian schema..."
+echo "Installing Mondrian schemas..."
 curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/incident-arrest/OJBMondrianSchema.xml -o /tmp/OJBMondrianSchema.xml
+curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/nibrs/NIBRSAnalyticsMondrianSchema.xml -o /tmp/NIBRSAnalyticsMondrianSchema.xml
 sed -i "s/OJBC Analytics/OJBC Analytics Demo/g" /tmp/OJBMondrianSchema.xml
 curl -s -u Admin:password -F parameters="Datasource=ojbc_analytics_demo;overwrite=true" -F uploadAnalysis="@/tmp/OJBMondrianSchema.xml;filename=OJBMondrianSchema.xml;type=text/xml" http://localhost/pentaho/plugin/data-access/api/mondrian/postAnalysis
+curl -s -u Admin:password -F parameters="Datasource=nibrs_analytics;overwrite=true" -F uploadAnalysis="@/tmp/NIBRSAnalyticsMondrianSchema.xml;filename=NIBRSAnalyticsMondrianSchema.xml;type=text/xml" http://localhost/pentaho/plugin/data-access/api/mondrian/postAnalysis
 echo "Analysis Data Sources:"
 curl -s -u Admin:password http://localhost/pentaho/plugin/data-access/api/datasource/analysis/catalog | xmllint --format --recover -
 
 echo "Installing Saiku plugin..."
 curl -s -u Admin:password -X POST http://localhost/pentaho/plugin/marketplace/api/plugin/saiku/STABLE
 cp /tmp/saiku.min.js /opt/pentaho/biserver-ce/pentaho-solutions/system/saiku/ui/
+cp /tmp/license.lic /opt/pentaho/biserver-ce/pentaho-solutions/system/saiku/
 echo "Installing IvyBC plugin..."
 curl -s -u Admin:password -X POST http://localhost/pentaho/plugin/marketplace/api/plugin/IvyBC/STABLE
+
 echo "Installing Pivot4j plugin..."
 curl -s -u Admin:password -X POST http://localhost/pentaho/plugin/marketplace/api/plugin/pivot4j/Development
 

@@ -12,8 +12,8 @@ echo "create database ojbc_analytics_demo" | mysql -u root
 mysql -u root ojbc_analytics_demo < /tmp/ojbc_analytics_demo.sql
 rm -f /tmp/ojbc_analytics_demo.sql
 
-gunzip ojbc_analytics_booking_jail_demo.sql.gz
+gunzip nibrs_analytics.sql.gz
 
-echo "create database ojbc_analytics_booking_jail_demo" | mysql -u root
-mysql -u root ojbc_analytics_booking_jail_demo < /tmp/ojbc_analytics_booking_jail_demo.sql
-rm -f /tmp/ojbc_analytics_booking_jail_demo.sql
+echo "create database nibrs_analytics" | mysql -u root
+mysql -u root nibrs_analytics < /tmp/nibrs_analytics.sql
+rm -f /tmp/nibrs_analytics.sql

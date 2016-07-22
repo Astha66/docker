@@ -23,10 +23,12 @@ WORKDIR /opt/pentaho/biserver-ce
 
 COPY files/server-config.sh /tmp/
 COPY files/ojbc_analytics_demo-connection.json /tmp/
+COPY files/nibrs_analytics-connection.json /tmp/
 COPY files/validation.properties /tmp/
 COPY files/welcome/img/* /opt/pentaho/biserver-ce/tomcat/webapps/pentaho/mantle/home/content/welcome/img/
 COPY files/welcome/index.html /opt/pentaho/biserver-ce/tomcat/webapps/pentaho/mantle/home/content/welcome/
 COPY files/saiku.min.js /tmp/
+COPY files/license.lic /tmp/
 
 RUN apk add --update libxml2-utils
 
