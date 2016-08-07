@@ -34,8 +34,12 @@ RUN sed -i s/SSLMutex/#SSLMutex/g /etc/apache2/conf.d/ssl.conf && \
 	echo "ProxyPass /pentaho ajp://analytics-secure.ojbc.local:8009/pentaho" >> /etc/apache2/conf.d/proxy.conf && \
 	echo "ProxyPassReverse /pentaho ajp://analytics-secure.ojbc.local:8009/pentaho" >> /etc/apache2/conf.d/proxy.conf  && \
 	printf "\n<Location /ocpu>\n\tAuthType shibboleth\n\tShibRequestSetting requireSession 1\n\tShibUseHeaders On\n\trequire shib-session\n</Location>\n" >> /etc/apache2/conf.d/shib.conf && \
+
 	echo "ProxyPass /ocpu/library http://analytics-opencpu-demo.ojbc.local/ocpu/library" >> /etc/apache2/conf.d/proxy.conf && \	
 	echo "ProxyPassReverse /ocpu/library http://analytics-opencpu-demo.ojbc.local/ocpu/library" >> /etc/apache2/conf.d/proxy.conf && \
+	echo "ProxyPass /ocpu/tmp http://analytics-opencpu-demo.ojbc.local/ocpu/tmp" >> /etc/apache2/conf.d/proxy.conf && \	
+	echo "ProxyPassReverse /ocpu/tmp http://analytics-opencpu-demo.ojbc.local/ocpu/tmp" >> /etc/apache2/conf.d/proxy.conf && \
+
 	printf "\n<Location /saiku-ui>\n\tAuthType shibboleth\n\tShibRequestSetting requireSession 1\n\tShibUseHeaders On\n\trequire shib-session\n</Location>\n" >> /etc/apache2/conf.d/shib.conf && \
 	echo "ProxyPass /saiku-ui ajp://saiku.ojbc.local:8009/saiku-ui" >> /etc/apache2/conf.d/proxy.conf && \
 	echo "ProxyPassReverse /saiku-ui ajp://saiku.ojbc.local:8009/saiku-ui" >> /etc/apache2/conf.d/proxy.conf && \
