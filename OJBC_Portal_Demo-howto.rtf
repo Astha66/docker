@@ -1,6 +1,5 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
-{\fonttbl\f0\froman\fcharset0 TimesNewRomanPSMT;\f1\ftech\fcharset77 Symbol;\f2\fswiss\fcharset0 Helvetica;
-\f3\fmodern\fcharset0 CourierNewPSMT;}
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;\red5\green99\blue193;\red33\green34\blue36;}
 {\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid2\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid1}
 {\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid101\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc4\levelnfcn4\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{lower-alpha\}.}{\leveltext\leveltemplateid102\'02\'01.;}{\levelnumbers\'01;}\fi-360\li1440\lin1440 }{\listname ;}\listid2}}
@@ -8,7 +7,7 @@
 {\info
 {\title Set up and run the docker containers required for the OJBC portal demo to illustrate GFIPM}
 {\author Michael Jacobson}
-{\keywords docker, ojbc, gfipm}}\margl1440\margr1440\vieww12940\viewh14900\viewkind1\viewscale110
+{\keywords docker, ojbc, gfipm}}\margl1440\margr1440\vieww13240\viewh15200\viewkind1\viewscale110
 \deftab720
 \pard\pardeftab720\ri0\qc\partightenfactor0
 
@@ -19,59 +18,30 @@
 \pard\pardeftab720\ri0\partightenfactor0
 \cf0 \ulnone You will only need to complete these instructions once to setup the docker machine, docker containers, and run the demo.\
 \pard\pardeftab720\li360\fi-360\ri0\partightenfactor0
-\ls1\ilvl0
-\f1 \cf0 \'a5	
-\f2 Install Docker Machine {\field{\*\fldinst{HYPERLINK "https://docs.docker.com/engine/installation/mac"}}{\fldrslt \cf2 \ul \ulc2 https://docs.docker.com/engine/installation/mac}} or {\field{\*\fldinst{HYPERLINK "https://docs.docker.com/machine/install-machine/"}}{\fldrslt \cf2 \ul \ulc2 https://docs.docker.com/machine/install-machine/}}\
-\ls1\ilvl0
-\f1 \'a5	
-\f2 Follow the GFIPM Sandbox setup {\field{\*\fldinst{HYPERLINK "http://www.ojbc.org/gfipm-docker-sandbox-p2/"}}{\fldrslt \cf2 \ul \ulc2 http://www.ojbc.org/gfipm-docker-sandbox-p2/}} stopping after you install weave and before installing the containers\
-\ls1\ilvl0
-\f1 \'a5	
-\f2 At this point you will need to pull down the docker git hub repository from: {\field{\*\fldinst{HYPERLINK "https://github.com/ojbc/docker.git"}}{\fldrslt \cf2 \ul \ulc2 https://github.com/ojbc/docker.git}} I put my local repository in my home folder under git/docker\
-\ls1\ilvl0
-\f1 \'a5	
-\f2 Make sure you\'92re in the folder of your local docker repository\
+\ls1\ilvl0\cf0 \'95	Install Docker Machine {\field{\*\fldinst{HYPERLINK "https://docs.docker.com/engine/installation/mac"}}{\fldrslt \cf2 \ul \ulc2 https://docs.docker.com/engine/installation/mac}} or {\field{\*\fldinst{HYPERLINK "https://docs.docker.com/machine/install-machine/"}}{\fldrslt \cf2 \ul \ulc2 https://docs.docker.com/machine/install-machine/}}\
+\'95	Follow the GFIPM Sandbox setup {\field{\*\fldinst{HYPERLINK "http://www.ojbc.org/gfipm-docker-sandbox-p2/"}}{\fldrslt \cf2 \ul \ulc2 http://www.ojbc.org/gfipm-docker-sandbox-p2/}} stopping after you install weave and before installing the containers\
+\'95	At this point you will need to pull down the docker git hub repository from: {\field{\*\fldinst{HYPERLINK "https://github.com/ojbc/docker.git"}}{\fldrslt \cf2 \ul \ulc2 https://github.com/ojbc/docker.git}} I put my local repository in my home folder under git/docker\
+\'95	Make sure you\'92re in the folder of your local docker repository\
 \pard\pardeftab720\li1080\fi-360\ri0\partightenfactor0
-\ls1\ilvl1
-\f3 \cf0 o	
-\f2 In iTerm type: cd git/docker  \
+\ls1\ilvl1\cf0 o	In iTerm type: cd git/docker  \
 \pard\pardeftab720\li360\fi-360\ri0\partightenfactor0
-\ls1\ilvl1
-\f1 \cf0 \'a5	
-\f2 Download and install the docker containers needed for the OJBC GFIPM and Portal demo\
+\ls1\ilvl1\cf0 \'95	Download and install the docker containers needed for the OJBC GFIPM and Portal demo\
 \pard\pardeftab720\li1080\fi-360\ri0\partightenfactor0
-\ls1\ilvl1
-\f3 \cf0 o	
-\f2 In iTerm type:  docker-compose -f demostate-portal-compose.yaml up \'96d   \
+\ls1\ilvl1\cf0 o	In iTerm type:  docker-compose -f demostate-portal-compose.yaml up \'96d   \
 \pard\pardeftab720\li360\fi-360\ri0\partightenfactor0
-\ls1\ilvl1
-\f1 \cf0 \'a5	
-\f2 Now set up the static routes and DNS hosts        \
+\ls1\ilvl1\cf0 \'95	Now set up the static routes and DNS hosts        \
 \pard\pardeftab720\li1080\fi-360\ri0\partightenfactor0
-\ls1\ilvl1
-\f3 \cf0 o	
-\f2 In iTerm type: route add \'96net 10.32.0.0/16 $(docker-machine ip ojb-machine)\
-\ls1\ilvl1
-\f3 o	
-\f2 In iTerm type: route add \'96net 172.17.0.0/16 $(docker-machine ip ojb-machine)\
+\ls1\ilvl1\cf0 o	In iTerm type: route add \'96net 10.32.0.0/16 $(docker-machine ip ojb-machine)\
+o	In iTerm type: route add \'96net 172.17.0.0/16 $(docker-machine ip ojb-machine)\
 \pard\pardeftab720\li360\fi-360\ri0\partightenfactor0
-\ls1\ilvl1
-\f1 \cf0 \'a5	
-\f2 To set up the DNS on MacOS add an entry to the resolver config\
+\ls1\ilvl1\cf0 \'95	To set up the DNS on MacOS add an entry to the resolver config\
 \pard\pardeftab720\li1080\fi-360\ri0\partightenfactor0
-\ls1\ilvl1
-\f3 \cf0 o	
-\f2 In iTerm type: sudo mkdir \'96p /etc/resolver\
-\ls1\ilvl1
-\f3 o	
-\f2 In iTerm type: sudo rm \'96f /etc/resolver/ojbc.local && echo \'93nameserver 172.17.0.1\'94 | sudo tee \'96a /etc/resolver/ojbc.local\
+\ls1\ilvl1\cf0 o	In iTerm type: sudo mkdir \'96p /etc/resolver\
+o	In iTerm type: sudo rm \'96f /etc/resolver/ojbc.local && echo \'93nameserver 172.17.0.1\'94 | sudo tee \'96a /etc/resolver/ojbc.local\
 \pard\pardeftab720\li360\fi-360\ri0\partightenfactor0
-\ls1\ilvl1
-\f1 \cf0 \'a5	
-\f2 You should be able to ping portal.ojbc.local in iTerm\
+\ls1\ilvl1\cf0 \'95	You should be able to ping portal.ojbc.local in iTerm\
 \pard\pardeftab720\ri0\partightenfactor0
-
-\f0 \cf0 To access the portal in your browser use: {\field{\*\fldinst{HYPERLINK "https://portal.ojbc.local/ojb-web-portal"}}{\fldrslt \cf2 \ul \ulc2 https://portal.ojbc.local/ojb-web-portal}}\cf2 \ul \ulc2 \
+\cf0 To access the portal in your browser use: {\field{\*\fldinst{HYPERLINK "https://portal.ojbc.local/ojb-web-portal"}}{\fldrslt \cf2 \ul \ulc2 https://portal.ojbc.local/ojb-web-portal}}\cf2 \ul \ulc2 \
 \pard\pardeftab720\ri0\partightenfactor0
 \cf0 \ulc0 The Install is complete and ready to go!docker\
 \pard\pardeftab720\ri0\partightenfactor0
@@ -81,8 +51,7 @@
 \pard\pardeftab720\ri0\partightenfactor0
 \cf0 \ulnone Now that everything is installed you only need to run the following to start the demo if you restart your system or you stop to the docker containers or docker machine.\
 \pard\pardeftab720\li720\fi-360\ri0\partightenfactor0
-\ls2\ilvl1
-\f2 \cf0 1.	Make sure that you are starting with a clean slate\
+\ls2\ilvl1\cf0 1. Make sure that you are starting with a clean slate - if the docker machine is running you will need to stop it, else skip to step 2.\
 \pard\pardeftab720\li1440\fi-360\ri0\partightenfactor0
 \ls2\ilvl1\cf0 a.	In iTerm type: \cf3 docker rm -f weave weaveplugin weaveproxy weavevolumes-1.4.6\cf0 \
 \ls2\ilvl1\cf3 b.	In iTerm type: docker-machine stop ojb-machine\cf0 \
@@ -106,8 +75,7 @@ b.	In iTerm type: docker-compose \'96f demostate-portal-compose.yaml up -d\
 \pard\pardeftab720\li720\fi-360\ri0\partightenfactor0
 \ls2\ilvl1\cf0 6.	Verify with weave status dns and docker ps \'96a \
 \pard\pardeftab720\li360\ri0\partightenfactor0
-
-\f0 \cf0 \
+\cf0 \
 \pard\pardeftab720\ri0\partightenfactor0
 \cf0 To access the portal in your browser use: {\field{\*\fldinst{HYPERLINK "https://portal.ojbc.local/ojb-web-portal"}}{\fldrslt \cf2 \ul \ulc2 https://portal.ojbc.local/ojb-web-portal}} \
 \
@@ -127,10 +95,10 @@ tomcat       10.32.0.5       8eefc2f25112 ee:86:ec:a2:f5:95 \
 If this is not the case you may need to restart them. \
 1. stop the container: docker rm -f <container name>  i.e docker rm -f portal\
 2. restart the container: docker run -d \'97name=<container name> <location>  i.e. docker run -d \'97name=portal ojbc/portal   hint: make sure you run apacheds prior to the others\
+or after stopping each container run: docker-compose -f demostate-portal-compose.yaml up -d\
 \
 A. When you run docker ps -a  you should see all of the containers and that there status is \'93up\'94. If one is not up or has \'93exited\'94 you will need to restart it:\
-\pard\pardeftab720\ri0\partightenfactor0
-\cf0 1. stop the container: docker rm -f <container name>  i.e docker rm -f portal\
+1. stop the container: docker rm -f <container name>  i.e docker rm -f portal\
 2. restart the container: docker run -d \'97name=<container name> <location>  i.e. docker run -d \'97name=portal ojbc/portal   hint: make sure you run apacheds prior to the others\
 \
 Weave is fickle on some installs for troubleshooting weave see: {\field{\*\fldinst{HYPERLINK "https://www.weave.works/help/"}}{\fldrslt https://www.weave.works/help/}}\
