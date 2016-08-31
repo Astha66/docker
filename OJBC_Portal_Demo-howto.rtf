@@ -80,10 +80,37 @@ b.	In iTerm type: docker-compose \'96f demostate-portal-compose.yaml up -d\
 \pard\pardeftab720\ri0\partightenfactor0
 \cf0 To access the portal in your browser use: {\field{\*\fldinst{HYPERLINK "https://portal.ojbc.local/ojb-web-portal"}}{\fldrslt \cf2 \ul \ulc2 https://portal.ojbc.local/ojb-web-portal}} \
 \
+\pard\pardeftab720\ri0\qc\partightenfactor0
+\cf0 \ul To run the analytics demo dashboard from Docker:\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 \ulnone 1.  Restart the docker machine: In iTerm type: docker-machine start ojb-machine\
+\pard\tx720\pardeftab720\ri0\partightenfactor0
+\cf0 2.  Reestablish the environment: \
+\pard\tx720\tx1440\pardeftab720\ri0\partightenfactor0
+\cf0 	a.	In iTerm type: docker-machine regenerate-certs -f ojb-machine\
+	b.	In iTerm type: eval $(docker-machine env ojb-machine)\
+	c.	In iTerm type: sudo route add -net 10.32.0.0/16 $(docker-machine ip ojb-machine)\
+	d.	In iTerm type: sudo route add -net 172.17.0.0/16 $(docker-machine ip ojb-machine)\
+	e.	In iTerm type: weave launch --dns-domain=ojbc.local\
+	f.	In iTerm type: eval $(weave env)\
+	g.	In iTerm type: weave expose\
+\pard\tx720\pardeftab720\ri0\partightenfactor0
+\cf0 3.  If you have not done so, pull down latest commits from the docker git hub repository from: {\field{\*\fldinst{HYPERLINK "https://github.com/ojbc/docker.git"}}{\fldrslt \cf2 \ul \ulc2 https://github.com/ojbc/docker.git}} \
+4.  Make sure you\'92re in the folder of your local docker repository\
+\pard\tx720\tx1440\pardeftab720\ri0\partightenfactor0
+\cf0 	a.	In iTerm type: cd git/docker  \
+	b.	In iTerm type: docker-compose \'96f analytics-opencpu-compose.yaml up -d\
+\pard\tx720\pardeftab720\ri0\partightenfactor0
+\cf0 5.  Verify with weave status dns and docker ps \'96a \
+\
+\pard\tx720\pardeftab720\ri0\partightenfactor0
+\cf0 To access the dashboard demo use: {\field{\*\fldinst{HYPERLINK "http://analytics-opencpu-demo.ojbc.local/ocpu/library/JailBookingDashboard/www/index.html"}}{\fldrslt http://analytics-opencpu-demo.ojbc.local/ocpu/library/JailBookingDashboard/www/index.html}}\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 \
 \pard\pardeftab720\ri0\partightenfactor0
 \cf0 \ul Troubleshooting\
 \pard\pardeftab720\ri0\partightenfactor0
-\cf0 \ulnone A. When you run weave status dns you should see all of the containers with IP addresses:\
+\cf0 \ulnone When you run weave status dns you should see all of the containers with IP addresses:\
 MacBook-Pro-2:docker mike$ weave status dns\
 apacheds     10.32.0.2       d1d9af336adb ee:86:ec:a2:f5:95\
 idp          10.32.0.7       6b66f4f583ba ee:86:ec:a2:f5:95\
@@ -92,16 +119,17 @@ ojb-web-portal 10.32.0.8       7738b2abd7c2 ee:86:ec:a2:f5:95\
 portal       10.32.0.4       bb7d903c9945 ee:86:ec:a2:f5:95\
 samlds       10.32.0.3       828aa5bb8301 ee:86:ec:a2:f5:95\
 tomcat       10.32.0.5       8eefc2f25112 ee:86:ec:a2:f5:95 \
+analytics-opencpu-demo 10.32.0.9       293fd6db81a1 ee:86:ec:a2:f5:95\
 \
 If this is not the case you may need to restart them. \
 1. stop the container: docker rm -f <container name>  i.e docker rm -f portal\
 2. restart the container: docker run -d \'97name=<container name> <location>  i.e. docker run -d \'97name=portal ojbc/portal   hint: make sure you run apacheds prior to the others\
 or after stopping each container run: docker-compose -f demostate-portal-compose.yaml up -d\
 \
-A. When you run docker ps -a  you should see all of the containers and that there status is \'93up\'94. If one is not up or has \'93exited\'94 you will need to restart it:\
+When you run docker ps -a  you should see all of the containers and that there status is \'93up\'94. If one is not up or has \'93exited\'94 you will need to restart it:\
 1. stop the container: docker rm -f <container name>  i.e docker rm -f portal\
 2. restart the container: docker run -d \'97name=<container name> <location>  i.e. docker run -d \'97name=portal ojbc/portal   hint: make sure you run apacheds prior to the others\
 \
-Weave is fickle on some installs for troubleshooting weave see: {\field{\*\fldinst{HYPERLINK "https://www.weave.works/help/"}}{\fldrslt https://www.weave.works/help/}}\
+Weave can be fickle on some installs for troubleshooting weave see: {\field{\*\fldinst{HYPERLINK "https://www.weave.works/help/"}}{\fldrslt https://www.weave.works/help/}}\
 \
-There are times when one must blow away their docker install and start from scratch. You can do this by using: docker-machine stop obj-machine and docker-machine rm obj-machine and restarting your computer, then you\'92ll need to follow the instructions from the top of this paper.}
+There are times when one must blow away the docker install and start from scratch. You can do this by using: docker-machine stop obj-machine and docker-machine rm obj-machine and restarting your computer, then you\'92ll need to follow the instructions from the top of this paper.}
