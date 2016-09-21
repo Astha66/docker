@@ -1,0 +1,1 @@
+{"connectionname":"Jail-Booking","connectiontype":"MONDRIAN","jdbcurl":"jdbc:mysql://analytics-db.ojbc.local:3306/ojbc_booking_analytics_demo","schema":"/datasources/Jail-Booking.xml","driver":"com.mysql.jdbc.Driver","username":"root","password":"","security_type":null}
