@@ -8,17 +8,17 @@
 	</Dimension>
 	
 	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="PersonAgeRange">
-		<Hierarchy name="PersonAgeRange"  visible="true" hasAll="true" primaryKey="PersonAgeRangeTypeID"  caption="PersonAgeRange">
+		<Hierarchy name="PersonAgeRange"  visible="true" hasAll="true" primaryKey="PersonAgeRangeTypeID"  caption="Age Range">
 			<Table name="PersonAgeRangeType"/>
 			<Level name="PersonAgeRange" visible="true" table="PersonAgeRangeType" column="AgeRange"  type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
 		</Hierarchy>
 	</Dimension>
 	
-	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="PersonAge">
-		<Hierarchy name="PersonAge"  visible="true" hasAll="true" primaryKey="PersonAgeTypeID"  caption="PersonAge">
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="Age">
+		<Hierarchy name="Age"  visible="true" hasAll="true" primaryKey="PersonAgeTypeID"  caption="Age">
 			<Table name="PersonAgeType"/>
-			<Level name="PersonAge" visible="true" table="PersonAgeType" column="AgeInYears"  type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
-			<Level name="PersonAgeRange" visible="true" table="PersonAgeType" column="PersonAgeRangeTypeID"  type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="Age" visible="true" table="PersonAgeType" column="AgeInYears"  type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+<!-- 			<Level name="PersonAgeRange" visible="true" table="PersonAgeType" column="PersonAgeRangeTypeID"  type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/> -->
 		</Hierarchy>
 	</Dimension>
 	
@@ -80,9 +80,9 @@
 	</Dimension>
 	
 	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="CaseStatus">
-		<Hierarchy name="CaseStatus" visible="true" hasAll="true" primaryKey="CaseStatusTypeID" caption="Case Status">
+		<Hierarchy name="Case Status" visible="true" hasAll="true" primaryKey="CaseStatusTypeID" caption="Case Status">
 			<Table name="CaseStatusType"/>
-			<Level name="CaseStatus" visible="true" table="CaseStatusType" column="CaseStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="Case Status" visible="true" table="CaseStatusType" column="CaseStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
 		</Hierarchy>
 	</Dimension>
 	
@@ -94,9 +94,9 @@
 	</Dimension>
 	
 	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="SexOffenderStatus">
-		<Hierarchy name="SexOffenderStatus"  visible="true" hasAll="true" primaryKey="SexOffenderStatusTypeID" caption="Sex Offender Status">
+		<Hierarchy name="Sex Offender Status"  visible="true" hasAll="true" primaryKey="SexOffenderStatusTypeID" caption="Sex Offender Status">
 			<Table name="SexOffenderStatusType"/>
-			<Level name="SexOffenderStatus" visible="true" table="SexOffenderStatusType" column="SexOffenderStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="Sex Offender Status" visible="true" table="SexOffenderStatusType" column="SexOffenderStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
 		</Hierarchy>
 	</Dimension>
 	
@@ -117,14 +117,14 @@
 	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="MilitaryServiceStatus">
 		<Hierarchy name="MilitaryServiceStatus"  visible="true" hasAll="true" primaryKey="MilitaryServiceStatusTypeID" caption="Military Service Status">
 			<Table name="MilitaryServiceStatusType"/>
-			<Level name="MilitaryServiceStatus" visible="true" table="MilitaryServiceStatusType" column="MilitaryServiceStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="Military Service Status" visible="true" table="MilitaryServiceStatusType" column="MilitaryServiceStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
 		</Hierarchy>
 	</Dimension>
 	
 	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="DomicileStatus">
 		<Hierarchy name="DomicileStatus"  visible="true" hasAll="true" primaryKey="DomicileStatusTypeID" caption="Domicile Status">
 			<Table name="DomicileStatusType"/>
-			<Level name="DomicileStatus" visible="true" table="DomicileStatusType" column="DomicileStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="Domicile Status" visible="true" table="DomicileStatusType" column="DomicileStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
 		</Hierarchy>
 	</Dimension>
 	
@@ -145,14 +145,14 @@
 	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="EducationLevel">
 		<Hierarchy name="EducationLevel"  visible="true" hasAll="true" primaryKey="EducationLevelTypeID" caption="Education Level">
 			<Table name="EducationLevelType"/>
-			<Level name="EducationLevel" visible="true" table="LanguageType" column="EducationLevelTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="Education Level" visible="true" table="EducationLevelType" column="EducationLevelTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
 		</Hierarchy>
 	</Dimension>
 	
 	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="SupervisionUnit">
 		<Hierarchy name="SupervisionUnit"  visible="true" hasAll="true" primaryKey="SupervisionUnitTypeID" caption="Supervision Unit">
 			<Table name="SupervisionUnitType"/>
-			<Level name="SupervisionUnit" visible="true" table="LanguageType" column="SupervisionUnitTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="SupervisionUnit" visible="true" table="SupervisionUnitType" column="SupervisionUnitTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
 		</Hierarchy>
 	</Dimension>
 	
@@ -225,12 +225,25 @@
 	<Cube name="Booking">
 		<View alias="Booking">
 			<SQL dialect="mysql">
-        <![CDATA[select JailEpisodeID, PersonRaceTypeID, PersonSexTypeID, PersonEthnicityTypeID from JailEpisode, Person where JailEpisode.PersonID=Person.PersonID]]>
+        <![CDATA[select JailEpisodeID, SupervisionUnitTypeID, CaseStatusTypeID, FacilityID, PersonRaceTypeID, PersonSexTypeID, PersonAgeTypeID, PersonEthnicityTypeID, 
+        LanguageTypeID, EducationLevelTypeID, OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID
+        from JailEpisode, Person where JailEpisode.PersonID=Person.PersonID]]>
 			</SQL>
 		</View>
+		<DimensionUsage source="Age" name="Age" visible="true" foreignKey="PersonAgeTypeID" highCardinality="false"/>
 		<DimensionUsage source="Race" name="Race" visible="true" foreignKey="PersonRaceTypeID" highCardinality="false"/>
 		<DimensionUsage source="Sex" name="Sex" visible="true" foreignKey="PersonSexTypeID" highCardinality="false"/>
 		<DimensionUsage source="Ethnicity" name="Ethnicity" visible="true" foreignKey="PersonEthnicityTypeID" highCardinality="false"/>
+		<DimensionUsage source="EducationLevel" name="Education Level" visible="true" foreignKey="EducationLevelTypeID" highCardinality="false"/>
+		<DimensionUsage source="Occupation" name="Occupation" visible="true" foreignKey="OccupationTypeID" highCardinality="false"/>
+		<DimensionUsage source="Language" name="Language" visible="true" foreignKey="LanguageTypeID" highCardinality="false"/>
+		<DimensionUsage source="MilitaryServiceStatus" name="Military Service Status" visible="true" foreignKey="MilitaryServiceStatusTypeID" highCardinality="false"/>
+		<DimensionUsage source="DomicileStatus" name="Domicile Status" visible="true" foreignKey="DomicileStatusTypeID" highCardinality="false"/>		
+		<DimensionUsage source="ProgramEligibility" name="Program Eligibility" visible="true" foreignKey="ProgramEligibilityTypeID" highCardinality="false"/>
+		<DimensionUsage source="SexOffenderStatus" name="Sex Offender Status" visible="true" foreignKey="SexOffenderStatusTypeID" highCardinality="false"/>
+		<DimensionUsage source="Facility" name="Facility" visible="true" foreignKey="FacilityID" highCardinality="false"/>
+		<DimensionUsage source="SupervisionUnit" name="Supervision Unit" visible="true" foreignKey="SupervisionUnitTypeID" highCardinality="false"/>
+		<DimensionUsage source="CaseStatus" name="Case Status" visible="true" foreignKey="CaseStatusTypeID" highCardinality="false"/>
  		<Measure name="Booking Count" column="JailEpisodeID" aggregator="count"/>
 	</Cube>
 			
