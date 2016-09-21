@@ -26,6 +26,7 @@ WORKDIR /tmp
 COPY files/server-config.sh /tmp/
 COPY files/ojbc_analytics_demo.sql.gz /tmp/
 COPY files/nibrs_analytics.sql.gz /tmp/
+COPY files/ojbc_booking_analytics_demo.sql.gz /tmp/
 
 RUN chmod a+x /tmp/server-config.sh
 RUN /tmp/server-config.sh

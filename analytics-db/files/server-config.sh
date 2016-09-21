@@ -17,3 +17,9 @@ gunzip nibrs_analytics.sql.gz
 echo "create database nibrs_analytics" | mysql -u root
 mysql -u root nibrs_analytics < /tmp/nibrs_analytics.sql
 rm -f /tmp/nibrs_analytics.sql
+
+gunzip ojbc_booking_analytics_demo.sql.gz
+
+echo "create database ojbc_booking_analytics_demo" | mysql -u root
+mysql -u root ojbc_booking_analytics_demo < /tmp/ojbc_booking_analytics_demo.sql
+rm -f /tmp/ojbc_booking_analytics_demo.sql
