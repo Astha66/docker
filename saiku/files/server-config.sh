@@ -10,7 +10,7 @@ sed -i "s/\/opt\/saiku-server\/tomcat\/bin\/catalina.sh run/sh startup.sh/g" /op
 ./temp-start-saiku.sh
 
 
-CURLTEST='curl -s -u admin:admin http://localhost:8080/saiku/rest/saiku/api/license'
+CURLTEST='curl -s -u admin:admin http://localhost/saiku/rest/saiku/api/license'
 
 eval $CURLTEST >> /dev/null 2>&1
 while [ $? -ne 0 ]; do
@@ -19,7 +19,7 @@ while [ $? -ne 0 ]; do
    eval $CURLTEST >> /dev/null 2>&1
 done
 
-curl -X POST -T /tmp/license_saiku.ojbc.local.lic --header "Content-Type:application/x-java-serialized-object" -u admin:admin http://localhost:8080/saiku/rest/saiku/api/license
+curl -X POST -T /tmp/license_saiku.ojbc.local.lic --header "Content-Type:application/x-java-serialized-object" -u admin:admin http://localhost/saiku/rest/saiku/api/license
 
 /opt/saiku-server/stop-saiku.sh
 rm temp-start-saiku.sh

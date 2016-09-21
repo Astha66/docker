@@ -32,7 +32,8 @@ RUN	unzip saiku-latest.zip && \
 	mv saiku-server /opt && \
 	rm -f saiku-latest.zip && \
 	mv /opt/saiku-server/tomcat/webapps/ROOT /opt/saiku-server/tomcat/webapps/saiku-ui && \
-	sed -i "s/sh startup.sh/\/opt\/saiku-server\/tomcat\/bin\/catalina.sh run/g" /opt/saiku-server/start-saiku.sh
+	sed -i "s/sh startup.sh/\/opt\/saiku-server\/tomcat\/bin\/catalina.sh run/g" /opt/saiku-server/start-saiku.sh && \
+	sed -i s/8080/80/g /opt/saiku-server/tomcat/conf/server.xml
 
 COPY files/saiku-beans.properties /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/
 
