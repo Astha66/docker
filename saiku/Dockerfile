@@ -41,7 +41,9 @@ RUN chmod ugo+x /tmp/server-config.sh
 RUN /tmp/server-config.sh
 
 COPY files/saiku.min.js /opt/saiku-server/tomcat/webapps/saiku-ui/
-COPY files/Settings.js /opt/saiku-server/tomcat/webapps/saiku-ui/js/saiku/
+COPY files/Settings-noauth.js /opt/saiku-server/tomcat/webapps/saiku-ui/js/saiku/Settings.js
+COPY files/Settings-orig.js /tmp/
+COPY files/Settings-noauth.js /tmp/
 
 RUN cd /opt/saiku-server/tomcat
 

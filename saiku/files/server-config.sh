@@ -23,5 +23,3 @@ curl -X POST -T /tmp/license_saiku.ojbc.local.lic --header "Content-Type:applica
 
 /opt/saiku-server/stop-saiku.sh
 rm temp-start-saiku.sh
-
-apk del curl-dev
