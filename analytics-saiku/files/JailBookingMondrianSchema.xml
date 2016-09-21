@@ -7,6 +7,21 @@
 		</Hierarchy>
 	</Dimension>
 	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="PersonAgeRange">
+		<Hierarchy name="PersonAgeRange"  visible="true" hasAll="true" primaryKey="PersonAgeRangeTypeID"  caption="PersonAgeRange">
+			<Table name="PersonAgeRangeType"/>
+			<Level name="PersonAgeRange" visible="true" table="PersonAgeRangeType" column="AgeRange"  type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="PersonAge">
+		<Hierarchy name="PersonAge"  visible="true" hasAll="true" primaryKey="PersonAgeTypeID"  caption="PersonAge">
+			<Table name="PersonAgeType"/>
+			<Level name="PersonAge" visible="true" table="PersonAgeType" column="AgeInYears"  type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="PersonAgeRange" visible="true" table="PersonAgeType" column="PersonAgeRangeTypeID"  type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
 	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="Sex">
 		<Hierarchy name="Sex" visible="true" hasAll="true" primaryKey="PersonSexTypeID" caption="Race">
 			<Table name="PersonSexType"/>
@@ -28,6 +43,185 @@
 		</Hierarchy>
 	</Dimension>
 	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="Charge">
+		<Hierarchy name="Charge" visible="true" hasAll="true" primaryKey="ChargeTypeID" caption="Charge">
+			<Table name="ChargeType"/>
+			<Level name="ChargeType" visible="true" table="ChargeType" column="ChargeTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="ChargeCitationType" visible="true" table="ChargeType" column="ChargeTypeCitation" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="ChargeDisposition">
+		<Hierarchy name="ChargeDisposition" visible="true" hasAll="true" primaryKey="ChargeDispositionTypeID" caption="Charge Disposition">
+			<Table name="ChargeDispositionType"/>
+			<Level name="ChargeDispositionType" visible="true" table="ChargeDispositionType" column="ChargeDispositionTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="BondStatus">
+		<Hierarchy name="BondStatus" visible="true" hasAll="true" primaryKey="BondStatusTypeID" caption="Bond Status">
+			<Table name="BondStatusType"/>
+			<Level name="BondStatus" visible="true" table="BondStatusType" column="BondStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="Bond">
+		<Hierarchy name="Bond" visible="true" hasAll="true" primaryKey="BondTypeID" caption="Bond Type">
+			<Table name="BondType"/>
+			<Level name="Bond" visible="true" table="BondType" column="BondTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="Jurisdiction">
+		<Hierarchy name="Jurisdiction" visible="true" hasAll="true" primaryKey="JurisdictionTypeID" caption="Jurisdiction">
+			<Table name="JurisdictionType"/>
+			<Level name="Jurisdiction" visible="true" table="JurisdictionType" column="JurisdictionTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="CaseStatus">
+		<Hierarchy name="CaseStatus" visible="true" hasAll="true" primaryKey="CaseStatusTypeID" caption="Case Status">
+			<Table name="CaseStatusType"/>
+			<Level name="CaseStatus" visible="true" table="CaseStatusType" column="CaseStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="Agency">
+		<Hierarchy name="Agency" visible="true" hasAll="true" primaryKey="AgencyID" caption="Agency">
+			<Table name="Agency"/>
+			<Level name="Agency" visible="true" table="Agency" column="AgencyDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="SexOffenderStatus">
+		<Hierarchy name="SexOffenderStatus"  visible="true" hasAll="true" primaryKey="SexOffenderStatusTypeID" caption="Sex Offender Status">
+			<Table name="SexOffenderStatusType"/>
+			<Level name="SexOffenderStatus" visible="true" table="SexOffenderStatusType" column="SexOffenderStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="WorkReleaseStatus">
+		<Hierarchy name="WorkReleaseStatus"  visible="true" hasAll="true" primaryKey="WorkReleaseStatusTypeID" caption="Work Release Status">
+			<Table name="WorkReleaseStatusType"/>
+			<Level name="WorkReleaseStatus" visible="true" table="WorkReleaseStatusType" column="WorkReleaseStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="ProgramEligibility">
+		<Hierarchy name="ProgramEligibility"  visible="true" hasAll="true" primaryKey="ProgramEligibilityTypeID" caption="Program Eligibility">
+			<Table name="ProgramEligibilityType"/>
+			<Level name="ProgramEligibility" visible="true" table="ProgramEligibilityType" column="ProgramEligibilityTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="MilitaryServiceStatus">
+		<Hierarchy name="MilitaryServiceStatus"  visible="true" hasAll="true" primaryKey="MilitaryServiceStatusTypeID" caption="Military Service Status">
+			<Table name="MilitaryServiceStatusType"/>
+			<Level name="MilitaryServiceStatus" visible="true" table="MilitaryServiceStatusType" column="MilitaryServiceStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="DomicileStatus">
+		<Hierarchy name="DomicileStatus"  visible="true" hasAll="true" primaryKey="DomicileStatusTypeID" caption="Domicile Status">
+			<Table name="DomicileStatusType"/>
+			<Level name="DomicileStatus" visible="true" table="DomicileStatusType" column="DomicileStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="Population">
+		<Hierarchy name="Population"  visible="true" hasAll="true" primaryKey="PopulationTypeID" caption="Population">
+			<Table name="PopulationType"/>
+			<Level name="Population" visible="true" table="PopulationType" column="PopulationTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="Language">
+		<Hierarchy name="Language"  visible="true" hasAll="true" primaryKey="LanguageTypeID" caption="Language">
+			<Table name="LanguageType"/>
+			<Level name="Language" visible="true" table="LanguageType" column="LanguageTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="EducationLevel">
+		<Hierarchy name="EducationLevel"  visible="true" hasAll="true" primaryKey="EducationLevelTypeID" caption="Education Level">
+			<Table name="EducationLevelType"/>
+			<Level name="EducationLevel" visible="true" table="LanguageType" column="EducationLevelTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="SupervisionUnit">
+		<Hierarchy name="SupervisionUnit"  visible="true" hasAll="true" primaryKey="SupervisionUnitTypeID" caption="Supervision Unit">
+			<Table name="SupervisionUnitType"/>
+			<Level name="SupervisionUnit" visible="true" table="LanguageType" column="SupervisionUnitTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="Facility">
+		<Hierarchy name="Facility"  visible="true" hasAll="true" primaryKey="FacilityID" caption="Facility">
+			<Table name="Facility"/>
+			<Level name="Facility" visible="true" table="Facility" column="FacilityDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="AssessmentCategory">
+		<Hierarchy name="AssessmentCategory"  visible="true" hasAll="true" primaryKey="AssessmentCategoryTypeID" caption="Assessment Category">
+			<Table name="AssessmentCategoryType"/>
+			<Level name="AssessmentCategory" visible="true" table="AssessmentCategoryType" column="AssessmentCategoryTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="Medication">
+		<Hierarchy name="Medication"  visible="true" hasAll="true" primaryKey="MedicationTypeID" caption="Medication">
+			<Table name="MedicationType"/>
+			<Level name="Medication" visible="true" table="MedicationType" column="MedicationTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="MedicationCategory" visible="true" table="MedicationType" column="MedicationTypeCategory" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="MedicationCode" visible="true" table="MedicationType" column="MedicationTypeCode" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="Occupation">
+		<Hierarchy name="Occupation"  visible="true" hasAll="true" primaryKey="OccupationTypeID" caption="Occupation">
+			<Table name="OccupationType"/>
+			<Level name="Occupation" visible="true" table="OccupationType" column="OccupationTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="MedicaidStatus">
+		<Hierarchy name="MedicaidStatus"  visible="true" hasAll="true" primaryKey="MedicaidStatusTypeID" caption="Medicaid Status">
+			<Table name="MedicaidStatusType"/>
+			<Level name="MedicaidStatus" visible="true" table="MedicaidStatusType" column="MedicaidStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="BehavioralHealthEvaluation">
+		<Hierarchy name="BehavioralHealthEvaluation"  visible="true" hasAll="true" primaryKey="BehavioralHealthEvaluationTypeID" caption="Behavioral Health Evaluation">
+			<Table name="BehavioralHealthEvaluationType"/>
+			<Level name="BehavioralHealthEvaluation" visible="true" table="BehavioralHealthEvaluationType" column="BehavioralHealthEvaluationTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="TreatmentProvider">
+		<Hierarchy name="TreatmentProvider"  visible="true" hasAll="true" primaryKey="TreatmentProviderTypeID" caption="Treatment Provider">
+			<Table name="TreatmentProviderType"/>
+			<Level name="TreatmentProvider" visible="true" table="TreatmentProviderType" column="TreatmentProviderTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="TreatmentAdmissionReason">
+		<Hierarchy name="TreatmentAdmissionReason"  visible="true" hasAll="true" primaryKey="TreatmentAdmissionReasonTypeID" caption="Treatment Admission Reason">
+			<Table name="TreatmentAdmissionReasonType"/>
+			<Level name="TreatmentAdmissionReason" visible="true" table="TreatmentAdmissionReasonType" column="TreatmentAdmissionReasonTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="TreatmentStatus">
+		<Hierarchy name="TreatmentStatus"  visible="true" hasAll="true" primaryKey="TreatmentStatusTypeID" caption="Treatment Status">
+			<Table name="TreatmentStatusType"/>
+			<Level name="TreatmentStatus" visible="true" table="TreatmentStatusType" column="TreatmentStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+	
+	
 	<Cube name="Booking">
 		<View alias="Booking">
 			<SQL dialect="mysql">
@@ -43,7 +237,7 @@
 	<Cube name="Booking-Charge">
 		<View alias="BookingCharge">
 			<SQL dialect="mysql">
-        <![CDATA[select JailEpisode.JailEpisodeID, PersonRaceTypeID, PersonSexTypeID, PersonEthnicityTypeID, ChargeClassTypeID
+        <![CDATA[select JailEpisode.JailEpisodeID, PersonRaceTypeID, PersonSexTypeID, PersonEthnicityTypeID, ChargeClassTypeID, ChargeTypeID
         	from JailEpisodeCharge, JailEpisodeArrest, JailEpisode, Person
         	where JailEpisodeCharge.JailEpisodeArrestID=JailEpisodeArrest.JailEpisodeArrestID and
         		JailEpisodeArrest.JailEpisodeID=JailEpisode.JailEpisodeID and JailEpisode.PersonID=Person.PersonID]]>
@@ -53,7 +247,14 @@
 		<DimensionUsage source="Sex" name="Sex" visible="true" foreignKey="PersonSexTypeID" highCardinality="false"/>
 		<DimensionUsage source="Ethnicity" name="Ethnicity" visible="true" foreignKey="PersonEthnicityTypeID" highCardinality="false"/>
 		<DimensionUsage source="ChargeClass" name="Charge Class" visible="true" foreignKey="ChargeClassTypeID" highCardinality="false"/>
+		<DimensionUsage source="BondStatus" name="Bond Status" visible="true" foreignKey="ChargeClassTypeID" highCardinality="false"/>
+		<DimensionUsage source="Charge" name="Charge Type" visible="true" foreignKey="ChargeTypeID" highCardinality="false"/>
  		<Measure name="Charge Count" column="JailEpisodeID" aggregator="count"/>
 	</Cube>
+	
+<!-- 	<Cube name="Behavioral-Health-Evaluation"></Cube> -->
+<!-- 	<Cube name="Behavioral-Health-Medication"></Cube> -->
+<!-- 	<Cube name="Behavioral-Health-Treatment"></Cube> -->
+<!-- 	<Cube name="Behavioral-Health-Charge"></Cube> -->
 			
 </Schema>
