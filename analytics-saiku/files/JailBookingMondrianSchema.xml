@@ -52,23 +52,23 @@
 	</Dimension>
 	
 	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="ChargeDisposition">
-		<Hierarchy name="ChargeDisposition" visible="true" hasAll="true" primaryKey="ChargeDispositionTypeID" caption="Charge Disposition">
+		<Hierarchy name="Charge Disposition" visible="true" hasAll="true" primaryKey="ChargeDispositionTypeID" caption="Charge Disposition">
 			<Table name="ChargeDispositionType"/>
-			<Level name="ChargeDispositionType" visible="true" table="ChargeDispositionType" column="ChargeDispositionTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="Charge Disposition" visible="true" table="ChargeDispositionType" column="ChargeDispositionTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
 		</Hierarchy>
 	</Dimension>
 	
 	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="BondStatus">
-		<Hierarchy name="BondStatus" visible="true" hasAll="true" primaryKey="BondStatusTypeID" caption="Bond Status">
+		<Hierarchy name="Bond Status" visible="true" hasAll="true" primaryKey="BondStatusTypeID" caption="Bond Status">
 			<Table name="BondStatusType"/>
-			<Level name="BondStatus" visible="true" table="BondStatusType" column="BondStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="Bond Status" visible="true" table="BondStatusType" column="BondStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
 		</Hierarchy>
 	</Dimension>
 	
 	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="Bond">
-		<Hierarchy name="Bond" visible="true" hasAll="true" primaryKey="BondTypeID" caption="Bond Type">
+		<Hierarchy name="Bond Type" visible="true" hasAll="true" primaryKey="BondTypeID" caption="Bond Type">
 			<Table name="BondType"/>
-			<Level name="Bond" visible="true" table="BondType" column="BondTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="Bond Type" visible="true" table="BondType" column="BondTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
 		</Hierarchy>
 	</Dimension>
 	
@@ -227,7 +227,7 @@
 			<SQL dialect="mysql">
         <![CDATA[select JailEpisodeID, SupervisionUnitTypeID, CaseStatusTypeID, FacilityID,  PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID, 
 	         LanguageTypeID, EducationLevelTypeID, OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  
-	         WorkReleaseStatusTypeID, PopulationTypeID, WorkReleaseStatusTypeID, PopulationTypeID
+	         WorkReleaseStatusTypeID, PopulationTypeID
          	from JailEpisode, Person
          	where JailEpisode.PersonID=Person.PersonID]]>
 			</SQL>
@@ -255,18 +255,34 @@
 	<Cube name="Booking-Charge">
 		<View alias="BookingCharge">
 			<SQL dialect="mysql">
-        <![CDATA[select JailEpisode.JailEpisodeID, PersonRaceTypeID, PersonSexTypeID, PersonEthnicityTypeID, ChargeClassTypeID, ChargeTypeID
+        <![CDATA[select JailEpisode.JailEpisodeID, PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID,  LanguageTypeID, EducationLevelTypeID, OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  
+	        WorkReleaseStatusTypeID, PopulationTypeID, ChargeClassTypeID, ChargeTypeID, ChargeDispositionTypeID, JailEpisodeCharge.AgencyID, JurisdictionTypeID, BondTypeID, BondStatusTypeID
         	from JailEpisodeCharge, JailEpisodeArrest, JailEpisode, Person
         	where JailEpisodeCharge.JailEpisodeArrestID=JailEpisodeArrest.JailEpisodeArrestID and
         		JailEpisodeArrest.JailEpisodeID=JailEpisode.JailEpisodeID and JailEpisode.PersonID=Person.PersonID]]>
 			</SQL>
 		</View>
+		<DimensionUsage source="Age" name="Age" visible="true" foreignKey="PersonAgeTypeID" highCardinality="false"/>
+		<!-- 		<DimensionUsage source="AgeRange" name="Age Range" visible="true" foreignKey="PersonAgeRangeTypeID" highCardinality="false"/> -->
 		<DimensionUsage source="Race" name="Race" visible="true" foreignKey="PersonRaceTypeID" highCardinality="false"/>
 		<DimensionUsage source="Sex" name="Sex" visible="true" foreignKey="PersonSexTypeID" highCardinality="false"/>
 		<DimensionUsage source="Ethnicity" name="Ethnicity" visible="true" foreignKey="PersonEthnicityTypeID" highCardinality="false"/>
-		<DimensionUsage source="ChargeClass" name="Charge Class" visible="true" foreignKey="ChargeClassTypeID" highCardinality="false"/>
-		<DimensionUsage source="BondStatus" name="Bond Status" visible="true" foreignKey="ChargeClassTypeID" highCardinality="false"/>
+		<DimensionUsage source="EducationLevel" name="Education Level" visible="true" foreignKey="EducationLevelTypeID" highCardinality="false"/>
+		<DimensionUsage source="Occupation" name="Occupation" visible="true" foreignKey="OccupationTypeID" highCardinality="false"/>
+		<DimensionUsage source="Language" name="Language" visible="true" foreignKey="LanguageTypeID" highCardinality="false"/>
+		<DimensionUsage source="MilitaryServiceStatus" name="Military Service Status" visible="true" foreignKey="MilitaryServiceStatusTypeID" highCardinality="false"/>
+		<DimensionUsage source="DomicileStatus" name="Domicile Status" visible="true" foreignKey="DomicileStatusTypeID" highCardinality="false"/>		
+		<DimensionUsage source="ProgramEligibility" name="Program Eligibility" visible="true" foreignKey="ProgramEligibilityTypeID" highCardinality="false"/>
+		<DimensionUsage source="SexOffenderStatus" name="Sex Offender Status" visible="true" foreignKey="SexOffenderStatusTypeID" highCardinality="false"/>
+		<DimensionUsage source="WorkReleaseStatus" name="Work Release Status" visible="true" foreignKey="WorkReleaseStatusTypeID" highCardinality="false"/>
+		<DimensionUsage source="Population" name="Population" visible="true" foreignKey="PopulationTypeID" highCardinality="false"/>
 		<DimensionUsage source="Charge" name="Charge Type" visible="true" foreignKey="ChargeTypeID" highCardinality="false"/>
+		<DimensionUsage source="ChargeClass" name="Charge Class" visible="true" foreignKey="ChargeClassTypeID" highCardinality="false"/>
+		<DimensionUsage source="ChargeDisposition" name="Charge Disposition" visible="true" foreignKey="ChargeDispositionTypeID" highCardinality="false"/>
+		<DimensionUsage source="Agency" name="Agency" visible="true" foreignKey="AgencyID" highCardinality="false"/>
+		<DimensionUsage source="Jurisdiction" name="Jurisdiction" visible="true" foreignKey="JurisdictionTypeID" highCardinality="false"/>
+		<DimensionUsage source="BondStatus" name="Bond Status" visible="true" foreignKey="BondStatusTypeID" highCardinality="false"/>
+		<DimensionUsage source="Bond" name="Bond Type" visible="true" foreignKey="BondTypeID" highCardinality="false"/>
  		<Measure name="Charge Count" column="JailEpisodeID" aggregator="count"/>
 	</Cube>
 	
