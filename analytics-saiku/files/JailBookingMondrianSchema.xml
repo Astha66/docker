@@ -193,10 +193,10 @@
 		</Hierarchy>
 	</Dimension>
 	
-	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="BehavioralHealthEvaluation">
-		<Hierarchy name="BehavioralHealthEvaluation"  visible="true" hasAll="true" primaryKey="BehavioralHealthEvaluationTypeID" caption="Behavioral Health Evaluation">
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="BehavioralHealthEvaluationType">
+		<Hierarchy name="Behavioral Health Evaluation Type]"  visible="true" hasAll="true" primaryKey="BehavioralHealthEvaluationTypeID" caption="Behavioral Health Evaluation">
 			<Table name="BehavioralHealthEvaluationType"/>
-			<Level name="BehavioralHealthEvaluation" visible="true" table="BehavioralHealthEvaluationType" column="BehavioralHealthEvaluationTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="Behavioral Health Evaluation Type" visible="true" table="BehavioralHealthEvaluationType" column="BehavioralHealthEvaluationTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
 		</Hierarchy>
 	</Dimension>
 	
@@ -215,9 +215,9 @@
 	</Dimension>
 	
 	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="TreatmentStatus">
-		<Hierarchy name="TreatmentStatus"  visible="true" hasAll="true" primaryKey="TreatmentStatusTypeID" caption="Treatment Status">
+		<Hierarchy name="Treatment Status"  visible="true" hasAll="true" primaryKey="TreatmentStatusTypeID" caption="Treatment Status">
 			<Table name="TreatmentStatusType"/>
-			<Level name="TreatmentStatus" visible="true" table="TreatmentStatusType" column="TreatmentStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="Treatment Status" visible="true" table="TreatmentStatusType" column="TreatmentStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
 		</Hierarchy>
 	</Dimension>
 	
@@ -286,8 +286,45 @@
  		<Measure name="Charge Count" column="JailEpisodeID" aggregator="count"/>
 	</Cube>
 	
-<!-- 	<Cube name="Behavioral-Health-Evaluation"></Cube> -->
-<!-- 	<Cube name="Behavioral-Health-Medication"></Cube> -->
+<Cube name="Behavioral-Health-Evaluation">
+	<View alias="Behavioral-Health-Evaluation">
+		<SQL dialect="mysql">
+        <![CDATA[select BehavioralHealthAssessment.BehavioralHealthAssessmentID, MedicaidStatusTypeID, BehavioralHealthEvaluationTypeID
+         	from BehavioralHealthAssessment, BehavioralHealthEvaluation 
+         	where BehavioralHealthEvaluation.BehavioralHealthAssessmentID=BehavioralHealthAssessment.BehavioralHealthAssessmentID]]>
+			</SQL>
+		</View>
+		<DimensionUsage source="MedicaidStatus" name="Medicaid Status" visible="true" foreignKey="MedicaidStatusTypeID" highCardinality="false"/>
+		<DimensionUsage source="BehavioralHealthEvaluationType" name="Behavioral Health Evaluation Type" visible="true" foreignKey="BehavioralHealthEvaluationTypeID" highCardinality="false"/>
+		<Measure name="Evaluation Count" column="BehavioralHealthAssessmentID" aggregator="count"/>
+</Cube>
+
+<Cube name="Behavioral-Health-Medication">
+	<View alias="Behavioral-Health-Medication">
+		<SQL dialect="mysql">
+	        <![CDATA[select BehavioralHealthAssessment.BehavioralHealthAssessmentID, MedicaidStatusTypeID,  PrescribedMedicationID
+	         	from BehavioralHealthAssessment, PrescribedMedication 
+	         	where PrescribedMedication.BehavioralHealthAssessmentID=BehavioralHealthAssessment.BehavioralHealthAssessmentID]]>
+		</SQL>
+	</View>
+	<DimensionUsage source="MedicaidStatus" name="Medicaid Status" visible="true" foreignKey="MedicaidStatusTypeID" highCardinality="false"/>
+	<DimensionUsage source="Medication" name="Prescribed Medication" visible="true" foreignKey="PrescribedMedicationID" highCardinality="false"/>
+	<Measure name="Medication Count" column="BehavioralHealthAssessmentID" aggregator="count"/>
+</Cube>
+
+<Cube name="Behavioral-Health-Treatment">
+	<View alias="Behavioral-Health-Treatment">
+		<SQL dialect="mysql">
+	        <![CDATA[select BehavioralHealthAssessment.BehavioralHealthAssessmentID, MedicaidStatusTypeID,  TreatmentStatusTypeID
+	         	from BehavioralHealthAssessment, BehavioralHealthTreatment
+	         	where BehavioralHealthTreatment.BehavioralHealthAssessmentID=BehavioralHealthAssessment.BehavioralHealthAssessmentID]]>
+		</SQL>
+	</View>
+	<DimensionUsage source="MedicaidStatus" name="Medicaid Status" visible="true" foreignKey="MedicaidStatusTypeID" highCardinality="false"/>
+	<DimensionUsage source="TreatmentStatus" name="Treatment Status" visible="true" foreignKey="TreatmentStatusTypeID" highCardinality="false"/>
+	<Measure name="Treatment Count" column="BehavioralHealthAssessmentID" aggregator="count"/>
+</Cube>
+
 <!-- 	<Cube name="Behavioral-Health-Treatment"></Cube> -->
 <!-- 	<Cube name="Behavioral-Health-Charge"></Cube> -->
 			
