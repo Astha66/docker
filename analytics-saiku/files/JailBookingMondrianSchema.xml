@@ -1,5 +1,23 @@
 <Schema name="ojbc_booking_analytics_demo">	
 
+	<Dimension type="TimeDimension" visible="true" highCardinality="false" name="Date">
+		<Hierarchy name="DateYMD" visible="true" hasAll="true" primaryKey="DateID" caption="Year/Month/Day" allMemberName="All Years" allMemberCaption="All Years" >
+			<Table name="Date"/>
+			<Level name="Year" visible="true" table="Date" column="YearLabel" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never"/>
+			<Level name="Quarter" visible="true" table="Date" column="CalendarQuarter" type="String" uniqueMembers="false" levelType="TimeQuarters" hideMemberIf="Never"/>
+			<Level name="Month" visible="true" column="FullMonth" ordinalColumn="Month" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never"/>
+			<Level name="Day" visible="true" column="Day" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never"/>
+		</Hierarchy>
+		<Hierarchy name="CalDate" visible="true" hasAll="true" primaryKey="DateID" caption="Calendar Date">
+			<Table name="Date"/>
+			<Level name="Date" visible="true" column="CalendarDate" type="Date" uniqueMembers="true" levelType="TimeDays" hideMemberIf="Never"/>
+		</Hierarchy>
+		<Hierarchy name="Day of Week" visible="true" hasAll="true" primaryKey="DateID" caption="Day of Week">
+			<Table name="Date"/>
+			<Level name="Day of Week" visible="true" column="DayOfWeek" ordinalColumn="DayOfWeekSort" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never"/>
+		</Hierarchy>
+	</Dimension>
+
 	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="Race">
 		<Hierarchy name="Race" visible="true" hasAll="true" primaryKey="PersonRaceTypeID" caption="Race">
 			<Table name="PersonRaceType"/>
@@ -227,7 +245,7 @@
 			<SQL dialect="mysql">
         <![CDATA[select JailEpisodeID, SupervisionUnitTypeID, CaseStatusTypeID, FacilityID,  PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID, 
 	         LanguageTypeID, EducationLevelTypeID, OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  
-	         WorkReleaseStatusTypeID, PopulationTypeID
+	         WorkReleaseStatusTypeID, PopulationTypeID, EpisodeStartDateID
          	from JailEpisode, Person
          	where JailEpisode.PersonID=Person.PersonID]]>
 			</SQL>
@@ -249,7 +267,8 @@
 		<DimensionUsage source="Facility" name="Facility" visible="true" foreignKey="FacilityID" highCardinality="false"/>
 		<DimensionUsage source="SupervisionUnit" name="Supervision Unit" visible="true" foreignKey="SupervisionUnitTypeID" highCardinality="false"/>
 		<DimensionUsage source="CaseStatus" name="Case Status" visible="true" foreignKey="CaseStatusTypeID" highCardinality="false"/>
- 		<Measure name="Booking Count" column="JailEpisodeID" aggregator="count"/>
+ 		<DimensionUsage source="Date" name="Booking Date" visible="true" foreignKey="EpisodeStartDateID" highCardinality="false"/>
+		<Measure name="Booking Count" column="JailEpisodeID" aggregator="count"/>
 	</Cube>
 			
 	<Cube name="Booking-Charge">
