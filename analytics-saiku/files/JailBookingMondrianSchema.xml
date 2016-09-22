@@ -7,7 +7,7 @@
 		</Hierarchy>
 	</Dimension>
 	
-	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="PersonAgeRange">
+	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="AgeRange">
 		<Hierarchy name="PersonAgeRange"  visible="true" hasAll="true" primaryKey="PersonAgeRangeTypeID"  caption="Age Range">
 			<Table name="PersonAgeRangeType"/>
 			<Level name="PersonAgeRange" visible="true" table="PersonAgeRangeType" column="AgeRange"  type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
@@ -101,9 +101,9 @@
 	</Dimension>
 	
 	<Dimension type="StandardDimension" visible="true" highCardinality="false" name="WorkReleaseStatus">
-		<Hierarchy name="WorkReleaseStatus"  visible="true" hasAll="true" primaryKey="WorkReleaseStatusTypeID" caption="Work Release Status">
+		<Hierarchy name="Work Release Status"  visible="true" hasAll="true" primaryKey="WorkReleaseStatusTypeID" caption="Work Release Status">
 			<Table name="WorkReleaseStatusType"/>
-			<Level name="WorkReleaseStatus" visible="true" table="WorkReleaseStatusType" column="WorkReleaseStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+			<Level name="Work Release Status" visible="true" table="WorkReleaseStatusType" column="WorkReleaseStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
 		</Hierarchy>
 	</Dimension>
 	
@@ -225,12 +225,15 @@
 	<Cube name="Booking">
 		<View alias="Booking">
 			<SQL dialect="mysql">
-        <![CDATA[select JailEpisodeID, SupervisionUnitTypeID, CaseStatusTypeID, FacilityID, PersonRaceTypeID, PersonSexTypeID, PersonAgeTypeID, PersonEthnicityTypeID, 
-        LanguageTypeID, EducationLevelTypeID, OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID
-        from JailEpisode, Person where JailEpisode.PersonID=Person.PersonID]]>
+        <![CDATA[select JailEpisodeID, SupervisionUnitTypeID, CaseStatusTypeID, FacilityID,  PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID, 
+	         LanguageTypeID, EducationLevelTypeID, OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  
+	         WorkReleaseStatusTypeID, PopulationTypeID, WorkReleaseStatusTypeID, PopulationTypeID
+         	from JailEpisode, Person
+         	where JailEpisode.PersonID=Person.PersonID]]>
 			</SQL>
 		</View>
 		<DimensionUsage source="Age" name="Age" visible="true" foreignKey="PersonAgeTypeID" highCardinality="false"/>
+<!-- 		<DimensionUsage source="AgeRange" name="Age Range" visible="true" foreignKey="PersonAgeRangeTypeID" highCardinality="false"/> -->
 		<DimensionUsage source="Race" name="Race" visible="true" foreignKey="PersonRaceTypeID" highCardinality="false"/>
 		<DimensionUsage source="Sex" name="Sex" visible="true" foreignKey="PersonSexTypeID" highCardinality="false"/>
 		<DimensionUsage source="Ethnicity" name="Ethnicity" visible="true" foreignKey="PersonEthnicityTypeID" highCardinality="false"/>
@@ -241,6 +244,8 @@
 		<DimensionUsage source="DomicileStatus" name="Domicile Status" visible="true" foreignKey="DomicileStatusTypeID" highCardinality="false"/>		
 		<DimensionUsage source="ProgramEligibility" name="Program Eligibility" visible="true" foreignKey="ProgramEligibilityTypeID" highCardinality="false"/>
 		<DimensionUsage source="SexOffenderStatus" name="Sex Offender Status" visible="true" foreignKey="SexOffenderStatusTypeID" highCardinality="false"/>
+		<DimensionUsage source="WorkReleaseStatus" name="Work Release Status" visible="true" foreignKey="WorkReleaseStatusTypeID" highCardinality="false"/>
+		<DimensionUsage source="Population" name="Population" visible="true" foreignKey="PopulationTypeID" highCardinality="false"/>
 		<DimensionUsage source="Facility" name="Facility" visible="true" foreignKey="FacilityID" highCardinality="false"/>
 		<DimensionUsage source="SupervisionUnit" name="Supervision Unit" visible="true" foreignKey="SupervisionUnitTypeID" highCardinality="false"/>
 		<DimensionUsage source="CaseStatus" name="Case Status" visible="true" foreignKey="CaseStatusTypeID" highCardinality="false"/>
