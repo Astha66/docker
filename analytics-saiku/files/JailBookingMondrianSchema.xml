@@ -242,7 +242,7 @@
 	</Dimension>
 	
 	
-	<Cube name="Booking">
+	<Cube name="Booking" visible="false">
 		<View alias="Booking">
 			<SQL dialect="mysql">
         <![CDATA[select JailEpisodeID, LengthOfStay, SupervisionUnitTypeID, CaseStatusTypeID, FacilityID,  PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID, 
@@ -264,7 +264,7 @@
 		<DimensionUsage source="ProgramEligibility" name="Program Eligibility" visible="true" foreignKey="ProgramEligibilityTypeID" highCardinality="false"/>
 		<DimensionUsage source="SexOffenderStatus" name="Sex Offender Status" visible="true" foreignKey="SexOffenderStatusTypeID" highCardinality="false"/>
 		<DimensionUsage source="WorkReleaseStatus" name="Work Release Status" visible="true" foreignKey="WorkReleaseStatusTypeID" highCardinality="false"/>
-		<DimensionUsage source="Population" name="Population" visible="true" foreignKey="PopulationTypeID" highCardinality="false"/>
+		<DimensionUsage source="Population" name="Population Type" visible="true" foreignKey="PopulationTypeID" highCardinality="false"/>
 		<DimensionUsage source="Facility" name="Facility" visible="true" foreignKey="FacilityID" highCardinality="false"/>
 		<DimensionUsage source="SupervisionUnit" name="Supervision Unit" visible="true" foreignKey="SupervisionUnitTypeID" highCardinality="false"/>
 		<DimensionUsage source="CaseStatus" name="Case Status" visible="true" foreignKey="CaseStatusTypeID" highCardinality="false"/>
@@ -273,7 +273,7 @@
 		<Measure name="Average Length Of Stay" column="LengthOfStay" aggregator="avg" visible="true"/>
 	</Cube>
 			
-	<Cube name="Booking-Charge">
+	<Cube name="Booking-Charge" visible="false">
 		<View alias="BookingCharge">
 			<SQL dialect="mysql">
         <![CDATA[select JailEpisode.JailEpisodeID, PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID,  LanguageTypeID, EducationLevelTypeID, OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  
@@ -300,17 +300,18 @@
 		<DimensionUsage source="ChargeClass" name="Charge Class" visible="true" foreignKey="ChargeClassTypeID" highCardinality="false"/>
 		<DimensionUsage source="ChargeDisposition" name="Charge Disposition" visible="true" foreignKey="ChargeDispositionTypeID" highCardinality="false"/>
 		<DimensionUsage source="Agency" name="Agency" visible="true" foreignKey="AgencyID" highCardinality="false"/>
-		<DimensionUsage source="Jurisdiction" name="Jurisdiction" visible="true" foreignKey="JurisdictionTypeID" highCardinality="false"/>
+		<DimensionUsage source="Jurisdiction" name="Charge Jurisdiction" visible="true" foreignKey="JurisdictionTypeID" highCardinality="false"/>
 		<DimensionUsage source="BondStatus" name="Bond Status" visible="true" foreignKey="BondStatusTypeID" highCardinality="false"/>
 		<DimensionUsage source="Bond" name="Bond Type" visible="true" foreignKey="BondTypeID" highCardinality="false"/>
  		<Measure name="Charge Count" column="JailEpisodeID" aggregator="count"/>
 	</Cube>
 	
-<Cube name="Behavioral-Health-Evaluation">
+<Cube name="Behavioral-Health-Evaluation" visible="false">
 	<View alias="Behavioral-Health-Evaluation">
 		<SQL dialect="mysql">
-        <![CDATA[select BehavioralHealthAssessment.BehavioralHealthAssessmentID, MedicaidStatusTypeID, BehavioralHealthEvaluationTypeID, PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID,  LanguageTypeID, EducationLevelTypeID, OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  
-	        WorkReleaseStatusTypeID, PopulationTypeID
+        <![CDATA[select BehavioralHealthAssessment.BehavioralHealthAssessmentID, MedicaidStatusTypeID, BehavioralHealthEvaluationTypeID, 
+        PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID,  LanguageTypeID, EducationLevelTypeID, 
+        OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  WorkReleaseStatusTypeID, PopulationTypeID
          	from BehavioralHealthAssessment, BehavioralHealthEvaluation, Person
          	where BehavioralHealthEvaluation.BehavioralHealthAssessmentID=BehavioralHealthAssessment.BehavioralHealthAssessmentID and 
 	         	BehavioralHealthAssessment.PersonID=Person.PersonID]]>
@@ -333,10 +334,12 @@
 		<Measure name="Evaluation Count" column="BehavioralHealthAssessmentID" aggregator="count"/>
 </Cube>
 
-<Cube name="Behavioral-Health-Medication">
+<Cube name="Behavioral-Health-Medication" visible="false">
 	<View alias="Behavioral-Health-Medication">
 		<SQL dialect="mysql">
-	        <![CDATA[select BehavioralHealthAssessment.BehavioralHealthAssessmentID, MedicaidStatusTypeID,  PrescribedMedicationID, PersonSexTypeID
+	        <![CDATA[select BehavioralHealthAssessment.BehavioralHealthAssessmentID, MedicaidStatusTypeID,  PrescribedMedicationID, PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID,  LanguageTypeID, EducationLevelTypeID, 
+        OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  WorkReleaseStatusTypeID, PopulationTypeID
+         	
 	         	from BehavioralHealthAssessment, PrescribedMedication, Person
 	         	where PrescribedMedication.BehavioralHealthAssessmentID=BehavioralHealthAssessment.BehavioralHealthAssessmentID and 
 	         	BehavioralHealthAssessment.PersonID=Person.PersonID]]>
@@ -344,26 +347,97 @@
 	</View>
 	<DimensionUsage source="MedicaidStatus" name="Medicaid Status" visible="true" foreignKey="MedicaidStatusTypeID" highCardinality="false"/>
 	<DimensionUsage source="Medication" name="Prescribed Medication" visible="true" foreignKey="PrescribedMedicationID" highCardinality="false"/>
+	<DimensionUsage source="Age" name="Age" visible="true" foreignKey="PersonAgeTypeID" highCardinality="false"/>
+	<DimensionUsage source="Race" name="Race" visible="true" foreignKey="PersonRaceTypeID" highCardinality="false"/>
 	<DimensionUsage source="Sex" name="Sex" visible="true" foreignKey="PersonSexTypeID" highCardinality="false"/>
+	<DimensionUsage source="Ethnicity" name="Ethnicity" visible="true" foreignKey="PersonEthnicityTypeID" highCardinality="false"/>
+	<DimensionUsage source="EducationLevel" name="Education Level" visible="true" foreignKey="EducationLevelTypeID" highCardinality="false"/>
+	<DimensionUsage source="Occupation" name="Occupation" visible="true" foreignKey="OccupationTypeID" highCardinality="false"/>
+	<DimensionUsage source="Language" name="Language" visible="true" foreignKey="LanguageTypeID" highCardinality="false"/>
+	<DimensionUsage source="MilitaryServiceStatus" name="Military Service Status" visible="true" foreignKey="MilitaryServiceStatusTypeID" highCardinality="false"/>
+	<DimensionUsage source="DomicileStatus" name="Domicile Status" visible="true" foreignKey="DomicileStatusTypeID" highCardinality="false"/>		
+	<DimensionUsage source="ProgramEligibility" name="Program Eligibility" visible="true" foreignKey="ProgramEligibilityTypeID" highCardinality="false"/>
+	<DimensionUsage source="SexOffenderStatus" name="Sex Offender Status" visible="true" foreignKey="SexOffenderStatusTypeID" highCardinality="false"/>
+	<DimensionUsage source="WorkReleaseStatus" name="Work Release Status" visible="true" foreignKey="WorkReleaseStatusTypeID" highCardinality="false"/>
 	<Measure name="Medication Count" column="BehavioralHealthAssessmentID" aggregator="count"/>
 </Cube>
 
-<Cube name="Behavioral-Health-Treatment">
+<Cube name="Behavioral-Health-Treatment" visible="false">
 	<View alias="Behavioral-Health-Treatment">
 		<SQL dialect="mysql">
-	        <![CDATA[select BehavioralHealthAssessment.BehavioralHealthAssessmentID, MedicaidStatusTypeID,  TreatmentStatusTypeID, TreatmentAdmissionReasonTypeID, TreatmentProviderTypeID
-	         	from BehavioralHealthAssessment, BehavioralHealthTreatment
-	         	where BehavioralHealthTreatment.BehavioralHealthAssessmentID=BehavioralHealthAssessment.BehavioralHealthAssessmentID]]>
+	        <![CDATA[select BehavioralHealthAssessment.BehavioralHealthAssessmentID, MedicaidStatusTypeID,  TreatmentStatusTypeID, TreatmentAdmissionReasonTypeID, TreatmentProviderTypeID, PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID,  LanguageTypeID, EducationLevelTypeID, 
+        OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  WorkReleaseStatusTypeID, PopulationTypeID
+	         	from BehavioralHealthAssessment, BehavioralHealthTreatment, Person
+	         	where BehavioralHealthTreatment.BehavioralHealthAssessmentID=BehavioralHealthAssessment.BehavioralHealthAssessmentID and
+	         	BehavioralHealthAssessment.PersonID=Person.PersonID]]>
 		</SQL>
 	</View>
 	<DimensionUsage source="MedicaidStatus" name="Medicaid Status" visible="true" foreignKey="MedicaidStatusTypeID" highCardinality="false"/>
 	<DimensionUsage source="TreatmentStatus" name="Treatment Status" visible="true" foreignKey="TreatmentStatusTypeID" highCardinality="false"/>
 	<DimensionUsage source="TreatmentAdmissionReason" name="Treatment Admission Reason" visible="true" foreignKey="TreatmentAdmissionReasonTypeID" highCardinality="false"/>
 	<DimensionUsage source="TreatmentProvider"  name="Treatment Provider" visible="true" foreignKey="TreatmentProviderTypeID" highCardinality="false"/>	
+	<DimensionUsage source="Age" name="Age" visible="true" foreignKey="PersonAgeTypeID" highCardinality="false"/>
+	<DimensionUsage source="Race" name="Race" visible="true" foreignKey="PersonRaceTypeID" highCardinality="false"/>
+	<DimensionUsage source="Sex" name="Sex" visible="true" foreignKey="PersonSexTypeID" highCardinality="false"/>
+	<DimensionUsage source="Ethnicity" name="Ethnicity" visible="true" foreignKey="PersonEthnicityTypeID" highCardinality="false"/>
+	<DimensionUsage source="EducationLevel" name="Education Level" visible="true" foreignKey="EducationLevelTypeID" highCardinality="false"/>
+	<DimensionUsage source="Occupation" name="Occupation" visible="true" foreignKey="OccupationTypeID" highCardinality="false"/>
+	<DimensionUsage source="Language" name="Language" visible="true" foreignKey="LanguageTypeID" highCardinality="false"/>
+	<DimensionUsage source="MilitaryServiceStatus" name="Military Service Status" visible="true" foreignKey="MilitaryServiceStatusTypeID" highCardinality="false"/>
+	<DimensionUsage source="DomicileStatus" name="Domicile Status" visible="true" foreignKey="DomicileStatusTypeID" highCardinality="false"/>		
+	<DimensionUsage source="ProgramEligibility" name="Program Eligibility" visible="true" foreignKey="ProgramEligibilityTypeID" highCardinality="false"/>
+	<DimensionUsage source="SexOffenderStatus" name="Sex Offender Status" visible="true" foreignKey="SexOffenderStatusTypeID" highCardinality="false"/>
+	<DimensionUsage source="WorkReleaseStatus" name="Work Release Status" visible="true" foreignKey="WorkReleaseStatusTypeID" highCardinality="false"/>
 	<Measure name="Treatment Count" column="BehavioralHealthAssessmentID" aggregator="count"/>
 </Cube>
 
 
 <!-- 	<Cube name="Behavioral-Health-Charge"></Cube> -->
+
+<VirtualCube name="Jail Booking">
+		<CubeUsages>
+			<CubeUsage cubeName="Behavioral-Health-Treatment" ignoreUnrelatedDimensions="true"/>
+			<CubeUsage cubeName="Behavioral-Health-Medication" ignoreUnrelatedDimensions="true"/>
+			<CubeUsage cubeName="Behavioral-Health-Evaluation" ignoreUnrelatedDimensions="true"/>
+			<CubeUsage cubeName="Booking" ignoreUnrelatedDimensions="true"/>
+			<CubeUsage cubeName="Booking-Charge" ignoreUnrelatedDimensions="true"/>
+		</CubeUsages>
+		<VirtualCubeDimension name="Medicaid Status"/>
+		<VirtualCubeDimension name="Treatment Status"/>
+		<VirtualCubeDimension name="Prescribed Medication"/>
+		<VirtualCubeDimension name="Behavioral Health Evaluation Type"/>
+		<VirtualCubeDimension name="Race"/>
+		<VirtualCubeDimension name="Sex"/>
+		<VirtualCubeDimension name="Age"/>
+		<VirtualCubeDimension name="Ethnicity"/>
+		<VirtualCubeDimension name="Education Level"/>
+		<VirtualCubeDimension name="Occupation"/>
+		<VirtualCubeDimension name="Language"/>
+		<VirtualCubeDimension name="Military Service Status"/>
+		<VirtualCubeDimension name="Domicile Status"/>
+		<VirtualCubeDimension name="Program Eligibility"/>
+		<VirtualCubeDimension name="Sex Offender Status"/>
+		<VirtualCubeDimension name="Work Release Status"/>
+		<VirtualCubeDimension name="Charge Type"/>
+		<VirtualCubeDimension name="Charge Class"/>
+		<VirtualCubeDimension name="Charge Disposition"/>
+		<VirtualCubeDimension name="Agency"/>
+		<VirtualCubeDimension name="Charge Jurisdiction"/>
+		<VirtualCubeDimension name="Bond Status"/>
+		<VirtualCubeDimension name="Bond Type"/>
+		<VirtualCubeDimension name="Population Type"/>
+		<VirtualCubeDimension name="Supervision Unit"/>
+		<VirtualCubeDimension name="Case Status"/>
+		<VirtualCubeDimension name="Booking Date"/>
+		
+
+		<VirtualCubeMeasure cubeName="Behavioral-Health-Treatment"  name="[Measures].[Treatment Count]"/>
+		<VirtualCubeMeasure cubeName="Behavioral-Health-Medication" name="[Measures].[Medication Count]"/>
+		<VirtualCubeMeasure cubeName="Behavioral-Health-Evaluation" name="[Measures].[Evaluation Count]"/>
+		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[Booking Count]"/>
+		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[Average Length Of Stay]"/>
+		<VirtualCubeMeasure cubeName="Booking-Charge" name="[Measures].[Charge Count]"/>
+
+	</VirtualCube>
 			
 </Schema>
