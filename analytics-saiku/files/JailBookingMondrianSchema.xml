@@ -325,7 +325,7 @@
 	<Measure name="Treatment Count" column="BehavioralHealthAssessmentID" aggregator="count"/>
 </Cube>
 
-<!-- 	<Cube name="Behavioral-Health-Treatment"></Cube> -->
+
 <!-- 	<Cube name="Behavioral-Health-Charge"></Cube> -->
 			
 </Schema>
