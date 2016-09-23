@@ -249,7 +249,8 @@
 	         LanguageTypeID, EducationLevelTypeID, OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  
 	         WorkReleaseStatusTypeID, PopulationTypeID, EpisodeStartDateID,
 	         if(SixMonthRebooking='Y', 1, 0) as SixMonthRecidivism,
-	          if(OneYearRebooking='Y', 1, 0) as OneYearRecidivism
+	         if(OneYearRebooking='Y', 1, 0) as OneYearRecidivism,
+	         if(TwoYearRebooking='Y', 1, 0) as TwoYearRecidivism
          	from JailEpisode, Person
          	where JailEpisode.PersonID=Person.PersonID]]>
 			</SQL>
@@ -273,16 +274,9 @@
  		<DimensionUsage source="Date" name="Booking Date" visible="true" foreignKey="EpisodeStartDateID" highCardinality="false"/>
 		<Measure name="Booking Count" column="JailEpisodeID" aggregator="count"/>
 		<Measure name="Average Length Of Stay" column="LengthOfStay" aggregator="avg" visible="true"/>
-		 <Measure name="Six Month Rebooking Count" column="SixMonthRecidivism" datatype="Integer" aggregator="sum" caption="Six Month Rebooking Count" visible="false"/>	
-		 <Measure name="One Year Rebooking Count" column="OneYearRecidivism" datatype="Integer" aggregator="sum" caption="One Year Rebooking Count" visible="false"/>
-		<CalculatedMember name="SixMonthRebookingRate" caption="Six Month Rebooking Rate" dimension="Measures">
-			<Formula>[Measures].[Six Month Rebooking Count] / [Measures].[Booking Count]</Formula>
-			<CalculatedMemberProperty name="FORMAT_STRING" value="#0.0 %"/>
-		</CalculatedMember>
-		<CalculatedMember name="OneYearRebookingRate" caption="One Year Rebooking Rate" dimension="Measures">
-			<Formula>[Measures].[One Year Rebooking Count] / [Measures].[Booking Count]</Formula>
-			<CalculatedMemberProperty name="FORMAT_STRING" value="#0.0 %"/>
-		</CalculatedMember>
+		<Measure name="Six Month Rebooking Rate" column="SixMonthRecidivism"  aggregator="avg" formatString="#0.0%" caption="Six Month Rebooking Rate" visible="true"/>
+		<Measure name="One Year Rebooking Rate" column="OneYearRecidivism"  aggregator="avg" formatString="#0.0%" caption="One Year Rebooking Rate" visible="true"/>
+		<Measure name="Two Year Rebooking Rate" column="TwoYearRecidivism"  aggregator="avg" formatString="#0.0%" caption="Two Year Rebooking Rate" visible="true"/>	
 	</Cube>
 			
 	<Cube name="Booking-Charge" visible="false">
@@ -448,10 +442,9 @@
 		<VirtualCubeMeasure cubeName="Behavioral-Health-Evaluation" name="[Measures].[Evaluation Count]"/>
 		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[Booking Count]"/>
 		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[Average Length Of Stay]"/>
-		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[Six Month Rebooking Count]" visible="false"/>
-		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[SixMonthRebookingRate]"/>
-		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[One Year Rebooking Count]" visible="false"/>
-		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[OneYearRebookingRate]"/>
+		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[Six Month Rebooking Rate]"/>
+		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[One Year Rebooking Rate]"/>
+		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[Two Year Rebooking Rate]"/>
 		<VirtualCubeMeasure cubeName="Booking-Charge" name="[Measures].[Charge Count]"/>
 	</VirtualCube>
 			
