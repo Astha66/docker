@@ -245,13 +245,15 @@
 	
 	<Cube name="Booking" visible="false">
 		<View alias="Booking">
+		<!-- this must be a mysql dialect becasue if the if() functions -->
 			<SQL dialect="mysql">
         <![CDATA[select JailEpisodeID, LengthOfStay, SupervisionUnitTypeID, CaseStatusTypeID, FacilityID,  PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID, 
 	         LanguageTypeID, EducationLevelTypeID, OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  
 	         WorkReleaseStatusTypeID, PopulationTypeID, EpisodeStartDateID,
 	         if(SixMonthRebooking='Y', 1, 0) as SixMonthRecidivism,
 	         if(OneYearRebooking='Y', 1, 0) as OneYearRecidivism,
-	         if(TwoYearRebooking='Y', 1, 0) as TwoYearRecidivism
+	         if(TwoYearRebooking='Y', 1, 0) as TwoYearRecidivism,
+	         if(IsActive='Y', 1, 0) as IsActiveBooking
          	from JailEpisode, Person
          	where JailEpisode.PersonID=Person.PersonID]]>
 			</SQL>
@@ -274,6 +276,7 @@
 		<DimensionUsage source="CaseStatus" name="Case Status" visible="true" foreignKey="CaseStatusTypeID" highCardinality="false"/>
  		<DimensionUsage source="Date" name="Booking Date" visible="true" foreignKey="EpisodeStartDateID" highCardinality="false"/>
 		<Measure name="Booking Count" column="JailEpisodeID" aggregator="count"/>
+		<Measure name="Active Booking Count" column="IsActiveBooking" aggregator="sum"/>
 		<Measure name="Average Length Of Stay" column="LengthOfStay" aggregator="avg" visible="true"/>
 		<Measure name="Six Month Rebooking Rate" column="SixMonthRecidivism"  aggregator="avg" formatString="#0.0%" caption="Six Month Rebooking Rate" visible="true"/>
 		<Measure name="One Year Rebooking Rate" column="OneYearRecidivism"  aggregator="avg" formatString="#0.0%" caption="One Year Rebooking Rate" visible="true"/>
@@ -282,9 +285,9 @@
 			
 	<Cube name="Booking-Charge" visible="false">
 		<View alias="BookingCharge">
-			<SQL dialect="mysql">
+			<SQL dialect="generic">
         <![CDATA[select JailEpisode.JailEpisodeID, PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID,  LanguageTypeID, EducationLevelTypeID, OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  
-	        WorkReleaseStatusTypeID, PopulationTypeID, ChargeClassTypeID, ChargeTypeID, ChargeDispositionTypeID, JailEpisodeArrest.AgencyID, JurisdictionTypeID, BondTypeID, BondStatusTypeID
+	        WorkReleaseStatusTypeID, PopulationTypeID, ChargeClassTypeID, ChargeTypeID, ChargeDispositionTypeID, JailEpisodeArrest.AgencyID, JurisdictionTypeID, BondTypeID, BondStatusTypeID, BondAmount
         	from JailEpisodeCharge, JailEpisodeArrest, JailEpisode, Person
         	where JailEpisodeCharge.JailEpisodeArrestID=JailEpisodeArrest.JailEpisodeArrestID and
         		JailEpisodeArrest.JailEpisodeID=JailEpisode.JailEpisodeID and JailEpisode.PersonID=Person.PersonID]]>
@@ -311,14 +314,17 @@
 		<DimensionUsage source="BondStatus" name="Bond Status" visible="true" foreignKey="BondStatusTypeID" highCardinality="false"/>
 		<DimensionUsage source="Bond" name="Bond Type" visible="true" foreignKey="BondTypeID" highCardinality="false"/>
  		<Measure name="Charge Count" column="JailEpisodeID" aggregator="count"/>
+ 		<Measure name="Average Bond Amount" column="BondAmount" aggregator="avg" formatString="$0.00"/>
 	</Cube>
 	
 <Cube name="Behavioral-Health-Evaluation" visible="false">
 	<View alias="Behavioral-Health-Evaluation">
+	<!-- this must be a mysql dialect becasue if the if() functions -->
 		<SQL dialect="mysql">
         <![CDATA[select BehavioralHealthAssessment.BehavioralHealthAssessmentID, MedicaidStatusTypeID, BehavioralHealthEvaluationTypeID, 
         PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID,  LanguageTypeID, EducationLevelTypeID, 
-        OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  WorkReleaseStatusTypeID, PopulationTypeID, SevereMentalIllnessIndicator
+        OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  WorkReleaseStatusTypeID, PopulationTypeID, SevereMentalIllnessIndicator,
+         if(InTreatmentAtBooking='Y', 1, 0) as BeingTreatedAtBooking
          	from BehavioralHealthAssessment, BehavioralHealthEvaluation, Person
          	where BehavioralHealthEvaluation.BehavioralHealthAssessmentID=BehavioralHealthAssessment.BehavioralHealthAssessmentID and 
 	         	BehavioralHealthAssessment.PersonID=Person.PersonID]]>
@@ -340,13 +346,15 @@
 		<DimensionUsage source="WorkReleaseStatus" name="Work Release Status" visible="true" foreignKey="WorkReleaseStatusTypeID" highCardinality="false"/>
 		<Measure name="Evaluation Count" column="BehavioralHealthAssessmentID" aggregator="count"/>
 		<Measure name="Evaluation SMI Rate" column="SevereMentalIllnessIndicator" aggregator="avg" formatString="#0.0%" caption="SMI Rate"/>
+		<Measure name="Evaluation Treatment At Booking Rate" column="BeingTreatedAtBooking" aggregator="avg" formatString="#0.0%" caption="In Treatment at Booking Rate"/>
 </Cube>
 
 <Cube name="Behavioral-Health-Medication" visible="false">
 	<View alias="Behavioral-Health-Medication">
 		<SQL dialect="mysql">
 	        <![CDATA[select BehavioralHealthAssessment.BehavioralHealthAssessmentID, MedicaidStatusTypeID,  PrescribedMedicationID, PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID,  LanguageTypeID, EducationLevelTypeID, 
-        OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  WorkReleaseStatusTypeID, PopulationTypeID, SevereMentalIllnessIndicator
+        OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  WorkReleaseStatusTypeID, PopulationTypeID, SevereMentalIllnessIndicator,
+          if(InTreatmentAtBooking='Y', 1, 0) as BeingTreatedAtBooking
    
 	         	from BehavioralHealthAssessment, PrescribedMedication, Person
 	         	where PrescribedMedication.BehavioralHealthAssessmentID=BehavioralHealthAssessment.BehavioralHealthAssessmentID and 
@@ -369,13 +377,16 @@
 	<DimensionUsage source="WorkReleaseStatus" name="Work Release Status" visible="true" foreignKey="WorkReleaseStatusTypeID" highCardinality="false"/>
 	<Measure name="Medication Count" column="BehavioralHealthAssessmentID" aggregator="count"/>
 	<Measure name="Medication SMI Rate" column="SevereMentalIllnessIndicator" aggregator="avg" formatString="#0.0%" caption="SMI Rate"/>
+	<Measure name="Medication Treatment At Booking Rate" column="BeingTreatedAtBooking" aggregator="avg" formatString="#0.0%" caption="In Treatment at Booking Rate"/>
 </Cube>
 
 <Cube name="Behavioral-Health-Treatment" visible="false">
 	<View alias="Behavioral-Health-Treatment">
 		<SQL dialect="mysql">
 	        <![CDATA[select BehavioralHealthAssessment.BehavioralHealthAssessmentID, MedicaidStatusTypeID,  TreatmentStatusTypeID, TreatmentAdmissionReasonTypeID, TreatmentProviderTypeID, PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID,  LanguageTypeID, EducationLevelTypeID, 
-        OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  WorkReleaseStatusTypeID, PopulationTypeID, SevereMentalIllnessIndicator
+        OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  WorkReleaseStatusTypeID, PopulationTypeID, SevereMentalIllnessIndicator,
+          if(InTreatmentAtBooking='Y', 1, 0) as BeingTreatedAtBooking
+          
 	         	from BehavioralHealthAssessment, BehavioralHealthTreatment, Person
 	         	where BehavioralHealthTreatment.BehavioralHealthAssessmentID=BehavioralHealthAssessment.BehavioralHealthAssessmentID and
 	         	BehavioralHealthAssessment.PersonID=Person.PersonID]]>
@@ -399,6 +410,7 @@
 	<DimensionUsage source="WorkReleaseStatus" name="Work Release Status" visible="true" foreignKey="WorkReleaseStatusTypeID" highCardinality="false"/>
 	<Measure name="Treatment Count" column="BehavioralHealthAssessmentID" aggregator="count"/>
 	<Measure name="Treatment SMI Rate" column="SevereMentalIllnessIndicator" aggregator="avg" formatString="#0.0%" caption="SMI Rate"/>
+	<Measure name="Treatment At Booking Rate" column="BeingTreatedAtBooking" aggregator="avg" formatString="#0.0%" caption="In Treatment at Booking Rate"/>
 </Cube>
 
 
@@ -443,16 +455,21 @@
 
 		<VirtualCubeMeasure cubeName="Behavioral-Health-Treatment"  name="[Measures].[Treatment Count]"/>
 		<VirtualCubeMeasure cubeName="Behavioral-Health-Treatment"  name="[Measures].[Treatment SMI Rate]"/>
+		<VirtualCubeMeasure cubeName="Behavioral-Health-Treatment"  name="[Measures].[Treatment At Booking Rate]"/>
 		<VirtualCubeMeasure cubeName="Behavioral-Health-Medication" name="[Measures].[Medication Count]"/>
 		<VirtualCubeMeasure cubeName="Behavioral-Health-Medication" name="[Measures].[Medication SMI Rate]"/>
+		<VirtualCubeMeasure cubeName="Behavioral-Health-Medication" name="[Measures].[Medication Treatment At Booking Rate]"/>
 		<VirtualCubeMeasure cubeName="Behavioral-Health-Evaluation" name="[Measures].[Evaluation Count]"/>
 		<VirtualCubeMeasure cubeName="Behavioral-Health-Evaluation" name="[Measures].[Evaluation SMI Rate]"/>
+		<VirtualCubeMeasure cubeName="Behavioral-Health-Evaluation" name="[Measures].[Evaluation Treatment At Booking Rate]"/>
 		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[Booking Count]"/>
+		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[Active Booking Count]"/>
 		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[Average Length Of Stay]"/>
 		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[Six Month Rebooking Rate]"/>
 		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[One Year Rebooking Rate]"/>
 		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[Two Year Rebooking Rate]"/>
 		<VirtualCubeMeasure cubeName="Booking-Charge" name="[Measures].[Charge Count]"/>
+		<VirtualCubeMeasure cubeName="Booking-Charge" name="[Measures].[Average Bond Amount]"/>
 	</VirtualCube>
 			
 </Schema>
