@@ -240,6 +240,7 @@
 			<Level name="Treatment Status" visible="true" table="TreatmentStatusType" column="TreatmentStatusTypeDescription" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
 		</Hierarchy>
 	</Dimension>
+
 	
 	
 	<Cube name="Booking" visible="false">
@@ -283,7 +284,7 @@
 		<View alias="BookingCharge">
 			<SQL dialect="mysql">
         <![CDATA[select JailEpisode.JailEpisodeID, PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID,  LanguageTypeID, EducationLevelTypeID, OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  
-	        WorkReleaseStatusTypeID, PopulationTypeID, ChargeClassTypeID, ChargeTypeID, ChargeDispositionTypeID, JailEpisodeCharge.AgencyID, JurisdictionTypeID, BondTypeID, BondStatusTypeID
+	        WorkReleaseStatusTypeID, PopulationTypeID, ChargeClassTypeID, ChargeTypeID, ChargeDispositionTypeID, JailEpisodeArrest.AgencyID, JurisdictionTypeID, BondTypeID, BondStatusTypeID
         	from JailEpisodeCharge, JailEpisodeArrest, JailEpisode, Person
         	where JailEpisodeCharge.JailEpisodeArrestID=JailEpisodeArrest.JailEpisodeArrestID and
         		JailEpisodeArrest.JailEpisodeID=JailEpisode.JailEpisodeID and JailEpisode.PersonID=Person.PersonID]]>
@@ -305,7 +306,7 @@
 		<DimensionUsage source="Charge" name="Charge Type" visible="true" foreignKey="ChargeTypeID" highCardinality="false"/>
 		<DimensionUsage source="ChargeClass" name="Charge Class" visible="true" foreignKey="ChargeClassTypeID" highCardinality="false"/>
 		<DimensionUsage source="ChargeDisposition" name="Charge Disposition" visible="true" foreignKey="ChargeDispositionTypeID" highCardinality="false"/>
-		<DimensionUsage source="Agency" name="Agency" visible="true" foreignKey="AgencyID" highCardinality="false"/>
+		<DimensionUsage source="Agency" name="Arrest Agency" visible="true" foreignKey="AgencyID" highCardinality="false"/>
 		<DimensionUsage source="Jurisdiction" name="Charge Jurisdiction" visible="true" foreignKey="JurisdictionTypeID" highCardinality="false"/>
 		<DimensionUsage source="BondStatus" name="Bond Status" visible="true" foreignKey="BondStatusTypeID" highCardinality="false"/>
 		<DimensionUsage source="Bond" name="Bond Type" visible="true" foreignKey="BondTypeID" highCardinality="false"/>
@@ -317,7 +318,7 @@
 		<SQL dialect="mysql">
         <![CDATA[select BehavioralHealthAssessment.BehavioralHealthAssessmentID, MedicaidStatusTypeID, BehavioralHealthEvaluationTypeID, 
         PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID,  LanguageTypeID, EducationLevelTypeID, 
-        OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  WorkReleaseStatusTypeID, PopulationTypeID
+        OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  WorkReleaseStatusTypeID, PopulationTypeID, SevereMentalIllnessIndicator
          	from BehavioralHealthAssessment, BehavioralHealthEvaluation, Person
          	where BehavioralHealthEvaluation.BehavioralHealthAssessmentID=BehavioralHealthAssessment.BehavioralHealthAssessmentID and 
 	         	BehavioralHealthAssessment.PersonID=Person.PersonID]]>
@@ -338,14 +339,15 @@
 		<DimensionUsage source="SexOffenderStatus" name="Sex Offender Status" visible="true" foreignKey="SexOffenderStatusTypeID" highCardinality="false"/>
 		<DimensionUsage source="WorkReleaseStatus" name="Work Release Status" visible="true" foreignKey="WorkReleaseStatusTypeID" highCardinality="false"/>
 		<Measure name="Evaluation Count" column="BehavioralHealthAssessmentID" aggregator="count"/>
+		<Measure name="Evaluation SMI Rate" column="SevereMentalIllnessIndicator" aggregator="avg" formatString="#0.0%" caption="SMI Rate"/>
 </Cube>
 
 <Cube name="Behavioral-Health-Medication" visible="false">
 	<View alias="Behavioral-Health-Medication">
 		<SQL dialect="mysql">
 	        <![CDATA[select BehavioralHealthAssessment.BehavioralHealthAssessmentID, MedicaidStatusTypeID,  PrescribedMedicationID, PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID,  LanguageTypeID, EducationLevelTypeID, 
-        OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  WorkReleaseStatusTypeID, PopulationTypeID
-         	
+        OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  WorkReleaseStatusTypeID, PopulationTypeID, SevereMentalIllnessIndicator
+   
 	         	from BehavioralHealthAssessment, PrescribedMedication, Person
 	         	where PrescribedMedication.BehavioralHealthAssessmentID=BehavioralHealthAssessment.BehavioralHealthAssessmentID and 
 	         	BehavioralHealthAssessment.PersonID=Person.PersonID]]>
@@ -366,13 +368,14 @@
 	<DimensionUsage source="SexOffenderStatus" name="Sex Offender Status" visible="true" foreignKey="SexOffenderStatusTypeID" highCardinality="false"/>
 	<DimensionUsage source="WorkReleaseStatus" name="Work Release Status" visible="true" foreignKey="WorkReleaseStatusTypeID" highCardinality="false"/>
 	<Measure name="Medication Count" column="BehavioralHealthAssessmentID" aggregator="count"/>
+	<Measure name="Medication SMI Rate" column="SevereMentalIllnessIndicator" aggregator="avg" formatString="#0.0%" caption="SMI Rate"/>
 </Cube>
 
 <Cube name="Behavioral-Health-Treatment" visible="false">
 	<View alias="Behavioral-Health-Treatment">
 		<SQL dialect="mysql">
 	        <![CDATA[select BehavioralHealthAssessment.BehavioralHealthAssessmentID, MedicaidStatusTypeID,  TreatmentStatusTypeID, TreatmentAdmissionReasonTypeID, TreatmentProviderTypeID, PersonRaceTypeID, PersonSexTypeID, Person.PersonAgeTypeID, PersonEthnicityTypeID,  LanguageTypeID, EducationLevelTypeID, 
-        OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  WorkReleaseStatusTypeID, PopulationTypeID
+        OccupationTypeID, MilitaryServiceStatusTypeID,  DomicileStatusTypeID, ProgramEligibilityTypeID, SexOffenderStatusTypeID,  WorkReleaseStatusTypeID, PopulationTypeID, SevereMentalIllnessIndicator
 	         	from BehavioralHealthAssessment, BehavioralHealthTreatment, Person
 	         	where BehavioralHealthTreatment.BehavioralHealthAssessmentID=BehavioralHealthAssessment.BehavioralHealthAssessmentID and
 	         	BehavioralHealthAssessment.PersonID=Person.PersonID]]>
@@ -395,6 +398,7 @@
 	<DimensionUsage source="SexOffenderStatus" name="Sex Offender Status" visible="true" foreignKey="SexOffenderStatusTypeID" highCardinality="false"/>
 	<DimensionUsage source="WorkReleaseStatus" name="Work Release Status" visible="true" foreignKey="WorkReleaseStatusTypeID" highCardinality="false"/>
 	<Measure name="Treatment Count" column="BehavioralHealthAssessmentID" aggregator="count"/>
+	<Measure name="Treatment SMI Rate" column="SevereMentalIllnessIndicator" aggregator="avg" formatString="#0.0%" caption="SMI Rate"/>
 </Cube>
 
 
@@ -427,7 +431,7 @@
 		<VirtualCubeDimension name="Charge Type"/>
 		<VirtualCubeDimension name="Charge Class"/>
 		<VirtualCubeDimension name="Charge Disposition"/>
-		<VirtualCubeDimension name="Agency"/>
+		<VirtualCubeDimension name="Arrest Agency"/>
 		<VirtualCubeDimension name="Charge Jurisdiction"/>
 		<VirtualCubeDimension name="Bond Status"/>
 		<VirtualCubeDimension name="Bond Type"/>
@@ -438,8 +442,11 @@
 		
 
 		<VirtualCubeMeasure cubeName="Behavioral-Health-Treatment"  name="[Measures].[Treatment Count]"/>
+		<VirtualCubeMeasure cubeName="Behavioral-Health-Treatment"  name="[Measures].[Treatment SMI Rate]"/>
 		<VirtualCubeMeasure cubeName="Behavioral-Health-Medication" name="[Measures].[Medication Count]"/>
+		<VirtualCubeMeasure cubeName="Behavioral-Health-Medication" name="[Measures].[Medication SMI Rate]"/>
 		<VirtualCubeMeasure cubeName="Behavioral-Health-Evaluation" name="[Measures].[Evaluation Count]"/>
+		<VirtualCubeMeasure cubeName="Behavioral-Health-Evaluation" name="[Measures].[Evaluation SMI Rate]"/>
 		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[Booking Count]"/>
 		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[Average Length Of Stay]"/>
 		<VirtualCubeMeasure cubeName="Booking" name="[Measures].[Six Month Rebooking Rate]"/>
