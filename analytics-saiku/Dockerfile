@@ -26,8 +26,9 @@ WORKDIR /tmp
 COPY files/server-config.sh /tmp/
 COPY files/Incident-Arrest.connection.json /tmp/
 COPY files/Jail-Booking.connection.json /tmp/
-COPY files/JailBookingMondrianSchema.xml /tmp/
+#COPY files/JailBookingMondrianSchema.xml /tmp/
 
+RUN curl -O https://raw.githubusercontent.com/ojbc/analytics/master/booking-jail/JailBookingMondrianSchema.xml
 RUN chmod a+x /tmp/server-config.sh
 RUN /tmp/server-config.sh
 
