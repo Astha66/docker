@@ -22,6 +22,10 @@ analytics-db:
   container_name: analytics-db
   image: ojbc/analytics-db
 
-analytics:
-  container_name: analytics
-  image: ojbc/analytics  
+saiku:
+  container_name: saiku
+  image: ojbc/analytics-saiku
+
+dashboards:
+  container_name: dashboards
+  image: ojbc/analytics-opencpu-demo
