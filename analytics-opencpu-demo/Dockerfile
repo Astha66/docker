@@ -14,22 +14,17 @@
 #    Copyright 2012-2016 Open Justice Broker Consortium
 
 # Dockerfile for OJB analytics platform server
-# To run:  docker run -d --name=analytics-opencpu-demo ojbc/analytics-opencpu-demo
-# Then visit (assuming weave is running): https://analytics-opencpu-demo.ojbc.local/ocpu/library/OJBDashboardDemo/www/index.html
+# To run:  docker run -d --name=dashboards ojbc/analytics-opencpu-demo
+# Then visit (assuming weave is running): http://dashboards.ojbc.local/ocpu/library/DemoJailBookingDashboard/www/index.html
 
 FROM ojbc/analytics-opencpu
 
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
-COPY bin/OJBDashboardDemo_0.1.tar.gz /tmp/
-COPY bin/JailBookingDashboard_0.1.tar.gz /tmp/
+COPY bin/*.tar.gz /tmp/
 
 WORKDIR /tmp
 
 RUN apt-get install -y libcairo-dev
 
-RUN R -e 'install.packages("/tmp/OJBDashboardDemo_0.1.tar.gz", repos=NULL, type="source")'
-RUN R -e 'install.packages("/tmp/JailBookingDashboard_0.1.tar.gz", repos=NULL, type="source")'
-
-RUN rm /tmp/OJBDashboardDemo_0.1.tar.gz
-RUN rm /tmp/JailBookingDashboard_0.1.tar.gz
+RUN R -e 'install.packages(c("/tmp/JailBookingDashboard_0.1.tar.gz","/tmp/DemoJailBookingDashboardData_0.1.tar.gz","/tmp/DemoJailBookingDashboard_0.1.tar.gz"), repos=NULL, type="source")'
