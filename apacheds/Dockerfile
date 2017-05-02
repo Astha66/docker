@@ -23,17 +23,17 @@ MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
 WORKDIR /tmp
 
-RUN apk add --update zip unzip openldap-clients wget && \
+RUN apk add --update zip unzip openldap-clients curl && \
 	mkdir -p /opt && \
 	cd /opt && \
-	wget --no-check-certificate https://www.apache.org/dist/directory/apacheds/dist/2.0.0-M20/apacheds-2.0.0-M20.zip && \
-	unzip apacheds-2.0.0-M20.zip && \
+	curl -sO https://www.apache.org/dist/directory/apacheds/dist/2.0.0-M23/apacheds-2.0.0-M23.zip && \
+	unzip apacheds-2.0.0-M23.zip && \
 	apk del zip unzip && \
-	rm apacheds-2.0.0-M20.zip
+	rm apacheds-2.0.0-M23.zip
 	
-WORKDIR /opt/apacheds-2.0.0-M20
+WORKDIR /opt/apacheds-2.0.0-M23
 
-COPY files/config.ldif /opt/apacheds-2.0.0-M20/instances/default/conf/
+COPY files/config.ldif /opt/apacheds-2.0.0-M23/instances/default/conf/
 COPY files/setup.ldif /tmp/
 COPY files/demostate-schema.ldif /tmp/
 
