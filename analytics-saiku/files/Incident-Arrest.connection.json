@@ -1,1 +1,1 @@
-{"connectionname":"Incident-Arrest","connectiontype":"MONDRIAN","jdbcurl":"jdbc:mysql://analytics-db.ojbc.local:3306/ojbc_analytics_demo","schema":"/datasources/Incident-Arrest.xml","driver":"com.mysql.jdbc.Driver","username":"root","password":"","security_type":null}
+{"connectionname":"Incident-Arrest","connectiontype":"MONDRIAN","jdbcurl":"jdbc:mysql://analytics-db:3306/ojbc_analytics_demo","schema":"/datasources/Incident-Arrest.xml","driver":"com.mysql.jdbc.Driver","username":"root","password":"","security_type":null}

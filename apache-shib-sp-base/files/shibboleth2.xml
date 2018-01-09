@@ -19,7 +19,7 @@
 <SPConfig xmlns="urn:mace:shibboleth:2.0:native:sp:config"
     xmlns:conf="urn:mace:shibboleth:2.0:native:sp:config"
     xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
-    xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"    
+    xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
     xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
     clockSkew="180">
 
@@ -32,21 +32,21 @@
     To customize behavior for specific resources on Apache, and to link vhosts or
     resources to ApplicationOverride settings below, use web server options/commands.
     See https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPConfigurationElements for help.
-    
+
     For examples with the RequestMap XML syntax instead, see the example-shibboleth2.xml
     file, and the https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPRequestMapHowTo topic.
     -->
 
     <RequestMapper type="Native">
       <RequestMap redirectToSSL="443">
-      	<Host name="portal.ojbc.local" requireSession="true" exportAssertion="true"/>
+      	<Host name="localhost.localdomain" requireSession="true" exportAssertion="true"/>
       </RequestMap>
     </RequestMapper>
 
     <!-- The ApplicationDefaults element is where most of Shibboleth's SAML bits are defined. -->
     <ApplicationDefaults entityID="https://sp.ojbc.local/shibboleth"
                          REMOTE_USER="localIdentifier">
-        
+
 
         <!--
         Controls session lifetimes, address checks, cookie handling, and the protocol handlers.
@@ -59,7 +59,7 @@
         -->
         <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
                   checkAddress="false" handlerSSL="true" cookieProps="https"
-		  exportLocation="https://portal.ojbc.local/Shibboleth.sso/GetAssertion" exportACL="127.0.0.1 ::1 10.32.0.0/16">
+		  exportLocation="https://localhost:11080/Shibboleth.sso/GetAssertion" exportACL="127.0.0.1 ::1 10.32.0.0/16">
 
             <!--
             Configures SSO for a default IdP. To allow for >1 IdP, remove
@@ -67,23 +67,23 @@
             (Set discoveryProtocol to "WAYF" for legacy Shibboleth WAYF support.)
             You can also override entityID on /Login query string, or in RequestMap/htaccess.
             -->
-            
+
             <!-- IDP method:
             <SSO entityID="https://idp.ojbc.local/idp/shibboleth">
               SAML2 SAML1
             </SSO>
              -->
-            
+
             <!-- DS method: -->
-            <SSO 
-                 discoveryProtocol="SAMLDS" discoveryURL="https://samlds.ojbc.local/discovery/WAYF">
+            <SSO
+                 discoveryProtocol="SAMLDS" discoveryURL="http://localhost:11082/discovery/WAYF">
               SAML2 SAML1
             </SSO>
-            
+
 
             <!-- SAML and local-only logout. -->
             <Logout>SAML2 Local</Logout>
-            
+
             <!-- Extension service that generates "approximate" metadata based on SP configuration. -->
             <Handler type="MetadataGenerator" Location="/Metadata" signing="false"/>
 
@@ -104,7 +104,7 @@
         <Errors supportContact="root@localhost"
             helpLocation="/about.html"
             styleSheet="/shibboleth-sp/main.css"/>
-        
+
         <!-- Example of remotely supplied batch of signed metadata. -->
         <!--
         <MetadataProvider type="XML" uri="http://federation.org/federation-metadata.xml"
@@ -123,7 +123,7 @@
 
         <!-- Map to extract attributes from SAML assertions. -->
         <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
-        
+
         <!-- Use a SAML query if no attributes are supplied during SSO. -->
         <AttributeResolver type="Query" subjectMatch="true"/>
 
@@ -138,7 +138,7 @@
         the https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPApplicationOverride topic).
         Resource requests are mapped by web server commands, or the RequestMapper, to an
         applicationId setting.
-        
+
         Example of a second application (for a second vhost) that has a different entityID.
         Resources on the vhost would map to an applicationId of "admin":
         -->
@@ -146,7 +146,7 @@
         <ApplicationOverride id="admin" entityID="https://admin.example.org/shibboleth"/>
         -->
     </ApplicationDefaults>
-    
+
     <!-- Policies that determine how to process and authenticate runtime messages. -->
     <SecurityPolicyProvider type="XML" validate="true" path="security-policy.xml"/>
 

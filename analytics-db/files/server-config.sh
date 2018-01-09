@@ -23,3 +23,5 @@ gunzip ojbc_booking_analytics_demo.sql.gz
 echo "create database ojbc_booking_analytics_demo" | mysql -u root
 mysql -u root ojbc_booking_analytics_demo < /tmp/ojbc_booking_analytics_demo.sql
 rm -f /tmp/ojbc_booking_analytics_demo.sql
+
+echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.18.0.%' WITH GRANT OPTION" | mysql -u root

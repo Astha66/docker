@@ -1,4 +1,4 @@
-# 
+#
 # Unless explicitly acquired and licensed from Licensor under another license, the contents of
 # this file are subject to the Reciprocal Public License ("RPL") Version 1.5, or subsequent
 # versions as allowed by the RPL, and You may not copy or use this file in either source code
@@ -13,7 +13,7 @@
 # http://opensource.org/licenses/RPL-1.5
 #
 # Copyright 2012-2016 Open Justice Broker Consortium
-# 
+#
 
 # Dockerfile for an image with Shibboleth SP, built from source
 
@@ -35,7 +35,7 @@ RUN curl -L -o boost_1_52_0.tar.gz http://sourceforge.net/projects/boost/files/b
 	./bootstrap.sh && \
 	./b2 install && \
 	cd .. && rm -rf boost*
-	
+
 # Install log4shib
 
 RUN wget http://shibboleth.net/downloads/log4shib/latest/log4shib-1.0.9.tar.gz && \
@@ -45,7 +45,7 @@ RUN wget http://shibboleth.net/downloads/log4shib/latest/log4shib-1.0.9.tar.gz &
 	make && \
 	make install && \
 	cd .. && rm -rf log4shib*
-	
+
 # Install XercesC
 
 RUN wget http://archive.apache.org/dist/xerces/c/3/sources/xerces-c-3.1.2.tar.gz && \
@@ -57,7 +57,7 @@ RUN wget http://archive.apache.org/dist/xerces/c/3/sources/xerces-c-3.1.2.tar.gz
 	cd .. && rm -rf xerces-c*
 
 # Install XML Security
-	
+
 RUN wget http://www.apache.org/dist/santuario/c-library/xml-security-c-1.7.3.tar.gz && \
 	tar -xvf xml-security-c-1.7.3.tar.gz && \
 	cd xml-security-c-1.7.3 && \
@@ -67,30 +67,30 @@ RUN wget http://www.apache.org/dist/santuario/c-library/xml-security-c-1.7.3.tar
 	cd .. && rm -rf xml-sec*
 
 # Install OpenSAML XML Tooling
-	
-RUN wget http://shibboleth.net/downloads/c++-opensaml/latest/xmltooling-1.5.6.tar.gz && \
-	tar -xvf xmltooling-1.5.6.tar.gz && \
-	cd xmltooling-1.5.6 && \
+
+RUN wget http://shibboleth.net/downloads/c++-opensaml/latest/xmltooling-1.6.2.tar.gz && \
+	tar -xvf xmltooling-1.6.2.tar.gz && \
+	cd xmltooling-1.6.2 && \
 	./configure --with-log4shib=/opt/shibboleth-sp --prefix=/opt/shibboleth-sp -C && \
 	make && \
 	make install && \
 	cd .. && rm -rf xmltooling*
 
 # Install OpenSAML
-	
-RUN wget http://shibboleth.net/downloads/c++-opensaml/latest/opensaml-2.5.5.tar.gz && \
-	tar -xvf opensaml-2.5.5.tar.gz && \
-	cd opensaml-2.5.5 && \
+
+RUN wget http://shibboleth.net/downloads/c++-opensaml/latest/opensaml-2.6.1.tar.gz && \
+	tar -xvf opensaml-2.6.1.tar.gz && \
+	cd opensaml-2.6.1 && \
 	./configure --with-log4shib=/opt/shibboleth-sp --prefix=/opt/shibboleth-sp -C && \
 	make && \
 	make install && \
 	cd .. && rm -rf opensaml*
 
 # Install Shib daemon
-	
-RUN wget http://shibboleth.net/downloads/service-provider/2.5.5/shibboleth-sp-2.5.5.tar.gz && \
-	tar -xvf shibboleth-sp-2.5.5.tar.gz && \
-	cd shibboleth-sp-2.5.5 && \
+
+RUN wget http://shibboleth.net/downloads/service-provider/2.6.1/shibboleth-sp-2.6.1.tar.gz && \
+	tar -xvf shibboleth-sp-2.6.1.tar.gz && \
+	cd shibboleth-sp-2.6.1 && \
 	apk add --update apache2-dev && \
 	./configure --with-log4shib=/opt/shibboleth-sp --prefix=/opt/shibboleth-sp --enable-apache-24 --with-apxs24=/usr/bin/apxs && \
 	make && \
@@ -99,11 +99,11 @@ RUN wget http://shibboleth.net/downloads/service-provider/2.5.5/shibboleth-sp-2.
 	apk del apache2-dev
 
 # Copy config files over and do some editing
-	
+
 COPY files/* /opt/shibboleth-sp/etc/shibboleth/
 
 # Make startup script
-	
+
 RUN echo '#!/bin/bash' > /opt/shibboleth-sp/sbin/start-shib-and-apache && \
 	echo "/opt/shibboleth-sp/sbin/shibd -f" >> /opt/shibboleth-sp/sbin/start-shib-and-apache && \
 	echo "apachectl start -DFOREGROUND" >> /opt/shibboleth-sp/sbin/start-shib-and-apache && \

@@ -12,7 +12,7 @@ sed -i "s/\/opt\/saiku-server\/tomcat\/bin\/catalina.sh run/sh startup.sh/g" /op
 ./temp-start-saiku.sh
 
 
-CURLTEST='curl -s -u admin:admin -m 2 http://localhost/saiku/rest/saiku/api/license'
+CURLTEST='curl -s -u admin:admin -m 2 http://localhost/saiku/rest/saiku/admin/version'
 
 eval $CURLTEST >> /dev/null 2>&1
 while [ $? -ne 0 ]; do

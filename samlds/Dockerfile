@@ -1,4 +1,4 @@
-# 
+#
 # Unless explicitly acquired and licensed from Licensor under another license, the contents of
 # this file are subject to the Reciprocal Public License ("RPL") Version 1.5, or subsequent
 # versions as allowed by the RPL, and You may not copy or use this file in either source code
@@ -13,9 +13,9 @@
 # http://opensource.org/licenses/RPL-1.5
 #
 # Copyright 2012-2016 Open Justice Broker Consortium
-# 
+#
 
-# Dockerfile to setup a container with the Shibboleth Discovery Service 
+# Dockerfile to setup a container with the Shibboleth Discovery Service
 
 FROM ojbc/java8-tomcat8
 
@@ -29,6 +29,6 @@ RUN curl -SsL http://shibboleth.net/downloads/centralized-discovery-service/late
 	sed -i "/.*input.*/d" src/installer/resources/build.xml && \
 	./install.sh && \
 	cp /opt/shibboleth-ds/war/discovery.war /opt/tomcat/webapps/
-	
+
 COPY files/demostate-ctf.xml /opt/shibboleth-ds/metadata/
 COPY files/wayfconfig.xml /opt/shibboleth-ds/conf/

@@ -1,4 +1,4 @@
-# 
+#
 # Unless explicitly acquired and licensed from Licensor under another license, the contents of
 # this file are subject to the Reciprocal Public License ("RPL") Version 1.5, or subsequent
 # versions as allowed by the RPL, and You may not copy or use this file in either source code
@@ -13,9 +13,9 @@
 # http://opensource.org/licenses/RPL-1.5
 #
 # Copyright 2012-2016 Open Justice Broker Consortium
-# 
+#
 
-# Dockerfile to setup a container with the Shibboleth IDP 
+# Dockerfile to setup a container with the Shibboleth IDP
 
 FROM ojbc/java8-tomcat8
 
@@ -26,20 +26,23 @@ WORKDIR /tmp
 COPY files/ojbc-logo.png /tmp/
 
 RUN apk add --update unzip zip tar curl && \
-	curl -O http://shibboleth.net/downloads/identity-provider/3.2.0/shibboleth-identity-provider-3.2.0.zip && \
-	unzip shibboleth-identity-provider-3.2.0.zip && cd shibboleth-identity-provider-3.2.0 && \
+	curl -O http://shibboleth.net/downloads/identity-provider/3.3.2/shibboleth-identity-provider-3.3.2.zip && \
+	unzip shibboleth-identity-provider-3.3.2.zip && cd shibboleth-identity-provider-3.3.2 && \
 	echo "idp.entityID=https://idp.ojbc.local/idp/shibboleth" > props && \
-	bin/install.sh -Didp.target.dir=/opt/shibboleth-idp -Didp.host.name=idp.ojbc.local -Didp.sealer.password=password \
-		-Didp.keystore.password=password -Didp.src.dir=/tmp/shibboleth-identity-provider-3.2.0 -Didp.scope=ojbc.local \
+	bin/install.sh -Didp.target.dir=/opt/shibboleth-idp -Didp.host.name=localhost -Didp.sealer.password=password \
+		-Didp.keystore.password=password -Didp.src.dir=/tmp/shibboleth-identity-provider-3.3.2 -Didp.scope=localdomain \
 		-Didp.noprompt=true -Didp.merge.properties=props && \
 	cd /opt/shibboleth-idp/war && mkdir tmp && \
 	mv idp.war tmp/ && cd tmp && \
 	unzip idp.war && \
+	mv /tmp/ojbc-logo.png images && \
 	curl -O https://repo1.maven.org/maven2/jstl/jstl/1.2/jstl-1.2.jar && \
 	mv jstl-1.2.jar WEB-INF/lib && \
-	mv /tmp/ojbc-logo.png images && \
 	cd .. && jar -cvfM idp.war -C tmp/ . && \
 	rm -rf tmp && rm -rf /tmp/*
+
+
+RUN cp -r /opt/shibboleth-idp/conf /tmp/
 
 COPY files/demostate-ctf.xml /opt/shibboleth-idp/metadata/demostate-ctf.xml
 

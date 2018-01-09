@@ -1,0 +1,16 @@
+<FederationIDLookupCredentialExtractor-config>
+  <CredentialMapping>
+      <FederationID>OJBC-LOCAL:IDP:DEMOSERVER:USER:demouser1</FederationID>
+      <Credential>
+          <username>admin</username>
+          <password>admin</password>
+      </Credential>
+  </CredentialMapping>
+  <CredentialMapping>
+      <FederationID>OJBC-LOCAL:IDP:DEMOSERVER:USER:demouser2</FederationID>
+      <Credential>
+          <username>admin</username>
+          <password>admin</password>
+      </Credential>
+  </CredentialMapping>
+</FederationIDLookupCredentialExtractor-config>

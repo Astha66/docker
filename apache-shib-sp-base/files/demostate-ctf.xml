@@ -22,9 +22,10 @@
     xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
     xmlns:shibmd="urn:mace:shibboleth:metadata:1.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="urn:oasis:names:tc:SAML:2.0:metadata saml-2.0-os-xsd/saml-schema-metadata-2.0.xsd" Name="Demostate Federation CTF" validUntil="2020-12-31T12:00:00">
+    xsi:schemaLocation="urn:oasis:names:tc:SAML:2.0:metadata saml-2.0-os-xsd/saml-schema-metadata-2.0.xsd"
+    Name="Demostate Federation CTF" validUntil="2020-12-31T12:00:00" ID='ctf'>
 
-	<!-- This is just a place-holder signature for now -->
+	<!-- This is just a place-holder signature for now
     <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
         <ds:SignedInfo>
             <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
@@ -45,10 +46,12 @@
             </X509Data>
         </KeyInfo>
     </ds:Signature>
-    
+-->
 	<!-- Identity Provider -->
 
-    <EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" entityID="https://idp.ojbc.local/idp/shibboleth">
+    <EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+      xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      entityID="https://idp.ojbc.local/idp/shibboleth" ID='idp'>
 
         <Extensions xmlns:alg="urn:oasis:names:tc:SAML:metadata:algsupport">
             <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
@@ -58,7 +61,7 @@
         <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" WantAuthnRequestsSigned="true">
 
             <Extensions>
-                <shibmd:Scope regexp="false">ojbc.local</shibmd:Scope>
+                <shibmd:Scope regexp="false">localdomain</shibmd:Scope>
             </Extensions>
 
             <KeyDescriptor>
@@ -87,9 +90,10 @@ m0hS7SkJpU+uSw==
             <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
             <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
 
-            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://idp.ojbc.local/idp/profile/SAML2/POST/SSO"/>
-
-            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://idp.ojbc.local/idp/profile/SAML2/Redirect/SSO"/>
+            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+              Location="https://localhost:11081/idp/profile/SAML2/POST/SSO"/>
+            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+              Location="https://localhost:11081/idp/profile/SAML2/Redirect/SSO"/>
 
         </IDPSSODescriptor>
 
@@ -115,7 +119,9 @@ m0hS7SkJpU+uSw==
         <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" WantAssertionsSigned="true">
 
             <Extensions>
-                <idpdisc:DiscoveryResponse xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://www.ojbc.local/Shibboleth.sso/Login" index="1"/>
+                <idpdisc:DiscoveryResponse xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol"
+                  Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol"
+                  Location="https://localhost/Shibboleth.sso/Login" index="1"/>
             </Extensions>
 
             <KeyDescriptor>
@@ -151,7 +157,8 @@ Mw==
             <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
             <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
 
-            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://portal.ojbc.local/Shibboleth.sso/SAML2/POST" index="1"/>
+            <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+              Location="https://localhost/Shibboleth.sso/SAML2/POST" index="1"/>
 
         </SPSSODescriptor>
 
@@ -164,5 +171,77 @@ Mw==
         </ContactPerson>
 
     </EntityDescriptor>
-    
+
+    <md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+      ID="http___localhost_8080_spring-security-saml2-sample_saml_metadata"
+      entityID="http://localhost:8080/spring-security-saml2-sample/saml/metadata">
+      <md:SPSSODescriptor AuthnRequestsSigned="true" WantAssertionsSigned="true"
+        protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <Extensions>
+            <idpdisc:DiscoveryResponse xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol"
+              Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol"
+              Location="http://localhost:8080/spring-security-saml2-sample/saml/login/disco" index="1"/>
+        </Extensions>
+        <md:KeyDescriptor use="signing">
+          <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+            <ds:X509Data>
+              <ds:X509Certificate>MIIDUjCCAjqgAwIBAgIEUOLIQTANBgkqhkiG9w0BAQUFADBrMQsw
+                CQYDVQQGEwJGSTEQMA4GA1UECBMHVXVzaW1hYTERMA8GA1UEBxMISGVsc2lua2kxGDAWBg
+                NVBAoTD1JNNSBTb2Z0d2FyZSBPeTEMMAoGA1UECwwDUiZEMQ8wDQYDVQQDEwZhcG9sbG8w
+                HhcNMTMwMTAxMTEyODAxWhcNMjIxMjMwMTEyODAxWjBrMQswCQYDVQQGEwJGSTEQMA4GA1
+                UECBMHVXVzaW1hYTERMA8GA1UEBxMISGVsc2lua2kxGDAWBgNVBAoTD1JNNSBTb2Z0d2Fy
+                ZSBPeTEMMAoGA1UECwwDUiZEMQ8wDQYDVQQDEwZhcG9sbG8wggEiMA0GCSqGSIb3DQEBAQ
+                UAA4IBDwAwggEKAoIBAQCXqP0wqL2Ai1haeTj0alwsLafhrDtUt00E5xc7kdD7PISRA270
+                ZmpYMB4W24Uk2QkuwaBp6dI/yRdUvPfOT45YZrqIxMe2451PAQWtEKWF5Z13F0J4/lB71T
+                trzyH94RnqSHXFfvRN8EY/rzuEzrpZrHdtNs9LRyLqcRTXMMO4z7QghBuxh3K5gu7KqxpH
+                x6No83WNZj4B3gvWLRWv05nbXh/F9YMeQClTX1iBNAhLQxWhwXMKB4u1iPQ/KSaal3R26p
+                ONUUmu1qVtU1quQozSTPD8HvsDqGG19v2+/N3uf5dRYtvEPfwXN3wIY+/R93vBA6lnl5nT
+                ctZIRsyg0Gv5AgMBAAEwDQYJKoZIhvcNAQEFBQADggEBAFQwAAYUjso1VwjDc2kypK/RRc
+                B8bMAUUIG0hLGL82IvnKouGixGqAcULwQKIvTs6uGmlgbSG6Gn5ROb2mlBztXqQ49zRvi5
+                qWNRttir6eyqwRFGOM6A8rxj3Jhxi2Vb/MJn7XzeVHHLzA1sV5hwl/2PLnaL2h9WyG9QwB
+                bwtmkMEqUt/dgixKb1Rvby/tBuRogWgPONNSACiW+Z5o8UdAOqNMZQozD/i1gOjBXoF0F5
+                OksjQN7xoQZLj9xXefxCFQ69FPcFDeEWbHwSoBy5hLPNALaEUoa5zPDwlixwRjFQTc5XXa
+                RpgIjy/2gsL8+Y5QRhyXnLqgO67BlLYW/GuHE=</ds:X509Certificate>
+            </ds:X509Data>
+          </ds:KeyInfo>
+        </md:KeyDescriptor>
+        <md:KeyDescriptor use="encryption">
+          <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+            <ds:X509Data>
+              <ds:X509Certificate>MIIDUjCCAjqgAwIBAgIEUOLIQTANBgkqhkiG9w0BAQUFADBrMQsw
+                CQYDVQQGEwJGSTEQMA4GA1UECBMHVXVzaW1hYTERMA8GA1UEBxMISGVsc2lua2kxGDAWBg
+                NVBAoTD1JNNSBTb2Z0d2FyZSBPeTEMMAoGA1UECwwDUiZEMQ8wDQYDVQQDEwZhcG9sbG8w
+                HhcNMTMwMTAxMTEyODAxWhcNMjIxMjMwMTEyODAxWjBrMQswCQYDVQQGEwJGSTEQMA4GA1
+                UECBMHVXVzaW1hYTERMA8GA1UEBxMISGVsc2lua2kxGDAWBgNVBAoTD1JNNSBTb2Z0d2Fy
+                ZSBPeTEMMAoGA1UECwwDUiZEMQ8wDQYDVQQDEwZhcG9sbG8wggEiMA0GCSqGSIb3DQEBAQ
+                UAA4IBDwAwggEKAoIBAQCXqP0wqL2Ai1haeTj0alwsLafhrDtUt00E5xc7kdD7PISRA270
+                ZmpYMB4W24Uk2QkuwaBp6dI/yRdUvPfOT45YZrqIxMe2451PAQWtEKWF5Z13F0J4/lB71T
+                trzyH94RnqSHXFfvRN8EY/rzuEzrpZrHdtNs9LRyLqcRTXMMO4z7QghBuxh3K5gu7KqxpH
+                x6No83WNZj4B3gvWLRWv05nbXh/F9YMeQClTX1iBNAhLQxWhwXMKB4u1iPQ/KSaal3R26p
+                ONUUmu1qVtU1quQozSTPD8HvsDqGG19v2+/N3uf5dRYtvEPfwXN3wIY+/R93vBA6lnl5nT
+                ctZIRsyg0Gv5AgMBAAEwDQYJKoZIhvcNAQEFBQADggEBAFQwAAYUjso1VwjDc2kypK/RRc
+                B8bMAUUIG0hLGL82IvnKouGixGqAcULwQKIvTs6uGmlgbSG6Gn5ROb2mlBztXqQ49zRvi5
+                qWNRttir6eyqwRFGOM6A8rxj3Jhxi2Vb/MJn7XzeVHHLzA1sV5hwl/2PLnaL2h9WyG9QwB
+                bwtmkMEqUt/dgixKb1Rvby/tBuRogWgPONNSACiW+Z5o8UdAOqNMZQozD/i1gOjBXoF0F5
+                OksjQN7xoQZLj9xXefxCFQ69FPcFDeEWbHwSoBy5hLPNALaEUoa5zPDwlixwRjFQTc5XXa
+                RpgIjy/2gsL8+Y5QRhyXnLqgO67BlLYW/GuHE=</ds:X509Certificate>
+            </ds:X509Data>
+          </ds:KeyInfo>
+        </md:KeyDescriptor>
+        <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+          Location="http://localhost:8080/spring-security-saml2-sample/saml/SingleLogout"/>
+        <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+          Location="http://localhost:8080/spring-security-saml2-sample/saml/SingleLogout"/>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</md:NameIDFormat>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</md:NameIDFormat>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName</md:NameIDFormat>
+        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+          Location="http://localhost:8080/spring-security-saml2-sample/saml/SSO" index="0" isDefault="true"/>
+        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"
+          Location="http://localhost:8080/spring-security-saml2-sample/saml/SSO" index="1"/>
+      </md:SPSSODescriptor>
+    </md:EntityDescriptor>
+
 </EntitiesDescriptor>

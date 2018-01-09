@@ -18,13 +18,13 @@
 
 -->
 <resolver:AttributeResolver
-        xmlns:resolver="urn:mace:shibboleth:2.0:resolver" 
+        xmlns:resolver="urn:mace:shibboleth:2.0:resolver"
         xmlns:pc="urn:mace:shibboleth:2.0:resolver:pc"
-        xmlns:ad="urn:mace:shibboleth:2.0:resolver:ad" 
+        xmlns:ad="urn:mace:shibboleth:2.0:resolver:ad"
         xmlns:dc="urn:mace:shibboleth:2.0:resolver:dc"
-        xmlns:enc="urn:mace:shibboleth:2.0:attribute:encoder" 
+        xmlns:enc="urn:mace:shibboleth:2.0:attribute:encoder"
         xmlns:sec="urn:mace:shibboleth:2.0:security"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="urn:mace:shibboleth:2.0:resolver http://shibboleth.net/schema/idp/shibboleth-attribute-resolver.xsd
                             urn:mace:shibboleth:2.0:resolver:pc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-pc.xsd
                             urn:mace:shibboleth:2.0:resolver:ad http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-ad.xsd
@@ -41,7 +41,7 @@
 		<resolver:Dependency ref="myLDAP" />
 		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:SurName" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
 	</resolver:AttributeDefinition>
-	
+
 	<resolver:AttributeDefinition xsi:type="ad:Simple" id="employeePositionName" sourceAttributeID="employeeType">
 		<resolver:Dependency ref="myLDAP" />
 		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:EmployeePositionName" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
@@ -61,7 +61,7 @@
 		<resolver:Dependency ref="myLDAP" />
 		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:EmployerORI" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
 	</resolver:AttributeDefinition>
-	
+
 	<resolver:AttributeDefinition xsi:type="ad:Simple" id="queryUser" sourceAttributeID="queryUser">
 		<resolver:Dependency ref="myLDAP" />
 		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:ext:user:FederatedQueryUserIndicator" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
@@ -71,12 +71,12 @@
 		<resolver:Dependency ref="myLDAP" />
 		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:EmployerSubUnitName" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
 	</resolver:AttributeDefinition>
-	
+
 	<resolver:AttributeDefinition xsi:type="ad:Simple" id="mail" sourceAttributeID="mail">
 		<resolver:Dependency ref="myLDAP" />
 		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:EmailAddressText" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
 	</resolver:AttributeDefinition>
-	
+
 	<resolver:AttributeDefinition xsi:type="ad:Script" id="fid">
 		<resolver:Dependency ref="myLDAP" />
 		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:FederationId" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
@@ -86,7 +86,7 @@
 	</resolver:AttributeDefinition>
 
 	<resolver:DataConnector id="myLDAP" xsi:type="dc:LDAPDirectory"
-		ldapURL="ldap://apacheds.ojbc.local:389" baseDN="ou=people,dc=ojbc,dc=local" principal="uid=admin,ou=system" principalCredential="secret">
+		ldapURL="ldap://apacheds:389" baseDN="ou=people,dc=ojbc,dc=local" principal="uid=admin,ou=system" principalCredential="secret">
 		<dc:FilterTemplate> <![CDATA[
   (uid=$resolutionContext.principal) ]]>
   		</dc:FilterTemplate>
