@@ -23,8 +23,8 @@ done
 
 echo "Tomcat successfully started"
 
-curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/incident-arrest/OJBMondrianSchema.xml -o /tmp/OJBMondrianSchema.xml
-sed -i "s/OJBC Analytics/Incident-Arrest/g" /tmp/OJBMondrianSchema.xml
+#curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/incident-arrest/OJBMondrianSchema.xml -o /tmp/OJBMondrianSchema.xml
+#sed -i "s/OJBC Analytics/Incident-Arrest/g" /tmp/OJBMondrianSchema.xml
 
 curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/booking-jail/JailBookingMondrianSchema.xml -o /tmp/JailBookingMondrianSchema.xml
 
@@ -44,12 +44,12 @@ curl -sSl -u admin:admin http://localhost/saiku/rest/saiku/admin/users/ | jq -r 
 
 echo "Installing Mondrian schemas..."
 
-curl -s -u admin:admin -F name="Incident-Arrest" -F file="@/tmp/OJBMondrianSchema.xml;filename=OJBMondrianSchema.xml;type=text/xml" http://localhost/saiku/rest/saiku/admin/schema/IncidentArrest/
+#curl -s -u admin:admin -F name="Incident-Arrest" -F file="@/tmp/OJBMondrianSchema.xml;filename=OJBMondrianSchema.xml;type=text/xml" http://localhost/saiku/rest/saiku/admin/schema/IncidentArrest/
 curl -s -u admin:admin -F name="Jail-Booking" -F file="@/tmp/JailBookingMondrianSchema.xml;filename=JailBookingMondrianSchema.xml;type=text/xml" http://localhost/saiku/rest/saiku/admin/schema/JailBooking/
 
 echo "Installing data sources..."
 
-curl -s -X POST -u admin:admin --header "Content-Type: application/json" -T /tmp/Incident-Arrest.connection.json http://localhost/saiku/rest/saiku/admin/datasources
+#curl -s -X POST -u admin:admin --header "Content-Type: application/json" -T /tmp/Incident-Arrest.connection.json http://localhost/saiku/rest/saiku/admin/datasources
 curl -s -X POST -u admin:admin --header "Content-Type: application/json" -T /tmp/Jail-Booking.connection.json http://localhost/saiku/rest/saiku/admin/datasources
 
 echo "\nFinal setup:"

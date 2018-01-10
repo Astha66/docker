@@ -1,4 +1,4 @@
-# 
+#
 # Unless explicitly acquired and licensed from Licensor under another license, the contents of
 # this file are subject to the Reciprocal Public License ("RPL") Version 1.5, or subsequent
 # versions as allowed by the RPL, and You may not copy or use this file in either source code
@@ -13,31 +13,67 @@
 # http://opensource.org/licenses/RPL-1.5
 #
 # Copyright 2012-2016 Open Justice Broker Consortium
-# 
+#
 
 # Docker Compose file that brings up pentaho and demo analytics databases
 # To run:  docker-compose -f analytics-secure-compose.yaml up -d
 
-apacheds:
-  container_name: apacheds
-  image: ojbc/apacheds
-  
-idp:
-  container_name: idp
-  image: ojbc/idp
-  
-samlds:
-  container_name: samlds
-  image: ojbc/samlds
-  
-portal:
-  container_name: portal
-  image: ojbc/portal
-  
-analytics-db:
-  container_name: analytics-db
-  image: ojbc/analytics-db
+version: '3'
 
-analytics-secure:
-  container_name: analytics-secure
-  image: ojbc/analytics-secure
+networks:
+  demostate:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+       - subnet: 172.18.0.0/16
+
+services:
+  apacheds:
+    container_name: apacheds
+    image: ojbc/apacheds
+    networks:
+      - demostate
+
+  idp:
+    container_name: idp
+    image: ojbc/idp
+    networks:
+      - demostate
+    ports:
+      - "11081:443"
+
+  samlds:
+    container_name: samlds
+    image: ojbc/samlds
+    networks:
+      - demostate
+    ports:
+      - "11082:80"
+
+  portal:
+    container_name: portal
+    image: ojbc/portal
+    networks:
+      - demostate
+    ports:
+      - "80:80"
+      - "443:443"
+
+  analytics-db:
+    container_name: analytics-db
+    image: ojbc/analytics-db
+    networks:
+      - demostate
+
+  analytics-saiku:
+    container_name: saiku
+    image: ojbc/analytics-saiku
+    networks:
+      - demostate
+
+  ojb-web-util:
+    container_name: ojb-web-util
+    image: ojbc/ojb-web-util
+    networks:
+      - demostate

@@ -1,4 +1,4 @@
-# 
+#
 # Unless explicitly acquired and licensed from Licensor under another license, the contents of
 # this file are subject to the Reciprocal Public License ("RPL") Version 1.5, or subsequent
 # versions as allowed by the RPL, and You may not copy or use this file in either source code
@@ -13,7 +13,7 @@
 # http://opensource.org/licenses/RPL-1.5
 #
 # Copyright 2012-2016 Open Justice Broker Consortium
-# 
+#
 
 # Dockerfile with database layer to support OJB analytics demos
 
@@ -24,9 +24,9 @@ MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 WORKDIR /tmp
 
 COPY files/server-config.sh /tmp/
-COPY files/ojbc_analytics_demo.sql.gz /tmp/
-COPY files/nibrs_analytics.sql.gz /tmp/
-COPY files/ojbc_booking_analytics_demo.sql.gz /tmp/
+#COPY files/ojbc_analytics_demo.sql.gz /tmp/
+#COPY files/nibrs_analytics.sql.gz /tmp/
+COPY files/ojbc_booking_dimensional_demo.sql.gz /tmp/
 
 RUN chmod a+x /tmp/server-config.sh
 RUN /tmp/server-config.sh
