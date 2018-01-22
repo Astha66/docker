@@ -23,11 +23,14 @@ MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
 WORKDIR /tmp
 RUN apk --update add openssl curl
-COPY files/saiku-latest.zip /tmp/
 
-#Below we move the 'ROOT' application to sauki-ui to make it easier to proxy with Apache
-# put next line before first sed
-#  mv /opt/saiku-server/tomcat/webapps/ROOT /opt/saiku-server/tomcat/webapps/saiku-ui && \
+# Build saiku-latest.zip from source:
+#  1. check out the ojbc/saiku repo from GH
+#  2. mvn install -DskipTests
+#  3. zip saiku-server/target/dist into a zipfile (i.e., the root of the zipfile should contain a single directory, the saiku-server subdirectory of saiku-server/target/dist)
+#  4. name that zipfile saiku-latest.zip and copy it into the files/ subdir here.
+
+COPY files/saiku-latest.zip /tmp/
 
 RUN	unzip saiku-latest.zip && \
 	mv saiku-server /opt && \
