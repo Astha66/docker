@@ -29,6 +29,7 @@ COPY files/saml-user-config.xml /opt/saiku-config/
 COPY files/server-config.sh /tmp/
 #COPY files/Incident-Arrest.connection.json /tmp/
 COPY files/Jail-Booking.connection.json /tmp/
+COPY files/JailBookingMondrianSchema.xml /tmp/
 
 RUN chmod a+x /tmp/server-config.sh
 RUN /tmp/server-config.sh

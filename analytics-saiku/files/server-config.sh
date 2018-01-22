@@ -26,7 +26,7 @@ echo "Tomcat successfully started"
 #curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/incident-arrest/OJBMondrianSchema.xml -o /tmp/OJBMondrianSchema.xml
 #sed -i "s/OJBC Analytics/Incident-Arrest/g" /tmp/OJBMondrianSchema.xml
 
-curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/booking-jail/JailBookingMondrianSchema.xml -o /tmp/JailBookingMondrianSchema.xml
+#curl -sSL https://raw.githubusercontent.com/ojbc/analytics/master/booking-jail/JailBookingMondrianSchema.xml -o /tmp/JailBookingMondrianSchema.xml
 
 curl -sSl -X POST --data 'language=en&username=admin&password=admin' http://localhost/saiku/rest/saiku/session
 
