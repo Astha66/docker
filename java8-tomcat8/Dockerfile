@@ -1,4 +1,4 @@
-# 
+#
 # Unless explicitly acquired and licensed from Licensor under another license, the contents of
 # this file are subject to the Reciprocal Public License ("RPL") Version 1.5, or subsequent
 # versions as allowed by the RPL, and You may not copy or use this file in either source code
@@ -13,7 +13,7 @@
 # http://opensource.org/licenses/RPL-1.5
 #
 # Copyright 2012-2016 Open Justice Broker Consortium
-# 
+#
 
 # Dockerfile to build a Tomcat 8 container running on Java 8
 
@@ -28,9 +28,9 @@ ENV PATH $CATALINA_HOME/bin:$PATH
 RUN mkdir -p "$CATALINA_HOME"
 WORKDIR /tmp
 
-RUN curl -O https://www.apache.org/dist/tomcat/tomcat-8/v8.0.30/bin/apache-tomcat-8.0.30.tar.gz && \
-	tar -xvf /tmp/apache-tomcat-8.0.30.tar.gz -C /opt/tomcat --strip-components=1 && \
-    rm $CATALINA_HOME/bin/*.bat && rm /tmp/apache-tomcat-8.0.30.tar.gz
+RUN curl -SsO https://archive.apache.org/dist/tomcat/tomcat-8/v8.0.48/bin/apache-tomcat-8.0.48.tar.gz && \
+	tar -xvf /tmp/apache-tomcat-8.0.48.tar.gz -C /opt/tomcat --strip-components=1 && \
+    rm $CATALINA_HOME/bin/*.bat && rm /tmp/apache-tomcat-8.0.48.tar.gz
 
 WORKDIR $CATALINA_HOME
 
