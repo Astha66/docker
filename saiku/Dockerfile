@@ -22,7 +22,6 @@ FROM ojbc/java8-server-base
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
 WORKDIR /tmp
-RUN apk --update add openssl curl
 
 # Build saiku-latest.zip from source:
 #  1. check out the ojbc/saiku repo from GH
@@ -31,12 +30,19 @@ RUN apk --update add openssl curl
 #  4. name that zipfile saiku-latest.zip and copy it into the files/ subdir here.
 
 COPY files/saiku-latest.zip /tmp/
+COPY files/*.jar /tmp/
 
-RUN	unzip saiku-latest.zip && \
-	mv saiku-server /opt && \
+RUN	mkdir -p /opt && \
+    unzip -d /opt/ saiku-latest.zip && \
 	rm -f saiku-latest.zip && \
 	sed -i "s/sh startup.sh/\/opt\/saiku-server\/tomcat\/bin\/catalina.sh run/g" /opt/saiku-server/start-saiku.sh && \
-	sed -i s/8080/80/g /opt/saiku-server/tomcat/conf/server.xml
+    sed -i s/8080/80/g /opt/saiku-server/tomcat/conf/server.xml
+
+# todo: at some point, might be nice to get all the various versions of xerces out of the saiku codebase. for now, we just copy in
+# a current version.
+
+RUN rm /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/lib/xercesImpl-2.5.0.jar && \
+    cp /tmp/xercesImpl-2.11.0.jar /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/lib/
 
 RUN cd /opt/saiku-server/tomcat
 

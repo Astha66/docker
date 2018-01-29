@@ -112,6 +112,16 @@
 						</SQL>
 					</ExpressionView>
 				</CalculatedColumnDef>
+                <CalculatedColumnDef name='InTreatmentAtEventDim' type='String'>
+					<ExpressionView>
+						<SQL dialect='mysql'>
+							case
+                            when InTreatmentAtEvent = 'Y' then 'Yes'
+                            else 'No'
+                            end
+						</SQL>
+					</ExpressionView>
+				</CalculatedColumnDef>
 			</ColumnDefs>
 		</Table>
 		<Table name="FullBookingView"/>
@@ -428,6 +438,8 @@
                 </Name>
             </Attribute>
             <Attribute name="Date" keyColumn="CalendarDate" hasHierarchy="false" levelType="TimeDays"/>
+            <Attribute name="WeekStartingDate" keyColumn="WeekStartingDate" hasHierarchy="false" levelType="TimeDays"/>
+            <Attribute name="DaysAgo" keyColumn="DaysAgo" hasHierarchy="false"/>
             <Attribute name="Day of Week" keyColumn="DayOfWeek" hasHierarchy="false" levelType="TimeDays"/>
 		</Attributes>
 		 <Hierarchies>
@@ -442,6 +454,12 @@
             </Hierarchy>
             <Hierarchy name="Day of Week" caption="Day of Week" allMemberName="All Days" allMemberCaption="All Days">
                 <Level attribute="Day of Week"/>
+            </Hierarchy>
+            <Hierarchy name="WeekStartingDate" caption="Week Starting" allMemberName="All Weeks" allMemberCaption="All Weeks">
+                <Level attribute="WeekStartingDate"/>
+            </Hierarchy>
+            <Hierarchy name="DaysAgo" caption="Days Ago" visible="true">
+                <Level attribute="DaysAgo"/>
             </Hierarchy>
         </Hierarchies>
 	</Dimension>
@@ -926,6 +944,16 @@
             <Dimension source="Prior Interactions" name="Prior Interactions Past 12 Months" caption="Prior Interactions Past 12 Months"/>
             <Dimension source="Prior Interactions" name="Prior Interactions Past 18 Months" caption="Prior Interactions Past 18 Months"/>
             <Dimension source="Prior Interactions" name="Prior Interactions Past 24 Months" caption="Prior Interactions Past 24 Months"/>
+            <Dimension visible="true" name="Engagement Status">
+				<Attributes>
+					<Attribute name="Engagement Status" keyColumn="InTreatmentAtEventDim" hasHierarchy="false" table="FullIncidentView"/>
+				</Attributes>
+				<Hierarchies>
+					<Hierarchy name="Engagement Status"  visible="true" hasAll="true" allMemberCaption="All Statuses">
+						<Level attribute="Engagement Status" caption="In Treatment at Event?"/>
+					</Hierarchy>
+				</Hierarchies>
+			</Dimension>
 		</Dimensions>
 		<MeasureGroups>
   		<MeasureGroup table="FullIncidentView" name="Incident">
@@ -973,6 +1001,7 @@
 					<ForeignKeyLink dimension="CallNature" foreignKeyColumn="CallNatureTypeID"/>
 					<ForeignKeyLink dimension="DispositionLocation" foreignKeyColumn="DispositionLocationTypeID"/>
 					<ForeignKeyLink dimension="Hour" foreignKeyColumn="IncidentReportedHour"/>
+                    <FactLink dimension="Engagement Status"/>
 			</DimensionLinks>
 			</MeasureGroup>
 		</MeasureGroups>

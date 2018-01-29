@@ -4,13 +4,10 @@
 
 apk --update add jq
 
-sed -i -r -e 's/securerandom.source.+/securerandom.source=file:\/dev\/urandom/' /opt/jdk/jdk1.8.0_66/jre/lib/security/java.security
-
 cd /opt/saiku-server
 cp start-saiku.sh temp-start-saiku.sh
 sed -i "s/\/opt\/saiku-server\/tomcat\/bin\/catalina.sh run/sh startup.sh/g" /opt/saiku-server/temp-start-saiku.sh
 ./temp-start-saiku.sh
-
 
 CURLTEST='curl -s -u admin:admin -m 2 http://localhost/saiku/rest/saiku/admin/version'
 

@@ -31,6 +31,15 @@ COPY files/server-config.sh /tmp/
 COPY files/Jail-Booking.connection.json /tmp/
 COPY files/JailBookingMondrianSchema.xml /tmp/
 
+COPY files/mariadb-java-client-2.2.0.jar /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/lib/
+
+# note: if you want to change Saiku logging, grab log4j.xml and mondrian.properties
+# from /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/classes, put them in the files/ directory, edit
+# them as desired, and then uncomment these lines
+
+#COPY files/log4j.xml /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/classes/
+#COPY files/mondrian.properties /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/classes/
+
 RUN chmod a+x /tmp/server-config.sh
 RUN /tmp/server-config.sh
 
