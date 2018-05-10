@@ -1,0 +1,11 @@
+{
+	"JailBooking" : {
+		"JdbcDriver" : "org.mariadb.jdbc.Driver",
+		"Jdbc" : "jdbc:mariadb://analytics-db:3306/ojbc_booking_dimensional_demo",
+		"JdbcUser" : "root",
+		"JdbcPassword" : "",
+		"Catalog" : "/JailBookingMondrianSchema.xml",
+		"Description" : "OJBC Jail-Booking Demo Database",
+		"IsDemo" : false
+	}
+}

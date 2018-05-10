@@ -74,6 +74,14 @@ services:
     networks:
       - demostate
 
+  analytics-dashboards:
+    container_name: dashboards
+    image: ojbc/analytics-dashboards
+    networks:
+      - demostate
+    ports:
+      - "11083:80"
+
   ojb-web-util:
     container_name: ojb-web-util
     image: ojbc/ojb-web-util
