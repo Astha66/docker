@@ -44,6 +44,9 @@ RUN	mkdir -p /opt && \
 RUN rm /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/lib/xercesImpl-2.5.0.jar && \
     cp /tmp/xercesImpl-2.11.0.jar /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/lib/
 
+# turn up logging
+RUN sed -rie "s/(.+)Threshold(.+)WARN(.+)/\1Threshold\2INFO\3/g" /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/classes/log4j.xml
+
 RUN cd /opt/saiku-server/tomcat
 
 CMD ["/opt/saiku-server/start-saiku.sh"]
