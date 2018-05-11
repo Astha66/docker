@@ -39,7 +39,9 @@
 
     <RequestMapper type="Native">
       <RequestMap redirectToSSL="443">
-      	<Host name="localhost.localdomain" requireSession="true" exportAssertion="true"/>
+      	<Host name="localhost">
+      		<Path name="ojb-web-util" authType="shibboleth" requireSession="true" exportAssertion="true"/>
+      	</Host>
       </RequestMap>
     </RequestMapper>
 
@@ -59,7 +61,7 @@
         -->
         <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
                   checkAddress="false" handlerSSL="true" cookieProps="https"
-		  exportLocation="https://localhost:11080/Shibboleth.sso/GetAssertion" exportACL="127.0.0.1 ::1 10.32.0.0/16">
+		  exportLocation="https://portal/Shibboleth.sso/GetAssertion" exportACL="127.0.0.1 ::1 172.0.0.0/8">
 
             <!--
             Configures SSO for a default IdP. To allow for >1 IdP, remove
@@ -76,7 +78,7 @@
 
             <!-- DS method: -->
             <SSO
-                 discoveryProtocol="SAMLDS" discoveryURL="http://localhost:11082/discovery/WAYF">
+                 discoveryProtocol="SAMLDS" discoveryURL="https://localhost/discovery/WAYF">
               SAML2 SAML1
             </SSO>
 
