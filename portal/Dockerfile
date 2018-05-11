@@ -49,11 +49,13 @@ RUN sed -i s/SSLMutex/#SSLMutex/g /etc/apache2/conf.d/ssl.conf && \
 	echo "ProxyPass /saiku/ ajp://saiku:8009/" >> /etc/apache2/conf.d/proxy.conf && \
 	echo "ProxyPassReverse /saiku/ ajp://saiku:8009/" >> /etc/apache2/conf.d/proxy.conf && \
 
-	echo "ProxyPass /discovery ajp://samlds.ojbc.local:8009/discovery" >> /etc/apache2/conf.d/proxy.conf && \
-	echo "ProxyPassReverse /discovery ajp://samlds.ojbc.local:8009/discovery" >> /etc/apache2/conf.d/proxy.conf && \
+	echo "ProxyPass /discovery ajp://samlds:8009/discovery" >> /etc/apache2/conf.d/proxy.conf && \
+	echo "ProxyPassReverse /discovery ajp://samlds:8009/discovery" >> /etc/apache2/conf.d/proxy.conf && \
 
-	echo "ProxyPass /idp ajp://idp.ojbc.local:8009/idp" >> /etc/apache2/conf.d/proxy.conf && \
-	echo "ProxyPassReverse /idp ajp://idp.ojbc.local:8009/idp" >> /etc/apache2/conf.d/proxy.conf
+	echo "ProxyPass /idp ajp://idp:8009/idp" >> /etc/apache2/conf.d/proxy.conf && \
+	echo "ProxyPassReverse /idp ajp://idp:8009/idp" >> /etc/apache2/conf.d/proxy.conf
+
+COPY files/* /opt/shibboleth-sp/etc/shibboleth/
 
 WORKDIR /opt/shibboleth-sp
 
