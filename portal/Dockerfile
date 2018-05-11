@@ -33,27 +33,24 @@ RUN sed -i s/SSLMutex/#SSLMutex/g /etc/apache2/conf.d/ssl.conf && \
 	echo "ProxyPass /ojb-web-portal ajp://ojb-web-portal.ojbc.local:8009/ojb-web-portal" >> /etc/apache2/conf.d/proxy.conf && \
 	echo "ProxyPassReverse /ojb-web-portal ajp://ojb-web-portal.ojbc.local:8009/idp" >> /etc/apache2/conf.d/proxy.conf && \
 
-	printf "\n<Location /pentaho>\n\tAuthType shibboleth\n\tShibRequestSetting requireSession 1\n\tShibUseHeaders On\n\trequire shib-session\n</Location>\n" >> /etc/apache2/conf.d/shib.conf && \
-	echo "ProxyPass /pentaho ajp://analytics-secure.ojbc.local:8009/pentaho" >> /etc/apache2/conf.d/proxy.conf && \
-	echo "ProxyPassReverse /pentaho ajp://analytics-secure.ojbc.local:8009/pentaho" >> /etc/apache2/conf.d/proxy.conf  && \
-
-	printf "\n<Location /ocpu>\n\tAuthType shibboleth\n\tShibRequestSetting requireSession 1\n\tShibUseHeaders On\n\trequire shib-session\n</Location>\n" >> /etc/apache2/conf.d/shib.conf && \
-	echo "ProxyPass /ocpu/library http://analytics-opencpu-demo.ojbc.local/ocpu/library" >> /etc/apache2/conf.d/proxy.conf && \
-	echo "ProxyPassReverse /ocpu/library http://analytics-opencpu-demo.ojbc.local/ocpu/library" >> /etc/apache2/conf.d/proxy.conf && \
-	echo "ProxyPass /ocpu/tmp http://analytics-opencpu-demo.ojbc.local/ocpu/tmp" >> /etc/apache2/conf.d/proxy.conf && \
-	echo "ProxyPassReverse /ocpu/tmp http://analytics-opencpu-demo.ojbc.local/ocpu/tmp" >> /etc/apache2/conf.d/proxy.conf && \
-
 	printf "\n<Location /saiku>\n\tAuthType shibboleth\n\tShibRequestSetting requireSession 1\n\tShibUseHeaders On\n\trequire shib-session\n</Location>\n" >> /etc/apache2/conf.d/shib.conf && \
-	echo "ProxyPass /saiku/rest/ ajp://saiku:8009/saiku/rest/" >> /etc/apache2/conf.d/proxy.conf && \
-	echo "ProxyPassReverse /saiku/rest/ ajp://saiku:8009/saiku/rest/" >> /etc/apache2/conf.d/proxy.conf && \
-	echo "ProxyPass /saiku/ ajp://saiku:8009/" >> /etc/apache2/conf.d/proxy.conf && \
-	echo "ProxyPassReverse /saiku/ ajp://saiku:8009/" >> /etc/apache2/conf.d/proxy.conf && \
+	printf "\n<Location /saiku-ui>\n\tAuthType shibboleth\n\tShibRequestSetting requireSession 1\n\tShibUseHeaders On\n\trequire shib-session\n</Location>\n" >> /etc/apache2/conf.d/shib.conf && \
+	echo "ProxyPass /saiku ajp://saiku:8009/saiku" >> /etc/apache2/conf.d/proxy.conf && \
+	echo "ProxyPassReverse /saiku ajp://saiku:8009/saiku" >> /etc/apache2/conf.d/proxy.conf && \
+	echo "ProxyPass /saiku-ui ajp://saiku:8009/saiku-ui" >> /etc/apache2/conf.d/proxy.conf && \
+	echo "ProxyPassReverse /saiku-ui ajp://saiku:8009/saiku-ui" >> /etc/apache2/conf.d/proxy.conf && \
 
 	echo "ProxyPass /discovery ajp://samlds:8009/discovery" >> /etc/apache2/conf.d/proxy.conf && \
 	echo "ProxyPassReverse /discovery ajp://samlds:8009/discovery" >> /etc/apache2/conf.d/proxy.conf && \
 
 	echo "ProxyPass /idp ajp://idp:8009/idp" >> /etc/apache2/conf.d/proxy.conf && \
-	echo "ProxyPassReverse /idp ajp://idp:8009/idp" >> /etc/apache2/conf.d/proxy.conf
+	echo "ProxyPassReverse /idp ajp://idp:8009/idp" >> /etc/apache2/conf.d/proxy.conf && \
+	
+	echo "ProxyPass /dashboards ajp://dashboards:8009/dashboards" >> /etc/apache2/conf.d/proxy.conf && \
+	echo "ProxyPassReverse /dashboards ajp://dashboards:8009/dashboards" >> /etc/apache2/conf.d/proxy.conf && \
+	
+	echo "ProxyPass /mondrian-rest ajp://dashboards:8009/mondrian-rest" >> /etc/apache2/conf.d/proxy.conf && \
+	echo "ProxyPassReverse /mondrian-rest ajp://dashboards:8009/mondrian-rest" >> /etc/apache2/conf.d/proxy.conf
 
 COPY files/* /opt/shibboleth-sp/etc/shibboleth/
 

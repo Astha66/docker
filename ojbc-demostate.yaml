@@ -47,5 +47,24 @@ services:
     image: ojbc/ojb-web-util
     networks:
       ojbc_nw: 
+      
+  analytics-db:
+    container_name: analytics-db
+    image: ojbc/analytics-db
+    networks:
+      ojbc_nw:
+      
+  analytics-saiku:
+    container_name: saiku
+    image: ojbc/analytics-saiku
+    networks:
+      ojbc_nw:
+      
+   
+  analytics-dashboards:
+    container_name: dashboards
+    image: ojbc/analytics-dashboards
+    networks:
+      ojbc_nw:
  
   
