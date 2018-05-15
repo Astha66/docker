@@ -24,7 +24,7 @@ MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 WORKDIR /tmp
 
 # change apache server name and retrieve the demostate trust fabric
-RUN sed -i "s/ServerName portal.ojbc.local:80/ServerName secure-resource.search.org:80/g" /etc/apache2/httpd.conf && \
+RUN sed -i "s/ServerName localhost:80/ServerName secure-resource.search.org:80/g" /etc/apache2/httpd.conf && \
 	curl -O https://raw.githubusercontent.com/ojbc/main/master/shared/ojb-saml-metadata/demostate-ctf.xml && \
 	cp -f demostate-ctf.xml /opt/shibboleth-sp/etc/shibboleth/
 	

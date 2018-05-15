@@ -18,7 +18,7 @@ COPY files/org.ops4j.pax.web.cfg etc/
 
 WORKDIR $KARAF_HOME/etc
 
-# Update config files with proper portal hostname ojb-web-portal.ojbc.local
+# Update config files with proper portal hostname ojb-web-portal.localhost
 
 RUN curl -sSL http://raw.githubusercontent.com/ojbc/main/master/shared/ojb-policy-decision-point-service/src/main/config/dev/ojb_policy_decision_point_service.cfg -o ojb_policy_decision_point_service.cfg  && \
 	sed -i 's/localhost\:18311/ojb\-web\-portal\.ojbc\.local\:18311/g' ojb_policy_decision_point_service.cfg && \

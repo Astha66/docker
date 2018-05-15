@@ -5,7 +5,7 @@
   "maximumPoolSize": 5,
   "databaseName": "ojbc_analytics_demo",
   "databasePort": "3306",
-  "hostname": "analytics-db.ojbc.local",
+  "hostname": "analytics-db.localhost",
   "name": "ojbc_analytics_demo",
   "username": "root",
   "attributes": {
