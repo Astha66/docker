@@ -17,7 +17,7 @@
 
 # Docker Compose file that creates SAML sandbox environment
 # To run:  docker-compose -f saml-sandbox-compose.yaml up -d
-# Then visit https://localhost/ojb-web-util/index.jsp
+# Then visit https://localhost/portal/ojb-web-util/index.jsp
 # You will prompted for a userid/password and can enter: demouser1 and password
 
 apacheds:

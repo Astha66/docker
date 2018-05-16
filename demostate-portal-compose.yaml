@@ -17,7 +17,7 @@
 
 # Docker Compose file that runs all the containers involved in an OJB Portal demo
 # To run:  docker-compose -f demostate-portal-compose.yaml up -d
-# Then navigate to: https://localhost/ojb-web-portal/
+# Then navigate to: https://localhost/portal/ojb-web-portal/
 # User id / password is: demouser1 password
 
 apacheds:

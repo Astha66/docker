@@ -17,7 +17,7 @@
 
 # Docker Compose file that creates Analytics Opencpu environment
 # To run:  docker-compose -f analytics-opencpu-compose.yaml up -d
-# Then visit https://localhost/ocpu/library/OJBDashboardDemo/www/index.html
+# Then visit https://localhost/portal/ocpu/library/OJBDashboardDemo/www/index.html
 # You will prompted for a userid/password and can enter: demouser1 and password
 
 apacheds:

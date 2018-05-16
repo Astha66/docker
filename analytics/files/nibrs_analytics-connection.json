@@ -5,7 +5,7 @@
   "maximumPoolSize": 5,
   "databaseName": "nibrs_analytics",
   "databasePort": "3306",
-  "hostname": "analytics-db.localhost",
+  "hostname": "localhost",
   "name": "nibrs_analytics",
   "username": "root",
   "attributes": {
