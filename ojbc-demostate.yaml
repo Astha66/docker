@@ -57,6 +57,8 @@ services:
   analytics-saiku:
     container_name: saiku
     image: ojbc/analytics-saiku
+    depends_on:
+      - analytics-db
     networks:
       ojbc_nw:
       
@@ -64,6 +66,8 @@ services:
   analytics-dashboards:
     container_name: dashboards
     image: ojbc/analytics-dashboards
+    depends_on:
+      - analytics-db
     networks:
       ojbc_nw:
  
