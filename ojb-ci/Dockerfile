@@ -18,8 +18,6 @@
 #To build, run this command:
 #docker build --no-cache  -t ojbc/ojb-ci .
 
-#To run, start up weave container and run this command:
-#weave run -d --name=ojb-ci -v /pathToJenkinsHomeOnHost:/var/jenkins_home ojbc/ojb-ci
 
 #The jenkins alpine image was causing issues with libraries reqiured by Java
 #The frovlad alpine image handled those issues but Jenkins is not using that image

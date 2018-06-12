@@ -15,7 +15,7 @@
 
 # Dockerfile for OJB analytics platform server
 # To run:  docker run -d --name=dashboards ojbc/analytics-opencpu-demo
-# Then visit (assuming weave is running): http://dashboards.ojbc.local/ocpu/library/DemoJailBookingDashboard/www/index.html
+# 
 
 FROM ojbc/analytics-opencpu
 

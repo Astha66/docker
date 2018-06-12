@@ -26,8 +26,8 @@ WORKDIR $KARAF_HOME
 COPY files/setenv bin/
 COPY files/org.apache.cxf.osgi.cfg etc/
 
-# can be run "weave friendly"(sets name) via:  docker run --name=karaf -d ojbc/java8-karaf3
+# 
 CMD ["karaf", "server"]
 
 # can connect via:  ./bin/client -a 8101 -h 10.32.0.3 -u karaf -v
-# NOTE:  above, replace 10.32.0.3 with the weave address of the karaf image exposed by weave
+# 
