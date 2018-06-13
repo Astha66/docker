@@ -18,14 +18,32 @@
 # Docker Compose file that brings up pentaho and demo analytics databases
 # To run:  docker-compose -f analytics-compose.yaml up -d
 
-analytics-db:
-  container_name: analytics-db
-  image: ojbc/analytics-db
+version: '3'
 
-saiku:
-  container_name: saiku
-  image: ojbc/analytics-saiku
+networks:
+  ojbc_nw:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.18.2.0/24
 
-dashboards:
-  container_name: dashboards
-  image: ojbc/analytics-opencpu-demo
+services:
+
+ analytics-db:
+   container_name: analytics-db
+   image: ojbc/analytics-db
+   networks:
+    - ojbc_nw 
+
+ saiku:
+   container_name: saiku
+   image: ojbc/analytics-saiku
+   networks:
+    - ojbc_nw  
+
+ dashboards:
+   container_name: dashboards
+   image: ojbc/analytics-opencpu-demo
+   networks:
+    - ojbc_nw  

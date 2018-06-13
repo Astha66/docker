@@ -20,22 +20,44 @@
 # Then visit https://localhost/portal/ocpu/library/OJBDashboardDemo/www/index.html
 # You will prompted for a userid/password and can enter: demouser1 and password
 
-apacheds:
-  container_name: apacheds
-  image: ojbc/apacheds
+version: '3'
+
+networks:
+  ojbc_nw:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.18.2.0/24
+
+services:
+
+ apacheds:
+   container_name: apacheds
+   image: ojbc/apacheds
+   networks:
+    - ojbc_nw
   
-idp:
+ idp:
   container_name: idp
   image: ojbc/idp
+  networks:
+    ojbc_nw:  
   
-samlds:
+ samlds:
   container_name: samlds
   image: ojbc/samlds
+  networks:
+    - ojbc_nw  
   
-portal:
+ portal:
   container_name: portal
   image: ojbc/portal
+  networks:
+    - ojbc_nw
     
-analytics-opencpu-demo:
+ analytics-opencpu-demo:
   container_name: analytics-opencpu-demo
   image: ojbc/analytics-opencpu-demo
+  networks:
+    - ojbc_nw  

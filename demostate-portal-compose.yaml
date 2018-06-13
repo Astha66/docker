@@ -20,31 +20,57 @@
 # Then navigate to: https://localhost/portal/ojb-web-portal/
 # User id / password is: demouser1 password
 
-apacheds:
+version: '3'
+
+networks:
+  ojbc_nw:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+       - subnet: 172.18.2.0/24
+
+services:
+
+ apacheds:
   container_name: apacheds
   image: ojbc/apacheds
+  networks:
+   - ojbc_nw  
   
-idp:
+ idp:
   container_name: idp
   image: ojbc/idp
+  networks:
+   - ojbc_nw  
   
-samlds:
+ samlds:
   container_name: samlds
   image: ojbc/samlds
+  networks:
+   - ojbc_nw   
   
-portal:
+ portal:
   container_name: portal
   image: ojbc/portal
+  networks:
+   - ojbc_nw   
   
-ojb-web-util:
+ ojb-web-util:
   container_name: tomcat
   image: ojbc/ojb-web-util
+  networks:
+   - ojbc_nw    
   
-ojb-web-portal:
+ ojb-web-portal:
   container_name: ojb-web-portal
   image: ojbc/ojb-web-portal
+  networks:
+   - ojbc_nw    
   
-karaf-demostate:
+ karaf-demostate:
   container_name: karaf-demostate
   image: ojbc/karaf-demostate
+  networks:
+   - ojbc_nw  
   

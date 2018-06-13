@@ -59,7 +59,7 @@
         -->
         <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
                   checkAddress="false" handlerSSL="true" cookieProps="https"
-		  exportLocation="https://secure-resource.search.org/Shibboleth.sso/GetAssertion" exportACL="52.86.232.229">
+		  exportLocation="https://secure-resource.search.org/Shibboleth.sso/GetAssertion" exportACL="127.0.0.1 ::1 172.18.2.0/24">
 
             <!--
             Configures SSO for a default IdP. To allow for >1 IdP, remove

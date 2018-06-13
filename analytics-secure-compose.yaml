@@ -21,25 +21,25 @@
 version: '3'
 
 networks:
-  demostate:
+  ojbc_nw:
     driver: bridge
     ipam:
       driver: default
       config:
-       - subnet: 172.18.0.0/16
+       - subnet: 172.18.2.0/24
 
 services:
   apacheds:
     container_name: apacheds
     image: ojbc/apacheds
     networks:
-      - demostate
+     - ojbc_nw
 
   idp:
     container_name: idp
     image: ojbc/idp
     networks:
-      - demostate
+     - ojbc_nw
     ports:
       - "11081:443"
     depends_on:
@@ -49,7 +49,7 @@ services:
     container_name: samlds
     image: ojbc/samlds
     networks:
-      - demostate
+     - ojbc_nw
     ports:
       - "11082:80"
 
@@ -57,7 +57,7 @@ services:
     container_name: portal
     image: ojbc/portal
     networks:
-      - demostate
+     - ojbc_nw
     ports:
       - "80:80"
       - "443:443"
@@ -66,19 +66,19 @@ services:
     container_name: analytics-db
     image: ojbc/analytics-db
     networks:
-      - demostate
+     - ojbc_nw
 
   analytics-saiku:
     container_name: saiku
     image: ojbc/analytics-saiku
     networks:
-      - demostate
+     - ojbc_nw
 
   analytics-dashboards:
     container_name: dashboards
     image: ojbc/analytics-dashboards
     networks:
-      - demostate
+     - ojbc_nw
     ports:
       - "11083:80"
 
@@ -86,4 +86,4 @@ services:
     container_name: ojb-web-util
     image: ojbc/ojb-web-util
     networks:
-      - demostate
+     - ojbc_nw
