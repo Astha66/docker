@@ -15,8 +15,12 @@
 # Copyright 2012-2016 Open Justice Broker Consortium
 # 
 
-# Docker Compose file that brings up pentaho and demo analytics databases
+# Docker Compose file that brings up the analytics database, saiku and dashboards.  
 # To run:  docker-compose -f analytics-compose.yaml up -d
+# After running this file, you can browse to:
+# http://localhost/dashboards/crisis-incidents-dashboard.html
+# http://localhost/dashboards/jail-booking-dashboard.html
+# http://localhost/saiku-ui
 
 version: '3'
 
@@ -29,6 +33,14 @@ networks:
       - subnet: 172.18.2.0/24
 
 services:
+
+ httpd-proxy:
+   container_name: httpd-proxy
+   image: ojbc/httpd-proxy
+   ports:
+      - "80:80"
+   networks:
+    - ojbc_nw
 
  analytics-db:
    container_name: analytics-db
@@ -44,6 +56,7 @@ services:
 
  dashboards:
    container_name: dashboards
-   image: ojbc/analytics-opencpu-demo
+   image: ojbc/analytics-dashboards
+
    networks:
     - ojbc_nw  
