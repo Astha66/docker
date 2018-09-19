@@ -23,4 +23,5 @@ echo "create database ojbc_booking_dimensional_demo" | mysql -u root
 mysql -u root ojbc_booking_dimensional_demo < /tmp/ojbc_booking_dimensional_demo.sql
 rm -f /tmp/ojbc_booking_dimensional_demo.sql
 
-echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.18.0.%' WITH GRANT OPTION" | mysql -u root
+#echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.18.0.%' WITH GRANT OPTION" | mysql -u root
+echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION" | mysql -u root
