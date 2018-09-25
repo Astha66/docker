@@ -1,0 +1,30 @@
+FROM ojbc/java8-server-base
+
+LABEL maintainer="Open Justice Broker Consortium" \
+  org.label-schema.description="Saiku 3.17 base image"
+
+WORKDIR /tmp
+
+# 1. Build saiku-latest.zip from source:
+#  A. check out the SEARCH-NCJIS/saiku repo from GH
+#  B. mvn install -DskipTests
+# 2. zip saiku-server/target/dist into a zipfile (i.e., the root of the zipfile should contain a single directory, the saiku-server subdirectory of saiku-server/target/dist)
+# 3. name that zipfile saiku-latest.zip and copy it into the files/ subdir here.
+
+COPY files/saiku-latest.zip /tmp/
+
+RUN	mkdir -p /opt && \
+  unzip -d /opt/ saiku-latest.zip && \
+	rm -f saiku-latest.zip && \
+	sed -i "s/sh startup.sh/\/opt\/saiku-server\/tomcat\/bin\/catalina.sh run/g" /opt/saiku-server/start-saiku.sh && \
+  sed -i s/8080/80/g /opt/saiku-server/tomcat/conf/server.xml
+
+COPY files/catalina.properties-3.17 /opt/saiku-server/tomcat/conf/catalina.properties
+
+# this jar file that ships w Saiku via Maven embeds a copy of Mondrian v 3.x, which conflicts with Mondrian 4.  So we doctored it and just
+# overwrite it at image build time.  See https://groups.google.com/a/saiku.meteorite.bi/forum/#!topic/user/oER6gEqc46w.
+COPY files/saiku-query-0.4-SNAPSHOT.jar /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/lib/
+
+RUN cd /opt/saiku-server/tomcat
+
+CMD ["/opt/saiku-server/start-saiku.sh"]
