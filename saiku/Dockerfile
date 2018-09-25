@@ -41,7 +41,7 @@ RUN	mkdir -p /opt && \
 # todo: at some point, might be nice to get all the various versions of xerces out of the saiku codebase. for now, we just copy in
 # a current version.
 
-RUN rm /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/lib/xercesImpl-2.5.0.jar && \
+RUN rm -f /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/lib/xercesImpl-2.5.0.jar && \
     cp /tmp/xercesImpl-2.11.0.jar /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/lib/
 
 # turn up logging
