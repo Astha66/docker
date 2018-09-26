@@ -25,6 +25,9 @@ COPY files/catalina.properties-3.17 /opt/saiku-server/tomcat/conf/catalina.prope
 # overwrite it at image build time.  See https://groups.google.com/a/saiku.meteorite.bi/forum/#!topic/user/oER6gEqc46w.
 COPY files/saiku-query-0.4-SNAPSHOT.jar /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/lib/
 
+# If we don't remove this jar file, we intermittently get errors about conflicts between slf4j and log4j
+RUN rm /opt/saiku-server/tomcat/webapps/saiku/WEB-INF/lib/log4j-over-slf4j-1.6.1.jar
+
 RUN cd /opt/saiku-server/tomcat
 
 CMD ["/opt/saiku-server/start-saiku.sh"]
