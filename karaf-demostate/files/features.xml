@@ -1,0 +1,10 @@
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+    <feature name="JIMMY" version="3.0.4.RELEASE" install="auto">
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.aopalliance/1.0_1</bundle>
+        <bundle>mvn:org.springframework/spring-core/3.0.4.RELEASE</bundle>
+        <bundle>mvn:org.springframework/spring-beans/3.0.4.RELEASE</bundle>
+        <bundle>mvn:org.springframework/spring-aop/3.0.4.RELEASE</bundle>
+        <bundle>mvn:org.springframework/spring-context/3.0.4.RELEASE</bundle>
+        <bundle>mvn:org.springframework/spring-context-support/3.0.4.RELEASE</bundle>
+    </feature>
+</features>
