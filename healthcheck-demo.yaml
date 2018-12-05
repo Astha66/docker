@@ -12,7 +12,7 @@ services:
       - overlay
   portal:
     container_name: portal
-    image: ojbc/portal-health
+    image: ojbc/portal
     deploy:
       replicas: 1
     networks:
