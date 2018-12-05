@@ -5,11 +5,6 @@ version: '3'
 
 services:
 
-  ojb-web-util:
-    container_name: ojb-web-util
-    image: ojbc/ojb-web-util
-    networks:
-      - overlay
   portal:
     container_name: portal
     image: ojbc/portal
