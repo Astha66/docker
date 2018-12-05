@@ -12,22 +12,19 @@ services:
       - overlay
   portal:
     container_name: portal
-    image: ojbc/portal
+    image: ojbc/portal-health
     deploy:
-      replicas: 2
+      replicas: 1
     networks:
        - overlay
     ports: 
       - "443:443"
     healthcheck:
      # in order for Docker to revive an unhealthy container you must be running in swarm mode: docker swarm init
-      test: curl -f http://ojb-web-util || exit 1
+      test: curl -f -k https://localhost/health-check.html || exit 1
       interval: 10s
       timeout: 10s
       retries: 1
-#      start_period: 40s
-      
-
-      
+#      start_period: 40s        
 networks:
   overlay:
