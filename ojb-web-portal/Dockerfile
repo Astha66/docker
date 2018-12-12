@@ -30,10 +30,16 @@ COPY files/catalina.properties /opt/tomcat/conf
 #Get certs
 
 #Get external web resource and certs and update config file hostname
+#RUN cd && apk add --update subversion && svn export https://github.com/ojbc/main/trunk/web/ojb-web-external-resource &&  \
+#    cd && svn export https://github.com/ojbc/main/trunk/shared/ojb-certs && apk del subversion  && \
+#	sed -i 's/intermediary\.request\.hostName\=localhost/intermediary\.request\.hostName\=karaf\-demostate\.ojbc\.local/g' /root/ojb-web-external-resource/config/ojbc-web-application-connector.cfg && \
+#	sed -i 's/webapplication\.response\.hostName\=localhost/webapplication\.response\.hostName\=ojb\-web\-portal\.ojbc\.local/g' /root/ojb-web-external-resource/config/ojbc-web-application-connector.cfg
+
 RUN cd && apk add --update subversion && svn export https://github.com/ojbc/main/trunk/web/ojb-web-external-resource &&  \
     cd && svn export https://github.com/ojbc/main/trunk/shared/ojb-certs && apk del subversion  && \
-	sed -i 's/intermediary\.request\.hostName\=localhost/intermediary\.request\.hostName\=karaf\-demostate\.ojbc\.local/g' /root/ojb-web-external-resource/config/ojbc-web-application-connector.cfg && \
-	sed -i 's/webapplication\.response\.hostName\=localhost/webapplication\.response\.hostName\=ojb\-web\-portal\.ojbc\.local/g' /root/ojb-web-external-resource/config/ojbc-web-application-connector.cfg
-	
+	sed -i 's/intermediary\.request\.hostName\=localhost/intermediary\.request\.hostName\=karaf\-demostate/g' /root/ojb-web-external-resource/config/ojbc-web-application-connector.cfg && \
+	sed -i 's/webapplication\.response\.hostName\=localhost/webapplication\.response\.hostName\=ojb\-web\-portal/g' /root/ojb-web-external-resource/config/ojbc-web-application-connector.cfg
+
+		
 
 CMD ["catalina.sh", "run"]
