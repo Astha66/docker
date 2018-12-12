@@ -30,8 +30,10 @@ RUN sed -i s/SSLMutex/#SSLMutex/g /etc/apache2/conf.d/ssl.conf && \
 	printf "\n<Location /saiku>\n\tAuthType shibboleth\n\tShibRequestSetting requireSession 1\n\tShibUseHeaders On\n\trequire shib-session\n</Location>\n" >> /etc/apache2/conf.d/shib.conf && \
 	printf "\n<Location /saiku-ui>\n\tAuthType shibboleth\n\tShibRequestSetting requireSession 1\n\tShibUseHeaders On\n\trequire shib-session\n</Location>\n" >> /etc/apache2/conf.d/shib.conf
 	
-COPY files/* /opt/shibboleth-sp/etc/shibboleth/
+COPY files/shibboleth2.xml /opt/shibboleth-sp/etc/shibboleth/
+COPY files/demostate-ctf.xml /opt/shibboleth-sp/etc/shibboleth/
 COPY files/proxy.conf /etc/apache2/conf.d/proxy.conf
+COPY files/health-check.html /var/www/localhost/htdocs/health-check.html
 
 WORKDIR /opt/shibboleth-sp
 
