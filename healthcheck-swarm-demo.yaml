@@ -1,5 +1,9 @@
 # Docker Compose file to test docker health checks
-# To run:  docker stack deploy --compose-file healthcheck-demo.yaml healthdemo
+# To run in Docker Swarm:  
+# 1.  docker swarm init
+# 2.  docker stack deploy --compose-file healthcheck-demo.yaml healthdemo
+# To run in normal Docker:
+# docker-compose -f healthcheck-demo.yaml up -d
 
 version: '3'
 
@@ -15,11 +19,11 @@ services:
     ports: 
       - "443:443"
     healthcheck:
-     # in order for Docker to revive an unhealthy container you must be running in swarm mode: docker swarm init
-      test: curl -f -k https://localhost/health-check.html || exit 1
+      test: curl -f -k https://localhost/health-check.html
       interval: 10s
       timeout: 10s
       retries: 1
-#      start_period: 40s        
+#      start_period: 40s
+       
 networks:
   overlay:
