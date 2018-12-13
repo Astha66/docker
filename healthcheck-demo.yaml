@@ -1,0 +1,36 @@
+#docker-compose -f health-check.yaml up -d
+version: '3'
+
+services:
+        
+  portal:
+    container_name: portal
+    image: ojbc/portal
+    networks:
+       - ojbc_nw   
+    ports: 
+      - "443:443"
+    healthcheck:
+      test: curl -f -k https://localhost/health-check.html
+      interval: 10s
+      timeout: 10s
+      retries: 1
+    labels:
+      health-checker-monitor: true
+  
+  health-checker:
+    container_name: health-checker
+    image: scottcame/health-checker
+    networks:
+       - ojbc_nw
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+networks:
+  ojbc_nw:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      -
+       subnet: 172.16.0.0/16 
