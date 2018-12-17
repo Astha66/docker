@@ -17,8 +17,9 @@
 
 # Docker Compose file that runs all the containers involved in an OJB Portal demo
 # To run:  docker-compose -f demostate-portal-compose.yaml up -d
-# Then navigate to: https://localhost/portal/ojb-web-portal/
+# Then navigate to: https://localhost/ojb-web-portal/
 # User id / password is: demouser1 password
+# Uncheck "Wildlife Licensing" and "Professional Licensing" under SYSTEMS AVAILABLE FOR QUERY on the Portal Query screen.
 
 version: '3'
 
@@ -32,6 +33,14 @@ networks:
 
 services:
 
+ karaf-demostate:
+  container_name: karaf-demostate
+  build: karaf-demostate
+  networks:
+   - ojbc_nw 
+  ports: 
+   - "8443:8443"
+
  apacheds:
   container_name: apacheds
   image: ojbc/apacheds
@@ -40,7 +49,7 @@ services:
   
  idp:
   container_name: idp
-  image: ojbc/idp
+  build: idp
   networks:
    - ojbc_nw  
   
@@ -52,9 +61,11 @@ services:
   
  portal:
   container_name: portal
-  image: ojbc/portal
+  build: portal
   networks:
-   - ojbc_nw   
+   - ojbc_nw
+  ports: 
+   - "443:443"
   
  ojb-web-util:
   container_name: tomcat
@@ -64,13 +75,8 @@ services:
   
  ojb-web-portal:
   container_name: ojb-web-portal
-  image: ojbc/ojb-web-portal
+  build: ojb-web-portal
   networks:
    - ojbc_nw    
-  
- karaf-demostate:
-  container_name: karaf-demostate
-  image: ojbc/karaf-demostate
-  networks:
-   - ojbc_nw  
+ 
   
