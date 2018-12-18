@@ -1,4 +1,4 @@
-#docker-compose -f health-check.yaml up -d
+#docker-compose -f healthcheck-demo.yaml up -d
 version: '3'
 
 services:
@@ -32,5 +32,4 @@ networks:
     ipam:
       driver: default
       config:
-      -
        subnet: 172.16.0.0/16 
