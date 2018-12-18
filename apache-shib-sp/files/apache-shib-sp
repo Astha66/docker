@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+
+/etc/init.d/shibd start
+/usr/local/bin/httpd-foreground 
+
+#tail -f /var/log/shibboleth/shibd.log
