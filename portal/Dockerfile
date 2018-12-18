@@ -37,4 +37,11 @@ COPY files/health-check.html /var/www/localhost/htdocs/health-check.html
 
 WORKDIR /opt/shibboleth-sp
 
+LABEL health-checker-monitor="true"
+
+#Older versions of Eclipse Dockerfile editor don't recognize "HEALTHCHECK" but this is a legit argument
+HEALTHCHECK --interval=10s --timeout=3s --retries=1 \
+      CMD curl -f -k https://localhost/health-check.html
+      
 CMD ["/opt/shibboleth-sp/sbin/start-shib-and-apache"]
+
