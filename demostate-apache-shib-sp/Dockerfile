@@ -13,31 +13,19 @@
 #
 #    Copyright 2012-2016 Open Justice Broker Consortium
 
-FROM httpd:2.4.37
+FROM ojbc/apache-shib-sp
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
 
-#install Shibboleth module and other required utilities
-RUN apt update
-RUN apt install -y apache2 vim curl libapache2-mod-shib2
+# copying shibboleth config files and certs
+COPY files/shibboleth2.xml /etc/shibboleth/shibboleth2.xml
+COPY files/shib.conf /usr/local/apache2/conf/extra/shib.conf
+COPY files/attribute-map.xml /etc/shibboleth/attribute-map.xm
+COPY files/demostate-ctf.xml /etc/shibboleth/demostate-ctf.xml
 
-#static page and label required for health checks
-COPY files/health-check.html /usr/local/apache2/htdocs/health-check.html
-LABEL health-checker-monitor="true"
 
 # copying apache config files and certs
 COPY files/httpd.conf /usr/local/apache2/conf/httpd.conf 
-
-#certs for ssl
+COPY files/proxy.conf /usr/local/apache2/conf/extra/proxy.conf
 COPY files/server.crt /usr/local/apache2/conf/server.crt
 COPY files/server.key /usr/local/apache2/conf/server.key
-
-# entrypoint script
-COPY files/apache-shib-sp /usr/local/bin/apache-shib-sp
-RUN chmod +x /usr/local/bin/apache-shib-sp
-
-#Older versions of Eclipse Dockerfile editor don't recognize "HEALTHCHECK" but this is a legit argument
-HEALTHCHECK --interval=10s --timeout=3s --retries=1 \
-      CMD curl -f -k https://localhost/health-check.html
-
-CMD ["apache-shib-sp"]    
