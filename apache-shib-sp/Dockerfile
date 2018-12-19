@@ -28,9 +28,11 @@ LABEL health-checker-monitor="true"
 # copying apache config files and certs
 COPY files/httpd.conf /usr/local/apache2/conf/httpd.conf 
 
-#certs for ssl
+#certs for ssl and shib
 COPY files/server.crt /usr/local/apache2/conf/server.crt
 COPY files/server.key /usr/local/apache2/conf/server.key
+COPY files/sp-cert.pem /etc/shibboleth/sp-cert.pem 
+COPY files/sp-key.pem /etc/shibboleth/sp-key.pem 
 
 # entrypoint script
 COPY files/apache-shib-sp /usr/local/bin/apache-shib-sp
