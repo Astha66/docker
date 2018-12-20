@@ -35,7 +35,7 @@ services:
 
  karaf-demostate:
   container_name: karaf-demostate
-  build: karaf-demostate
+  image: ojbc/karaf-demostate
   networks:
    - ojbc_nw 
   ports: 
@@ -46,22 +46,22 @@ services:
   image: ojbc/apacheds
   networks:
    - ojbc_nw  
-  
+
  idp:
   container_name: idp
-  build: idp
+  image: ojbc/idp
   networks:
-   - ojbc_nw  
+   - ojbc_nw 
   
  samlds:
   container_name: samlds
   image: ojbc/samlds
   networks:
    - ojbc_nw   
-  
- portal:
-  container_name: portal
-  build: portal
+
+ demostate-apache-shib-sp:
+  container_name: demostate-apache-shib-sp
+  image: ojbc/demostate-apache-shib-sp
   networks:
    - ojbc_nw
   ports: 
@@ -71,12 +71,10 @@ services:
   container_name: tomcat
   image: ojbc/ojb-web-util
   networks:
-   - ojbc_nw    
-  
+   - ojbc_nw     
+ 
  ojb-web-portal:
   container_name: ojb-web-portal
-  build: ojb-web-portal
+  image: ojbc/ojb-web-portal
   networks:
-   - ojbc_nw    
- 
-  
+   - ojbc_nw     
