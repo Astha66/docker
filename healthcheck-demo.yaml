@@ -3,9 +3,9 @@ version: '3'
 
 services:
         
-  portal:
-    container_name: portal
-    image: ojbc/portal
+  apache-shib-sp:
+    container_name: apache-shib-sp
+    image: ojbc/apache-shib-sp
     networks:
        - ojbc_nw   
     ports: 
@@ -29,7 +29,7 @@ services:
 networks:
   ojbc_nw:
     driver: bridge
-    ipam:
-      driver: default
-      config:
-       subnet: 172.16.0.0/16 
+#    ipam:
+#      driver: default
+#      config:
+#       subnet: 172.16.0.0/16 
