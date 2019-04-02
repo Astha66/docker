@@ -34,6 +34,9 @@ COPY files/server.key /usr/local/apache2/conf/server.key
 COPY files/sp-cert.pem /etc/shibboleth/sp-cert.pem 
 COPY files/sp-key.pem /etc/shibboleth/sp-key.pem 
 
+COPY files/attribute-map.xml /etc/shibboleth/attribute-map.xml
+COPY files/shibboleth2.xml /etc/shibboleth/shibboleth2.xml
+
 # entrypoint script
 COPY files/apache-shib-sp /usr/local/bin/apache-shib-sp
 RUN chmod +x /usr/local/bin/apache-shib-sp
