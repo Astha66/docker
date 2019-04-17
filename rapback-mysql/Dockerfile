@@ -1,9 +1,11 @@
 FROM ojbc/mysql
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
-#This database contains two pre-defined test accounts: testuser1@search.org and testuser2@search.org, both using the password of "password"
+#
 
-COPY files/server-config.sh /tmp
-COPY files/lportal.sql.gz /tmp
-RUN chmod a+x /tmp/server-config.sh
-RUN /tmp/server-config.sh
+#COPY files/server-config.sh /tmp
+COPY files/server-config-dev.sh /tmp
+COPY files/schema-mysql.sql.gz /tmp
+COPY files/load-code-tables.sql.gz /tmp
+RUN chmod a+x /tmp/server-config-dev.sh
+RUN /tmp/server-config-dev.sh

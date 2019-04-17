@@ -1,17 +1,17 @@
-#! /bin/bash
-
-#set -x
-
 cd /tmp
 
 /usr/bin/mysqld_safe --user=root &
 
 until /usr/bin/mysqladmin -u root status > /dev/null 2>&1; do sleep 1; done
 
-echo "CREATE USER 'lportal'@'%'  IDENTIFIED BY 'lportal'"| mysql -u root
-echo "CREATE DATABASE lportal"| mysql -u root
-echo "GRANT ALL PRIVILEGES ON lportal.* TO 'lportal'@'%' WITH GRANT OPTION" | mysql -u root
+echo "CREATE DATABASE rapback_datastore"| mysql -u root
 
-gunzip lportal.sql.gz
-mysql -u root lportal < /tmp/lportal.sql
-rm -f /tmp/lportal.sql
+# Create database
+gunzip schema-mysql.sql.gz
+mysql -u root rapback_datastore < /tmp/schema-mysql.sql
+rm -f /tmp/schema-mysql.sql
+
+# Load demo data
+gunzip load-code-tables.sql.gz
+mysql -u root rapback_datastore < /tmp/load-code-tables.sql
+rm -f /tmp/load-code-tables.sql

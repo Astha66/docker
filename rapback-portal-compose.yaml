@@ -52,6 +52,16 @@ services:
   ports: 
    - "8443:8443"
 
+ rapback-mysql:
+  container_name: rapback-mysql
+##  image: ojbc/osbi-mysql
+  build:
+    context: ./rapback-mysql
+  networks:
+   - rapback_nw 
+  ports: 
+     - "3307:3306" 
+
  apacheds:
   container_name: apacheds
   image: ojbc/apacheds
