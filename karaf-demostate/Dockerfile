@@ -18,7 +18,7 @@ COPY files/org.ops4j.pax.web.cfg etc/
 #
 COPY files/org.apache.cxf.osgi.cfg etc/
 #
-COPY files/features_demostate.xml tmp
+#COPY files/features_demostate.xml tmp
 COPY files/karaf-feature-bundle-install-script.sh tmp
 COPY files/org.apache.karaf.features.repos.cfg etc/
 
