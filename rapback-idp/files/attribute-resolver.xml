@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Unless explicitly acquired and licensed from Licensor under another license, the contents of
+    this file are subject to the Reciprocal Public License ("RPL") Version 1.5, or subsequent
+    versions as allowed by the RPL, and You may not copy or use this file in either source code
+    or executable form, except in compliance with the terms and conditions of the RPL
+
+    All software distributed under the RPL is provided strictly on an "AS IS" basis, WITHOUT
+    WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, AND LICENSOR HEREBY DISCLAIMS ALL SUCH
+    WARRANTIES, INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+    PARTICULAR PURPOSE, QUIET ENJOYMENT, OR NON-INFRINGEMENT. See the RPL for specific language
+    governing rights and limitations under the RPL.
+
+    http://opensource.org/licenses/RPL-1.5
+
+    Copyright 2012-2016 Open Justice Broker Consortium
+
+-->
+<resolver:AttributeResolver
+        xmlns:resolver="urn:mace:shibboleth:2.0:resolver"
+        xmlns:pc="urn:mace:shibboleth:2.0:resolver:pc"
+        xmlns:ad="urn:mace:shibboleth:2.0:resolver:ad"
+        xmlns:dc="urn:mace:shibboleth:2.0:resolver:dc"
+        xmlns:enc="urn:mace:shibboleth:2.0:attribute:encoder"
+        xmlns:sec="urn:mace:shibboleth:2.0:security"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:mace:shibboleth:2.0:resolver http://shibboleth.net/schema/idp/shibboleth-attribute-resolver.xsd
+                            urn:mace:shibboleth:2.0:resolver:pc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-pc.xsd
+                            urn:mace:shibboleth:2.0:resolver:ad http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-ad.xsd
+                            urn:mace:shibboleth:2.0:resolver:dc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-dc.xsd
+                            urn:mace:shibboleth:2.0:attribute:encoder http://shibboleth.net/schema/idp/shibboleth-attribute-encoder.xsd
+                            urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd">
+
+	<resolver:AttributeDefinition xsi:type="ad:Simple" id="uid" sourceAttributeID="uid">
+		<resolver:Dependency ref="myLDAP" />
+		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:LocalId" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+	</resolver:AttributeDefinition>
+
+	<resolver:AttributeDefinition xsi:type="ad:Simple" id="sn" sourceAttributeID="sn">
+		<resolver:Dependency ref="myLDAP" />
+		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:SurName" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+	</resolver:AttributeDefinition>
+
+	<resolver:AttributeDefinition xsi:type="ad:Simple" id="employeePositionName" sourceAttributeID="employeeType">
+		<resolver:Dependency ref="myLDAP" />
+		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:EmployeePositionName" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+	</resolver:AttributeDefinition>
+
+	<resolver:AttributeDefinition xsi:type="ad:Simple" id="givenName" sourceAttributeID="givenName">
+		<resolver:Dependency ref="myLDAP" />
+		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:GivenName" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+	</resolver:AttributeDefinition>
+
+	<resolver:AttributeDefinition xsi:type="ad:Simple" id="o" sourceAttributeID="o">
+		<resolver:Dependency ref="myLDAP" />
+		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:EmployerName" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+	</resolver:AttributeDefinition>
+
+	<resolver:AttributeDefinition xsi:type="ad:Simple" id="ORI" sourceAttributeID="ORI">
+		<resolver:Dependency ref="myLDAP" />
+		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:EmployerORI" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+	</resolver:AttributeDefinition>
+
+	<resolver:AttributeDefinition xsi:type="ad:Simple" id="queryUser" sourceAttributeID="queryUser">
+		<resolver:Dependency ref="myLDAP" />
+		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:ext:user:FederatedQueryUserIndicator" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+	</resolver:AttributeDefinition>
+
+	<resolver:AttributeDefinition xsi:type="ad:Simple" id="ou" sourceAttributeID="ou">
+		<resolver:Dependency ref="myLDAP" />
+		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:EmployerSubUnitName" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+	</resolver:AttributeDefinition>
+
+	<resolver:AttributeDefinition xsi:type="ad:Simple" id="mail" sourceAttributeID="mail">
+		<resolver:Dependency ref="myLDAP" />
+		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:EmailAddressText" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+	</resolver:AttributeDefinition>
+
+	<resolver:AttributeDefinition xsi:type="ad:Script" id="fid">
+		<resolver:Dependency ref="myLDAP" />
+		<resolver:AttributeEncoder xsi:type="enc:SAML2String" name="gfipm:2.0:user:FederationId" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri"/>
+		<ad:Script><![CDATA[
+	  fid.addValue("OJBC-LOCAL:IDP:DEMOSERVER:USER:" + uid.getValues().get(0));
+	  ]]></ad:Script>
+	</resolver:AttributeDefinition>
+
+	<resolver:DataConnector id="myLDAP" xsi:type="dc:LDAPDirectory"
+		ldapURL="ldap://apacheds:389" baseDN="ou=people,dc=ojbc,dc=local" principal="uid=admin,ou=system" principalCredential="secret">
+		<dc:FilterTemplate> <![CDATA[
+  (uid=$resolutionContext.principal) ]]>
+  		</dc:FilterTemplate>
+	</resolver:DataConnector>
+
+</resolver:AttributeResolver>
