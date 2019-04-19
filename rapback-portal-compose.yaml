@@ -32,25 +32,25 @@ networks:
 
 services:
 
+ rapback-karaf:
+  container_name: rapback-karaf
+##  image: ojbc/karaf-demostate
+  build:
+    context: ./rapback-karaf
+  networks:
+   - rapback_nw 
+  ports: 
+   - "8443:8443"
+
 # rapback-karaf:
 #  container_name: rapback-karaf
-##  image: ojbc/karaf-demostate
+#  image: ojbc/karaf-demostate
 #  build:
 #    context: ./rapback-karaf
 #  networks:
 #   - rapback_nw 
 #  ports: 
 #   - "8443:8443"
-
- rapback-karaf:
-  container_name: rapback-karaf
-  image: ojbc/karaf-demostate
-#  build:
-#    context: ./rapback-karaf
-  networks:
-   - rapback_nw 
-  ports: 
-   - "8443:8443"
 
  rapback-mysql:
   container_name: rapback-mysql

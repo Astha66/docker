@@ -18,39 +18,28 @@ RUN curl -O http://archive.apache.org/dist/karaf/4.0.10/apache-karaf-4.0.10.tar.
 WORKDIR $KARAF_HOME
 
 COPY files/setenv bin/
-
-#COPY files/org.apache.karaf.features.cfg etc/
+COPY files/org.apache.karaf.features.cfg etc/
+COPY files/org.apache.cxf.osgi.cfg etc/
+COPY files/org.ops4j.pax.web.cfg etc/
+COPY files/ojbc.context.services.cfg etc/
 
 COPY files/karaf-feature-bundle-install-script.sh /tmp/karaf-feature-bundle-install-script.sh
 
-COPY files/karaf-feature-bundle-install-script-ojb.sh /tmp/karaf-feature-bundle-install-script-ojb.sh
+#COPY files/karaf-feature-bundle-install-script-ojb.sh /tmp/karaf-feature-bundle-install-script-ojb.sh
 
-##COPY files/karaf-feature-bundle-install-script-spring-jdbc.sh /tmp/karaf-feature-bundle-install-script-spring-jdbc.sh
-
-##COPY files/org.apache.cxf.osgi.cfg etc/
-
-##COPY files/org.ops4j.pax.web.cfg etc/
-
-#Copy the config files
-
-##COPY files/oklahoma_criminal_history_adapter.cfg etc/
+#COPY files/karaf-feature-bundle-install-script-spring-jdbc.sh /tmp/karaf-feature-bundle-install-script-spring-jdbc.sh
 
 #Copy the cfg files
 COPY files/*.cfg etc/
 
 #Copy the jar files
-COPY files/*.jar deploy/
+COPY files/*.jar /tmp/
 
-##COPY files/ojbc.context.services.cfg etc/
-
-##COPY files/ojb-resources-common-1.0.0.jar deploy/
-##COPY files/ojb-common-3.0.2.jar deploy/
-
-RUN /opt/karaf/bin/start; \
+#RUN /opt/karaf/bin/start; \
 	until /opt/karaf/bin/client version; do sleep 10s; done; \
 	/opt/karaf/bin/client -f /tmp/karaf-feature-bundle-install-script.sh
 
-RUN sleep 20s;
+#RUN sleep 20s;
 
 #RUN /opt/karaf/bin/start; \
 #	until /opt/karaf/bin/client version; do sleep 10s; done; \
@@ -64,7 +53,7 @@ RUN sleep 20s;
 
 #RUN sleep 10s;
 
-RUN	/opt/karaf/bin/stop; exit 0
+#RUN	/opt/karaf/bin/stop; exit 0
 	
 # see parent for run comments
 CMD ["karaf", "server"]
