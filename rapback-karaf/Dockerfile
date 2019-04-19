@@ -35,7 +35,7 @@ COPY files/*.cfg etc/
 #Copy the jar files
 COPY files/*.jar /tmp/
 
-#RUN /opt/karaf/bin/start; \
+RUN /opt/karaf/bin/start; \
 	until /opt/karaf/bin/client version; do sleep 10s; done; \
 	/opt/karaf/bin/client -f /tmp/karaf-feature-bundle-install-script.sh
 
@@ -53,7 +53,7 @@ COPY files/*.jar /tmp/
 
 #RUN sleep 10s;
 
-#RUN	/opt/karaf/bin/stop; exit 0
+RUN	/opt/karaf/bin/stop; exit 0
 	
 # see parent for run comments
 CMD ["karaf", "server"]

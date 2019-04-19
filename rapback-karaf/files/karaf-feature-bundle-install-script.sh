@@ -3,8 +3,11 @@
 
 # Need to add org.wso2.balana jar to the mvn repo
 
+feature:repo-add cxf 3.0.6
+feature:repo-add camel 2.14.4
 feature:install cxf/3.0.6
 feature:install camel/2.14.4
+
 feature:install camel-saxon/2.14.4
 feature:install camel-cxf/2.14.4
 feature:install cxf-ws-security/3.0.6
@@ -12,8 +15,6 @@ feature:install camel-http4/2.14.4
 feature:install camel-test/2.14.4
 feature:install camel-mail/2.14.4
 feature:install camel-quartz2/2.14.4
-
-feature:repo-add spring-jdbc 3.2.14.RELEASE_1
 
 bundle:install -s mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-lang
 bundle:install -s mvn:org.apache.httpcomponents/httpcore-osgi/4.2.5
@@ -38,7 +39,6 @@ bundle:install -s mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundle
 
 bundle:install -s mvn:joda-time/joda-time/1.6.2
 bundle:install -s mvn:org.wso2.balana/org.wso2.balana
-
 bundle:install -s mvn:org.ojbc.bundles.utilities/h2-mock-database
 
 bundle:install -s mvn:org.ojbc.bundles.shared/ojb-resources-common
