@@ -21,12 +21,12 @@ FROM ojbc/java8-tomcat8
 
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
+#Copy ojb-web-portal
+COPY /bin/ojbc_web_portal.war /opt/tomcat/webapps/ojb-web-portal.war
+
 #Copy catalina.properties files that points to ojb shared loader
 COPY files/catalina.properties /opt/tomcat/conf
 
-COPY /bin/ojbc_web_portal.war /opt/tomcat/webapps/ojb-web-portal.war
-#COPY /usr/local/search/rapback/ojb-web-external-resource-rapback /root/ojb-web-external-resource
-#COPY /usr/local/search/rapback/ojb-certs /root/ojb-certs
 COPY files/rapback/ojb-web-external-resource-rapback /root/ojb-web-external-resource
 COPY files/rapback/ojb-certs  /root/ojb-certs
 

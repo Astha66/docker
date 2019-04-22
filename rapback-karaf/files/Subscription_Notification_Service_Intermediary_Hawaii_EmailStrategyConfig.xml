@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Bean that contains the email white list, place in servicemix/etc directory -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+       ">
+       
+    <!-- This Spring config file is responsible for setting up two objects.  One is a Map (with id="cc-map") that
+         establishes an email address to be cc'd for each "to" address.  The other is a Set (with id="whitelist-set") that
+         establishes a whitelist for email notifications, such that if a "to" address is not in this list, it will not get
+         notified. Note that the "whitelist-set" can be any Set...we just happen to make the Map do double-duty as both
+         the cc lookup and the whitelist.  -->
+
+	<util:map map-class="java.util.HashMap" id="cc-map">
+	
+				<!-- Parole Pilot Participants -->
+				<entry key="Rick.Y.Fujihara@hawaii.gov" value="Andrew.k.Morgan@hawaii.gov" />
+				<entry key="Michael.D.Knott@hawaii.gov" value="Tommy.Johnson@hawaii.gov" />
+				<entry key="Andrew.k.Morgan@hawaii.gov" value="Tommy.Johnson@hawaii.gov" />
+				<entry key="Mark.K.Nanamori@hawaii.gov" value="Christina.M.Esposito@hawaii.gov " />
+				<entry key="Kevin.S.Rego@hawaii.gov" value="Andrew.k.Morgan@hawaii.gov" />
+				<entry key="Charles.D.Sizemore@hawaii.gov" value="Kevin.S.Rego@hawaii.gov" />
+				<entry key="Reginald.S.Une@hawaii.gov" value="Andrew.k.Morgan@hawaii.gov" />
+				<entry key="Vernatta.C.Chan@hawaii.gov" value="Corey.J.Reincke@hawaii.gov" />
+				<entry key="Stacy.T.Iwasaki@Hawaii.gov" value="Andrew.k.Morgan@hawaii.gov" />
+				<entry key="Nova.C.Akau@hawaii.gov" value="Andrew.k.Morgan@hawaii.gov" />
+				<entry key="Corey.J.Reincke@hawaii.gov" value="Andrew.k.Morgan@hawaii.gov" />
+				<entry key="Edward.R.Vergara@hawaii.gov" value="Tommy.Johnson@hawaii.gov" />
+				<entry key="Emerson.A.Ramelb@hawaii.gov" value="Corey.J.Reincke@hawaii.gov" />
+				<entry key="Erik.A.Shuman@hawaii.gov" value="Rick.Y.Fujihara@hawaii.gov" />
+				<entry key="Flora.H.Hookano@hawaii.gov" value="Christopher.L.Bardon@hawaii.gov" />
+				<entry key="Christina.M.Esposito@hawaii.gov" value="Andrew.k.Morgan@hawaii.gov" />
+				<entry key="Robert.J.Bott@hawaii.gov" value="Christina.M.Esposito@hawaii.gov" />
+				<entry key="LaurieAnn.H.Lee-Zidek@hawaii.gov" value="Kevin.S.Rego@hawaii.gov" />
+				<entry key="David.T.Fujishiro@hawaii.gov" value="Kevin.S.Rego@hawaii.gov" />
+				<entry key="Christopher.L.Bardon@hawaii.gov" value="Roy.R.Massey@hawaii.gov" />
+				<entry key="Mikyong.Hwang@hawaii.gov" value="Kevin.S.Rego@hawaii.gov" />
+				<entry key="Tammy.H.Nakamori@hawaii.gov" value="Christina.M.Esposito@hawaii.gov" />
+				<entry key="Tommy.Johnson@hawaii.gov" value="" />
+				<entry key="Domingo.B.Gumpal@hawaii.gov" value="Rick.Y.Fujihara@hawaii.gov" />
+				<entry key="Earl.L.Everett@hawaii.gov" value="Kevin.S.Rego@hawaii.gov" />
+				<entry key="Grant.Y.Cummins@hawaii.gov" value="Kevin.S.Rego@hawaii.gov" /> 
+				<entry key="Gwenson.G.Yuen@hawaii.gov" value="Kevin.S.Rego@hawaii.gov" />
+				<entry key="Hirell.A.Bell@hawaii.gov" value="Christina.M.Esposito@hawaii.gov" /> 
+				<entry key="Rinda.J.Brooks@hawaii.gov" value="Corey.J.Reincke@hawaii.gov" /> 
+				<entry key="Roy.R.Massey@hawaii.gov" value="Rick.Y.Fujihara@hawaii.gov" /> 
+				<entry key="Joseph.F.Pedro@hawaii.gov" value="Rick.Y.Fujihara@hawaii.gov" /> 
+				<entry key="Jared.W.Chantrill@hawaii.gov" value="Christina.M.Esposito@hawaii.gov" /> 
+				<entry key="Ty.R.Tamasaka@hawaii.gov" value="Corey.J.Reincke@hawaii.gov" /> 
+				<entry key="Adrienne.B.Gluck@hawaii.gov" value="Corey.J.Reincke@hawaii.gov" /> 
+				<entry key="La Risa.H.Nebre@hawaii.gov" value="Andrew.K.Morgan@hawaii.gov" />
+				<entry key="LaRisa.H.Nebre@hawaii.gov" value="Andrew.K.Morgan@hawaii.gov" />  
+				<entry key="Hana.A.Denning@hawaii.gov" value="Roy.R.Massey@hawaii.gov" />
+				<entry key="sean.g.valencia@hawaii.gov" value="Roy.R.Massey@hawaii.gov" /> 
+				<entry key="caroline.j.hirokane@hawaii.gov" value="christina.m.esposito@hawaii.gov" /> 
+				<entry key="David.M.Rosenbloom@courts.hawaii.gov" value="Jann.R.Saiki-Morimoto@courts.hawaii.gov"/>
+				<entry key="Luke.D.Bakken@courts.hawaii.gov" value="kimberly.k.foster@courts.hawaii.gov"/>
+                <entry key="Kiana.T.Bridgeman@courts.hawaii.gov" value="kimberly.k.foster@courts.hawaii.gov"/>
+
+				<!-- Inactive Parole Officers -->
+				<entry key="Richard.E.Yen@hawaii.gov" value="Andrew.k.Morgan@hawaii.gov" />
+				<entry key="Jocelyn.Y.Hughes-Godbout@hawaii.gov" value="Richard.E.Yen@hawaii.gov" />
+				<entry key="Racheal.A.Dailey@hawaii.gov" value="Richard.E.Yen@hawaii.gov" />
+				<entry key="Jo.DesMarets@hawaii.gov" value="Andrew.k.Morgan@hawaii.gov" />
+				<entry key="Jacqueline.J.Phillips@courts.hawaii.gov" value="Dwight.S.Sakai@courts.hawaii.gov" />
+				
+	</util:map>
+	
+	<bean id="emailEnhancementStrategy" class="org.ojbc.intermediaries.sn.notification.CompositeEmailEnhancementStrategy">
+		<property name="compositeStrategy" ref="emailEnhancementStrategyList"/>
+	</bean>
+	
+	<bean id="subscriptionSearchQueryDAO" class="org.ojbc.intermediaries.sn.dao.SubscriptionSearchQueryDAO">
+        	<property name="dataSource" ref="dataSource"/>
+	 </bean>
+	
+	
+	<util:list id="emailEnhancementStrategyList">
+		<bean class="org.ojbc.intermediaries.sn.notification.CivilEmailNotificationFilterProcessor">
+			<property name="subscriptionSearchQueryDAO" ref="subscriptionSearchQueryDAO" />
+		</bean>
+		<bean class="org.ojbc.intermediaries.sn.notification.CCLookupEmailEnhancementStrategy">
+			<property name="ccLookupMap" ref="cc-map"/>
+		</bean>
+		<bean class="org.ojbc.intermediaries.sn.notification.StaticBCCEmailEnhancementStrategy">
+			<property name="bccAddress" value="${publishSubscribe.bcc}"/>
+		</bean>
+	</util:list>
+	
+</beans>	
