@@ -15,6 +15,12 @@ feature:install camel-http4/2.14.4
 feature:install camel-test/2.14.4
 feature:install camel-mail/2.14.4
 feature:install camel-quartz2/2.14.4
+feature:install spring-security
+feature:install spring-jdbc/3.2.18.RELEASE_1
+
+bundle:install -s mvn:org.codehaus.jackson/jackson-core-asl/1.9.5
+bundle:install -s mvn:org.codehaus.jackson/jackson-mapper-asl/1.9.5
+bundle:install -s mvn:org.codehaus.jackson/jackson-jaxrs/1.9.5
 
 bundle:install -s mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-lang
 bundle:install -s mvn:org.apache.httpcomponents/httpcore-osgi/4.2.5
@@ -30,8 +36,6 @@ bundle:install -s mvn:org.osgi/org.osgi.enterprise/4.2.0
 bundle:install -s mvn:com.h2database/h2/1.3.174
 bundle:install -s mvn:com.mysql.jdbc/com.springsource.com.mysql.jdbc
 bundle:install -s mvn:org.apache.commons/commons-math3/3.2
-
-feature:install spring-jdbc/3.2.14.RELEASE_1
 
 bundle:install -s mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.dom4j
 bundle:install -s mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.guava/11_1
@@ -49,7 +53,7 @@ bundle:install -s mvn:org.ojbc.bundles.shared/ojb-fedquery-common
 
 bundle:install mvn:org.ojbc.bundles.shared/Entity_Resolution_Resources
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/Entity_Resolution_Service_Intermediary_OSGi
-bundle:install -s mvn:org.ojbc.bundles.intermediaries/Entity_Resolution_Service_Intermediary
+#bundle:install -s mvn:org.ojbc.bundles.intermediaries/Entity_Resolution_Service_Intermediary
 
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/person-search-request-service-intermediary
 
@@ -59,7 +63,7 @@ bundle:install -s mvn:org.ojbc.bundles.intermediaries/subscription-notification-
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/disposition-reporting-service-intermediary
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/firearm-search-request-service-intermediary
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/firearm-registration-query-request-service-intermediary
-bundle:install -s mvn:org.ojbc.bundles.intermediaries/criminal-identification-reporting-service-intermediary
+#bundle:install -s mvn:org.ojbc.bundles.intermediaries/criminal-identification-reporting-service-intermediary
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/parole-event-handler-service-intermediary
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/person-query-service-criminal-history-intermediary
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/person-query-service-warrants-intermediary
@@ -74,12 +78,15 @@ bundle:install -s mvn:org.ojbc.bundles.intermediaries/organization-identificatio
 bundle:install -s mvn:org.ojbc.bundles.intermediaries/identification-results-modification-service-intermediary
 
 bundle:install -s file:///tmp/arrest-reporting-service-intermediary-hawaii-1.0.0.jar
-bundle:install -s file:///tmp/firearm-registration-query-request-service-intermediary-hawaii-1.0.0.jar
+
+#bundle:install -s file:///tmp/firearm-registration-query-request-service-intermediary-hawaii-1.0.0.jar
+
 bundle:install -s file:///tmp/firearm-search-request-service-intermediary-hawaii-1.0.0.jar
 bundle:install -s file:///tmp/parole-event-handler-service-intermediary-hawaii-1.0.0.jar
-bundle:install -s file:///tmp/person-query-service-criminal-history-intermediary-hawaii-1.0.0.jar
-bundle:install -s file:///tmp/person-query-service-warrants-intermediary-hawaii-1.0.0.jar
-bundle:install -s file:///tmp/person-search-request-service-intermediary-hawaii-1.0.0.jar
+##bundle:install -s file:///tmp/person-query-service-criminal-history-intermediary-hawaii-1.0.0.jar
+#bundle:install -s file:///tmp/person-query-service-warrants-intermediary-hawaii-1.0.0.jar
+#bundle:install -s file:///tmp/person-search-request-service-intermediary-hawaii-1.0.0.jar
+
 bundle:install -s file:///tmp/policy-acknowledgement-service-intermediary-hawaii-1.0.0.jar
 bundle:install -s file:///tmp/probation-event-handler-service-intermediary-hawaii-1.0.0.jar
 bundle:install -s file:///tmp/subscription-notification-service-intermediary-hawaii-1.0.0.jar

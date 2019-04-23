@@ -1,4 +1,4 @@
-# Dockerfile to build icots Karaf container
+# Dockerfile to build rapback Karaf container
 
 FROM ojbc/java8-server-base
 
