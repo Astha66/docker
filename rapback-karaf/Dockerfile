@@ -17,6 +17,8 @@ RUN curl -O http://archive.apache.org/dist/karaf/4.0.10/apache-karaf-4.0.10.tar.
 
 WORKDIR $KARAF_HOME
 
+COPY files/setenv bin/
+
 COPY files/org.ops4j.pax.logging.cfg etc/
 COPY files/Subscription_Notification_Service_Intermediary_Hawaii_EmailStrategyConfig.xml etc/
 COPY files/audit_rest_utility.cfg etc/
@@ -26,11 +28,15 @@ COPY files/org.ops4j.pax.web.cfg etc/
 COPY files/ojbc.context.services.cfg etc/
 COPY files/karaf_305-wrapper.conf etc/
 
+# Need to deploy the Entity Resolution Resources until maven central is updated
+COPY files/Entity_Resolution_Resources-1.0.2.jar deploy
+
+# Copy Features/Bundle scripts
 COPY files/karaf-feature-bundle-install-script.sh /tmp/karaf-feature-bundle-install-script.sh
 
-#COPY files/karaf-feature-bundle-install-script-ojb.sh /tmp/karaf-feature-bundle-install-script-ojb.sh
+COPY files/karaf-feature-bundle-install-script-ojb.sh /tmp/karaf-feature-bundle-install-script-ojb.sh
 
-#COPY files/karaf-feature-bundle-install-script-spring-jdbc.sh /tmp/karaf-feature-bundle-install-script-spring-jdbc.sh
+COPY files/karaf-feature-bundle-install-script-spring-jdbc.sh /tmp/karaf-feature-bundle-install-script-spring-jdbc.sh
 
 #Copy the cfg files
 COPY files/*.cfg etc/
@@ -42,19 +48,19 @@ RUN /opt/karaf/bin/start; \
 	until /opt/karaf/bin/client version; do sleep 10s; done; \
 	/opt/karaf/bin/client -f /tmp/karaf-feature-bundle-install-script.sh
 
-#RUN sleep 20s;
+RUN sleep 20s;
 
-#RUN /opt/karaf/bin/start; \
-#	until /opt/karaf/bin/client version; do sleep 10s; done; \
-#	/opt/karaf/bin/client -f /tmp/karaf-feature-bundle-install-script-spring-jdbc.sh
+RUN /opt/karaf/bin/start; \
+	until /opt/karaf/bin/client version; do sleep 10s; done; \
+	/opt/karaf/bin/client -f /tmp/karaf-feature-bundle-install-script-spring-jdbc.sh
 
-#RUN sleep 20s;
+RUN sleep 20s;
 
-#RUN /opt/karaf/bin/start; \
-#	until /opt/karaf/bin/client version; do sleep 10s; done; \
-#	/opt/karaf/bin/client -f /tmp/karaf-feature-bundle-install-script-ojb.sh
+RUN /opt/karaf/bin/start; \
+	until /opt/karaf/bin/client version; do sleep 10s; done; \
+	/opt/karaf/bin/client -f /tmp/karaf-feature-bundle-install-script-ojb.sh
 
-#RUN sleep 10s;
+RUN sleep 10s;
 
 RUN	/opt/karaf/bin/stop; exit 0
 	

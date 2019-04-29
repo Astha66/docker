@@ -34,29 +34,19 @@ services:
 
  rapback-karaf:
   container_name: rapback-karaf
-##  image: ojbc/karaf-demostate
-  build:
-    context: ./rapback-karaf
+  image: ojbc/rapback-karaf
+  build: ./rapback-karaf
   networks:
    - rapback_nw 
   ports: 
-   - "8443:8443"
-
-# rapback-karaf:
-#  container_name: rapback-karaf
-#  image: ojbc/karaf-demostate
-#  build:
-#    context: ./rapback-karaf
-#  networks:
-#   - rapback_nw 
-#  ports: 
-#   - "8443:8443"
+     - "8443:8443"
+  volumes:
+   - "/usr/local/search/rapback/ojb-certs:/usr/local/search/rapback/ojb-certs"
 
  rapback-mysql:
   container_name: rapback-mysql
-##  image: ojbc/osbi-mysql
-  build:
-    context: ./rapback-mysql
+  image: ojbc/rapback-mysql
+  build: ./rapback-mysql
   networks:
    - rapback_nw 
   ports: 
@@ -82,9 +72,8 @@ services:
 
  rapback-apache-shib-sp:
   container_name: rapback-apache-shib-sp
-#  image: ojbc/demostate-apache-shib-sp
-  build:
-    context: ./rapback-apache-shib-sp
+  image: ojbc/rapback-apache-shib-sp
+  build: ./rapback-apache-shib-sp
   networks:
    - rapback_nw
   ports: 
@@ -98,9 +87,8 @@ services:
 
  rapback-web-portal:
   container_name: ojb-web-portal
-##  image: ojbc/ojb-web-portal
-  build:
-    context: ./rapback-web-portal
+  image: ojbc/ojb-web-portal
+  build: ./rapback-web-portal
   networks:
    - rapback_nw   
 
