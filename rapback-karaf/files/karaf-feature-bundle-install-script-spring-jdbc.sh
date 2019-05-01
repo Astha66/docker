@@ -5,9 +5,7 @@ feature:install camel-http4/2.14.4
 feature:install camel-test/2.14.4
 feature:install camel-mail/2.14.4
 feature:install camel-quartz2
-
-# Not used in Rapback
-#feature:install pax-jetty
+feature:install pax-jetty
 
 feature:install spring-security
 
