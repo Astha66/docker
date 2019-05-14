@@ -21,7 +21,7 @@ FROM openjdk:8u151-jdk-alpine3.7
 
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
-RUN apk add --update bash curl
+RUN apk add --update bash curl fontconfig
 
 RUN sed -i -r -e 's/securerandom.source.+/securerandom.source=file:\/dev\/urandom/' /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/java.security
 

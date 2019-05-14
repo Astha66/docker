@@ -17,18 +17,18 @@
 
 FROM ojbc/java8-tomcat8
 
-# Prior to building this image, you need to build the dashboards webapp (.war file), which lives in the ojbc analytics github repo, at
-#  analytics/booking-jail/dashboards.  Built it with 'mvn install' and then copy target/dashboards.war into the files/ subdir here.
+RUN mkdir -p /opt/tomcat/shared/config
 
-COPY files/dashboards.war /opt/tomcat/webapps/
+RUN curl -s http://central.maven.org/maven2/org/ojbc/mondrian-rest/1.3.0/mondrian-rest-1.3.0.war -o /opt/tomcat/webapps/mondrian-rest.war
+RUN curl -s http://central.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/2.2.3/mariadb-java-client-2.2.3.jar -o /opt/tomcat/shared/mariadb-java-client-2.2.3.jar
 
 COPY files/catalina.properties /opt/tomcat/conf/
-
-RUN mkdir -p /opt/tomcat/shared/config
 
 COPY files/*.json /opt/tomcat/shared/
 COPY files/*.xml /opt/tomcat/shared/
 COPY files/application.properties /opt/tomcat/shared/config/
 
-RUN curl -s http://central.maven.org/maven2/org/ojbc/mondrian-rest/1.3.0/mondrian-rest-1.3.0.war -o /opt/tomcat/webapps/mondrian-rest.war
-RUN curl -s http://central.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/2.2.3/mariadb-java-client-2.2.3.jar -o /opt/tomcat/shared/mariadb-java-client-2.2.3.jar
+# Prior to building this image, you need to build the dashboards webapp (.war file), which lives in the ojbc analytics github repo, at
+#  analytics/booking-jail/dashboards.  Built it with 'mvn install' and then copy target/dashboards.war into the files/ subdir here.
+
+COPY files/dashboards.war /opt/tomcat/webapps/
