@@ -25,6 +25,8 @@ WORKDIR /usr
 
 RUN bin/mysql_install_db --user=root
 
+RUN sed -i s/skip-networking/#skip-networking/g /etc/my.cnf.d/mariadb-server.cnf
+
 COPY files/server-config.sh /tmp
 RUN chmod a+x /tmp/server-config.sh
 RUN /tmp/server-config.sh
