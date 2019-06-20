@@ -57,6 +57,8 @@ services:
  dashboards:
    container_name: dashboards
    image: ojbc/analytics-dashboards
+   ports: 
+    - "8080:80"
 
    networks:
     - ojbc_nw  
