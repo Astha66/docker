@@ -23,7 +23,7 @@
 # 127.0.0.1 example1S
 # 127.0.0.1 example2S  
 #    
-# Docker Compose file that runs all the containers involved in an OJB Portal demo
+# Docker Compose file that runs the demo container
 # To run:  docker-compose -f apache-backend-proxy-demo.yaml up -d
 #
 # Test Port 80:
