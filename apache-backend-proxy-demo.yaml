@@ -14,15 +14,23 @@
 #
 # Copyright 2012-2016 Open Justice Broker Consortium
 # 
-
+# Add the following to your local /etc/hosts
+#
+# 127.0.0.1 example-host
+# 127.0.0.1 example1
+# 127.0.0.1 example2
+# 127.0.0.1 example-secure-host
+# 127.0.0.1 example1S
+# 127.0.0.1 example2S  
+#    
 # Docker Compose file that runs all the containers involved in an OJB Portal demo
 # To run:  docker-compose -f apache-backend-proxy-demo.yaml up -d
 #
-# Test Port 80
+# Test Port 80:
 # http://example-host/app1/
 # http://example-host/app2/
 #
-# Test Port 443
+# Test Port 443:
 # https://example-secure-host/app1/
 # https://example-secure-host/app2/
 
