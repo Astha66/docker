@@ -15,7 +15,7 @@ bundle:install -s mvn:org.ojbc.bundles.intermediaries/Entity_Resolution_Service_
 
 
 bundle:install -s file:///tmp/ojb-enhanced-audit-common-1.0.3.jar
-bundle:install -s file:///tmp/person-search-request-service-intermediary-1.2.0.jar
+bundle:install -s file:///tmp/person-search-request-service-intermediary-1.2.1.jar
 bundle:install -s file:///tmp/subscription-notification-service-intermediary-common-2.0.11.jar
 bundle:install -s file:///tmp/audit-rest-utility-1.0.4.jar
 bundle:install -s file:///tmp/subscription-notification-service-intermediary-1.0.8.jar
