@@ -1,0 +1,44 @@
+# Docker Compose file that brings up containers necessary for demo.search.org which includes CCH demo stuff
+# To run:  docker-compose -f ojbc-cerbot-test.yaml up -d
+#
+# To run the ojbc-cerbot container interactivrly with bash:
+#
+#docker run -it --rm --mount source=apache-certs,target=/apache-certs --mount source=apache-webroot,target=/apache-webroot --mount type=bind,source=/opt/data/search/docker-mounts/letsencrypt-etc,target=/etc/letsencrypt --name cerbot ojbc/ojbc-certbot bash
+#
+# To setup a certificate with demo.search.org
+#certbot certonly --webroot -w /apache-webroot -d demo.search.org -m jdougla03@gmail.com --agree-tos -n 
+
+version: "3.7"
+
+networks:
+   cch-demo:
+     ipam:
+       config:
+         - subnet: 172.25.0.0/16
+services:
+   
+  certbot:
+    container_name: ojbc-certbot
+    image: ojbc/ojbc-certbot
+    build: ./ojbc-certbot
+
+  demo-search-proxy-test:
+    container_name: demo-search-proxy-test
+    image: ojbc/maine-demo-search-proxy-test
+    build: ./demo-search-proxy-test
+    networks:
+      - cch-demo
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - type: volume
+        source: apache-certs
+        target: "/apache-certs"
+      - type: volume
+        source: apache-webroot
+        target: "/usr/local/apache2/htdocs"        
+        
+volumes: 
+  apache-certs:
+  apache-webroot:  
