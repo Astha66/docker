@@ -8,10 +8,10 @@
 # To setup a certificate with demo.search.org
 #certbot certonly --webroot -w /apache-webroot -d demo.search.org -m jdougla03@gmail.com --agree-tos -n 
 
-version: "3.7"
+version: "3.0"
 
 networks:
-   cch-demo:
+   demo-test:
      ipam:
        config:
          - subnet: 172.25.0.0/16
@@ -27,7 +27,7 @@ services:
     image: ojbc/maine-demo-search-proxy-test
     build: ./demo-search-proxy-test
     networks:
-      - cch-demo
+      - demo-test
     ports:
       - "80:80"
       - "443:443"
