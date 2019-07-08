@@ -8,7 +8,7 @@
 # To setup a certificate with demo.search.org
 #certbot certonly --webroot -w /apache-webroot -d demo.search.org -m jdougla03@gmail.com --agree-tos -n 
 
-version: "3.0"
+version: "3.2"
 
 networks:
    demo-test:
