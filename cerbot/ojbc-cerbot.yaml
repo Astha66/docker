@@ -3,10 +3,10 @@
 #
 # To run the ojbc-cerbot container interactivrly with bash:
 #
-#docker run -it --rm --mount source=apache-certs,target=/apache-certs --mount source=apache-webroot,target=/apache-webroot --mount type=bind,source=/opt/data/search/docker-mounts/letsencrypt-etc,target=/etc/letsencrypt --name cerbot ojbc/ojbc-certbot bash
-#
+# docker run -it --rm --mount type=bind,source=/apache-certs,target=/apache-certs --mount type=bind,source=/apache-webroot,target=/apache-webroot --mount type=bind,source=/opt/data/search/docker-mounts/letsencrypt-etc,target=/etc/letsencrypt --name cerbot ojbc/ojbc-certbot bash
+# 
 # To setup a certificate with demo.search.org
-#certbot certonly --webroot -w /apache-webroot -d demo.search.org -m jdougla03@gmail.com --agree-tos -n 
+# certbot certonly --webroot -w /apache-webroot -d demo.search.org -m jdougla03@gmail.com --agree-tos -n 
 
 version: "3.2"
 
@@ -16,12 +16,14 @@ networks:
        config:
          - subnet: 172.25.0.0/16
 services:
-   
+
+# Create the cerbot image (see above command to run container in interactive mode
   certbot:
     container_name: ojbc-certbot
     image: ojbc/ojbc-certbot
     build: ./ojbc-certbot
 
+# Create/Run the apache proxy container
   demo-search-proxy-test:
     container_name: demo-search-proxy-test
     image: ojbc/maine-demo-search-proxy-test
@@ -38,6 +40,7 @@ services:
       - type: volume
         source: apache-webroot
         target: "/usr/local/apache2/htdocs"        
+ # Certs are saved in  /opt/data/search/docker-mounts/letsencrypt-etc 
         
 volumes: 
   apache-certs:

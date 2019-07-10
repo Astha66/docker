@@ -35,5 +35,3 @@ COPY files/demo.search.org.crt /opt/ojbc/certs/demo.search.org.crt
 COPY files/demo.search.org.key /opt/ojbc/certs/demo.search.org.key
 
 RUN mkdir -p /usr/local/apache2/htdocs/.well-known/acme-challenge
-COPY files/index.html /usr/local/apache2/htdocs/.well-known/acme-challenge
-COPY files/index.html /usr/local/apache2/htdocs/
