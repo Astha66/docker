@@ -1,0 +1,14 @@
+<!-- This file should be copied to /tmp on the host system, where /tmp is mounted to this docker container.  This allows us to update access control rules without rebuilding the container -->
+<AccessControl>
+	<AND>
+     			<NOT>
+     				<OR>
+      				<Rule require="email">test@search.org</Rule>
+     				</OR>
+     			</NOT>
+			<OR>
+				<RuleRegex require="email" ignoreCase="true">ADAM.S.FILLEBROWN@maine.gov</RuleRegex>
+				<RuleRegex require="email" ignoreCase="true">Adam.C.McNaughton@maine.gov</RuleRegex>
+			</OR>
+     </AND>
+</AccessControl>
