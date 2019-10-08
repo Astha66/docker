@@ -27,12 +27,12 @@
 # To run:  docker-compose -f apache-backend-proxy-demo.yaml up -d
 #
 # Test Port 80:
-# http://example-host/app1/
-# http://example-host/app2/
+# http://example-host1
+# http://example-host2
 #
 # Test Port 443:
-# https://example-secure-host/app1/
-# https://example-secure-host/app2/
+# https://example-secure-host1
+# https://example-secure-host2
 
 version: '3'
 
