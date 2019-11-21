@@ -13,7 +13,7 @@
 #
 #    Copyright 2012-2016 Open Justice Broker Consortium
 
-FROM httpd:2.4.8
+FROM httpd:2.4.37
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
 
