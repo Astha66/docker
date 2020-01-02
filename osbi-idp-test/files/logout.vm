@@ -1,0 +1,139 @@
+##
+## Velocity Template for logout flow's starting view-state
+##
+## Velocity context will contain the following properties
+## flowExecutionUrl - the form action location
+## flowRequestContext - the Spring Web Flow RequestContext
+## flowExecutionKey - the SWF execution key (this is built into the flowExecutionUrl)
+## profileRequestContext - root of context tree
+## logoutContext - context with SPSession details for logout operation
+## multiRPContext - context with RelyingPartyContexts and possibly SP UI information from the metadata
+## encoder - HTMLEncoder class
+## request - HttpServletRequest
+## response - HttpServletResponse
+## environment - Spring Environment object for property resolution
+## custom - arbitrary object injected by deployer
+##
+<!DOCTYPE html>
+<html>
+    <head>
+##        <title>OSBI RAPUP Tool</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
+        <style>
+            header span.initials {
+                font-size: 4rem;
+                line-height: 1.3 !important;
+                display: inline-block;
+                font-family: "Arial Black", "Roboto", "Droid Sans", Arial !important;
+                font-weight: bold;
+                text-shadow: 0 4px 3px rgba(0, 0, 0, 0.4), 0 8px 13px rgba(0, 0, 0, 0.1), 0 18px 23px rgba(0, 0, 0, 0.1)
+            }
+            
+            header span.fullname {
+                font-size: .8rem;
+                
+                width: 20em;
+                text-transform: uppercase;
+                display: inline-block;
+                font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+                margin-top: .7em;
+                letter-spacing: 1px;
+                line-height: 1.1 !important;
+                padding-left: 7px;
+                text-shadow: 0 4px 3px rgba(0, 0, 0, 0.4), 0 8px 13px rgba(0, 0, 0, 0.1), 0 18px 23px rgba(0, 0, 0, 0.1)
+            }
+            .banner{
+                  background-image: url('$request.getContextPath()#springMessage("idp.logo.banner")');
+                  background-repeat: no-repeat;
+                  background-size: cover;
+                  background-position:center;
+                  height:auto;
+                  width:auto;
+                  opacity: 1; 
+             }
+        </style>
+    </head>         
+
+    <body>
+    <div class="wrapper">
+      <div class="container">
+##            <p><strong>OSBI RAPUP Tool</strong></p>
+      <header>
+            <div class="banner pt-1">
+                <div class="text-white pl-3">
+                	<img src="$request.getContextPath()#springMessage("idp.logo")" height="75px" alt="#springMessageText("idp.logo.alt-text", "logo")">
+##                    img src="idp-logo" height="75px" />
+                    <span class="initials align-bottom" aria-hidden="true">RAPUP</span>
+                    <span class="fullname align-middle">Record of Arrest and Prosecution Update Portal</span>
+                </div>
+            </div>
+        </header>            
+
+        <div class="content">
+          <div class="column one">
+          #**
+            <p>This page is displayed when a logout operation at the Identity Provider completes. This page is an example
+            and should be customized. It is not fully internationalized because the presentation will be a highly localized
+            decision, and we don't have a good suggestion for a default.  </p>
+            <br>
+          *#  
+            <p></p>
+            <br>
+          
+            #if ( $logoutContext and !$logoutContext.getSessionMap().isEmpty() )
+                <p>#springMessageText("idp.logout.ask", "Would you like to attempt to log out of all services accessed during your session? Please select <strong>Yes</strong> or <strong>No</strong> to ensure the logout operation completes, or wait a few seconds for Yes.")</p>
+                <br>
+
+                <form id="propagate_form" method="POST" action="$flowExecutionUrl">
+                    <button id="propagate_yes" type="submit" name="_eventId" value="propagate">Yes</button>
+                    <button id="propagate_no" type="submit" name="_eventId" value="end">No</button>
+                </form>
+
+                <br>
+                <p>#springMessageText("idp.logout.contactServices", "If you proceed, the system will attempt to contact the following services:")</p>
+                <ol>
+                #foreach ($sp in $logoutContext.getSessionMap().keySet())
+                    #set ($rpCtx = $multiRPContext.getRelyingPartyContextById($sp))
+                    #if ($rpCtx)
+                      #set ($rpUIContext = $rpCtx.getSubcontext("net.shibboleth.idp.ui.context.RelyingPartyUIContext"))
+                    #end
+                    #if ($rpUIContext and $rpUIContext.getServiceName())
+                      <li>$encoder.encodeForHTML($rpUIContext.getServiceName())</li>
+                    #else
+                      <li>$encoder.encodeForHTML($sp)</li>
+                    #end
+                #end
+                </ol>
+            #else
+                <p><strong>#springMessageText("idp.logout.complete", "The logout operation is complete.")</strong></p>
+                <p>Return to the <a href="https://rapuptest.osbi.ok.gov/">RAPUP Tool</a>.</p>
+                <!-- Complete the flow by adding a hidden iframe. -->
+                <iframe style="display:none" src="$flowExecutionUrl&_eventId=proceed"></iframe>
+            #end
+
+          </div>
+#*
+          <div class="column two">
+      
+            <ul class="list list-help">
+              <li class="list-help-item"><a href="#springMessageText("idp.url.password.reset", "#")"><span class="item-marker">&rsaquo;</span> #springMessageText("idp.login.forgotPassword", "Forgot your password?")</a></li>
+              <li class="list-help-item"><a href="#springMessageText("idp.url.helpdesk", "#")"><span class="item-marker">&rsaquo;</span> #springMessageText("idp.login.needHelp", "Need Help?")</a></li>
+            </ul>
+     
+          </div>
+*#
+
+        </div>
+      </div>
+#*
+      <footer>
+        <div class="container container-footer">
+          <p class="footer-text">#springMessageText("idp.footer", "FOOTER")</p>
+        </div>
+      </footer>
+*#
+      
+    </div>
+    
+ 	</body>
+</html>

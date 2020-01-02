@@ -1,0 +1,130 @@
+# Docker Compose file that brings up containers necessary for the OSBI environment
+# this compose file will stand up a database, for Liferay, with pre-defined users and organizations; however, Liferay
+# will not immediately recognize those users and organizations.  First you need to do the following 
+#(there is no API to auomtate this):
+# 1. browse to http://localhost:8080
+# 2. login as test@liferay.com/test
+# 3. go to Admin -> Control Panel
+# 4. click "server administration"
+# 5. click the "execute" button next to "Reindex all search indexes."
+#
+# To run in Docker Swarm:  
+# 1.  docker swarm init
+# 2.  docker stack deploy --compose-file osbi-prod.yaml osbi
+
+
+# To run in normal Docker:
+# To in normal Docker run:  docker-compose -f osbi-test.yaml up -d
+
+version: '3'
+
+
+services:
+  
+  osbi-mysql:
+    container_name: osbi-mysql
+    image: ojbc/osbi-mysql
+    build: ./osbi-mysql
+    restart: always
+    networks:
+       ojbc_nw:
+        aliases:
+          - db_lep
+    ports: 
+      - "3307:3306"
+    volumes:
+     - mysql:/var/lib/mysql      
+      
+  osbi-liferay:
+    container_name: osbi-liferay
+    image: ojbc/osbi-liferay
+    build: ./osbi-liferay
+    restart: always
+    environment:
+      - DB_TYPE=MYSQL
+    depends_on:
+      - osbi-mysql
+    networks:
+       ojbc_nw:
+    ports: 
+      - "8080:8080"
+      
+  osbi-httpd-proxy:
+    container_name: osbi-httpd-proxy
+    image: ojbc/osbi-httpd-proxy-test
+    build: ./osbi-httpd-proxy-test
+    restart: always
+    networks:
+       ojbc_nw:   
+    ports: 
+      - "443:443"
+    volumes:
+      - "/usr/local/search/osbi/certs/apache:/usr/local/search/osbi/certs/apache"
+  
+  idp:
+    container_name: idp
+    image: ojbc/osbi-idp-test
+    build: ./osbi-idp-test
+    restart: always
+    depends_on:
+      - osbi-mysql
+    networks:
+       ojbc_nw:
+
+  ojb-web-util:
+    container_name: ojb-web-util
+    image: ojbc/ojb-web-util
+    restart: always
+    networks:
+       ojbc_nw:
+ 
+  osbi-web-portal:
+    container_name: osbi-web-portal
+    image: ojbc/osbi-web-portal
+    build: ./osbi-web-portal
+    restart: always
+    networks:
+       ojbc_nw:
+    volumes:
+      - "/usr/local/search/osbi/ojb-web-external-resource-oklahoma:/usr/local/search/osbi/ojb-web-external-resource-oklahoma" 
+      - "/usr/local/search/osbi/certs:/usr/local/search/osbi/certs"
+   
+  osbi-mysql-backup:
+   container_name: osbi-liferay-mysql-backup
+   image: ojbc/osbi-liferay-mysql-backup
+   build: ./osbi-liferay-mysql-backup
+   restart: always
+   depends_on:
+    - osbi-mysql
+   networks:
+       ojbc_nw:
+   volumes:
+     - "/usr/local/search/osbi/liferayDatabaseBackups:/root/mysql/backups"
+
+  osbi-karaf-container:
+   container_name: osbi-karaf-container
+   image: ojbc/osbi-karaf-container
+   build: ./osbi-karaf-container
+   restart: always
+   networks:
+       ojbc_nw:
+   ports: 
+      - "8443:8443"
+   volumes:
+      - "/usr/local/search/osbi/certs:/usr/local/search/osbi/certs"
+   
+  health-checker:
+    container_name: health-checker
+    image: scottcame/health-checker
+    restart: always
+    networks:
+       ojbc_nw:
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+ 
+networks:
+  ojbc_nw:
+    driver: bridge
+   
+volumes:
+ mysql: 

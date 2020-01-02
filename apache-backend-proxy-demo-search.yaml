@@ -14,25 +14,10 @@
 #
 # Copyright 2012-2016 Open Justice Broker Consortium
 # 
-# Add the following to your local /etc/hosts
-#
-# 127.0.0.1 example-host
-# 127.0.0.1 example1
-# 127.0.0.1 example2
-# 127.0.0.1 example-secure-host
-# 127.0.0.1 example1S
-# 127.0.0.1 example2S  
 #    
 # Docker Compose file that runs the demo container
-# To run:  docker-compose -f apache-backend-proxy-demo.yaml up -d
+# To run:  docker-compose -f apache-backend-proxy-demo-search.yaml up -d
 #
-# Test Port 80:
-# http://example-host1
-# http://example-host2
-#
-# Test Port 443:
-# https://example-secure-host1
-# https://example-secure-host2
 
 version: '3'
 
@@ -46,10 +31,10 @@ networks:
 
 services:
 
- apache-backend-proxy-demo:
-  container_name: apache-proxy
-  image: ojbc/apache-backend-proxy-demo
-  build: ./apache-backend-proxy-demo
+ apache-backend-proxy-demo-search:
+  container_name: apache-proxy-search
+  image: ojbc/apache-backend-proxy-demo-search
+  build: ./apache-backend-proxy-demo-search
   networks:
    - ojbc_nw
   ports: 

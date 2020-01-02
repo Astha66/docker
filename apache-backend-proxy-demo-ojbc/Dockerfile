@@ -21,10 +21,10 @@ RUN apt update
 RUN apt install -y apache2
 
 # copying apache demo html files
-COPY files/index-1.html /usr/www/example1/httpd/htdocs/index.html
-COPY files/index-2.html /usr/www/example2/httpd/htdocs/index.html
-COPY files/index-1S.html /usr/www/example1S/httpd/htdocs/index.html
-COPY files/index-2S.html /usr/www/example2S/httpd/htdocs/index.html
+
+COPY files/index-ojbc.html /usr/local/apache2/htdocs/index.html
+#COPY files/index-1.html /usr/www/example1/httpd/htdocs/index.html
+#COPY files/index-1.html /usr/www/example1/httpd/htdocs/index.html
 
 # copying apache config files
 COPY files/httpd.conf /usr/local/apache2/conf/httpd.conf
@@ -35,8 +35,5 @@ COPY files/ssl.conf /usr/local/apache2/conf/extra/ssl.conf
 COPY files/Server.crt /usr/local/apache2/conf/Server.crt
 COPY files/Server.key /usr/local/apache2/conf/Server.key
 
-COPY files/S1server.crt /usr/local/apache2/conf/S1server.crt
-COPY files/S1server.key /usr/local/apache2/conf/S1server.key
-
-COPY files/S2server.crt /usr/local/apache2/conf/S2server.crt
-COPY files/S2server.key /usr/local/apache2/conf/S2server.key
+#COPY files/S1server.crt /usr/local/apache2/conf/S1server.crt
+#COPY files/S1server.key /usr/local/apache2/conf/S1server.key

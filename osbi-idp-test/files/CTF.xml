@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Unless explicitly acquired and licensed from Licensor under another 
+	license, the contents of this file are subject to the Reciprocal Public License 
+	("RPL") Version 1.5, or subsequent versions as allowed by the RPL, and You 
+	may not copy or use this file in either source code or executable form, except 
+	in compliance with the terms and conditions of the RPL All software distributed 
+	under the RPL is provided strictly on an "AS IS" basis, WITHOUT WARRANTY 
+	OF ANY KIND, EITHER EXPRESS OR IMPLIED, AND LICENSOR HEREBY DISCLAIMS ALL 
+	SUCH WARRANTIES, INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY, 
+	FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT, OR NON-INFRINGEMENT. See 
+	the RPL for specific language governing rights and limitations under the 
+	RPL. http://opensource.org/licenses/RPL-1.5 Copyright 2012-2016 Open Justice 
+	Broker Consortium -->
+	
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+	xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:oasis:names:tc:SAML:2.0:metadata saml-2.0-os-xsd/saml-schema-metadata-2.0.xsd"
+	Name="OSBI CTF" validUntil="2020-12-31T12:00:00" ID='ctf'>
+	<!-- OSBI Identity Provider -->
+
+	<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+		xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0"
+		xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui"
+		entityID="https://idp.osbi.local/idp/shibboleth">
+
+		<IDPSSODescriptor
+			protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.1:protocol urn:mace:shibboleth:1.0" WantAuthnRequestsSigned="true">
+
+			<Extensions>
+				<shibmd:Scope regexp="false">localdomain</shibmd:Scope>
+			</Extensions>
+			<KeyDescriptor use="signing">
+				<ds:KeyInfo>
+					<ds:X509Data>
+						<ds:X509Certificate>
+							MIIEqjCCA5KgAwIBAgIJAKsPGeuuvh0mMA0GCSqGSIb3DQEBBQUAMIGUMQswCQYD
+VQQGEwJVUzERMA8GA1UECBMIT2tsYWhvbWExFjAUBgNVBAcTDU9rbGFob21hIENp
+dHkxDTALBgNVBAoTBE9NRVMxDTALBgNVBAsTBE9TQkkxGjAYBgNVBAMTEXJhcHVw
+Lm9zYmkub2suZ292MSAwHgYJKoZIhvcNAQkBFhFhbmRyZXdAc2VhcmNoLm9yZzAe
+Fw0xODEwMjMxMjI5NDFaFw0zODEwMTgxMjI5NDFaMIGUMQswCQYDVQQGEwJVUzER
+MA8GA1UECBMIT2tsYWhvbWExFjAUBgNVBAcTDU9rbGFob21hIENpdHkxDTALBgNV
+BAoTBE9NRVMxDTALBgNVBAsTBE9TQkkxGjAYBgNVBAMTEXJhcHVwLm9zYmkub2su
+Z292MSAwHgYJKoZIhvcNAQkBFhFhbmRyZXdAc2VhcmNoLm9yZzCCASIwDQYJKoZI
+hvcNAQEBBQADggEPADCCAQoCggEBAMXFgQiZ7VqQbNx8OKwr7KadsZaoJXPq+dnw
+5b3LVjyu6uD3l8G6Il45d0tLDF1vuJs5iAuZTLndZk5EUtowLZZ1K4IPhm60lV7l
+m/2UKftNgHvmip+cB2vNRZNVEyjrM/181o8LM31A5m9QrPpN8XvqRR0r2Eka7+Q0
+Uty2ktsLEPPbGObwu9zxYGByv57PH24vgUpZlemHnjZH6bb3p+hndsJqD7FjzWdo
+KNq5xGyE2b/YvZzJd3t5vOiIU3Z1N0lMt1ElJPEw0e8rxwHN6s3eCMiBRx/91w9K
+4/oICOSxdNBxlr4twPqA1OSzozT0XRZEePoBIwW2DNqNaPH1KEcCAwEAAaOB/DCB
++TAdBgNVHQ4EFgQUWG3G58rfyuWiHAyjL6pc8c2XT5EwgckGA1UdIwSBwTCBvoAU
+WG3G58rfyuWiHAyjL6pc8c2XT5GhgZqkgZcwgZQxCzAJBgNVBAYTAlVTMREwDwYD
+VQQIEwhPa2xhaG9tYTEWMBQGA1UEBxMNT2tsYWhvbWEgQ2l0eTENMAsGA1UEChME
+T01FUzENMAsGA1UECxMET1NCSTEaMBgGA1UEAxMRcmFwdXAub3NiaS5vay5nb3Yx
+IDAeBgkqhkiG9w0BCQEWEWFuZHJld0BzZWFyY2gub3JnggkAqw8Z666+HSYwDAYD
+VR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOCAQEAabQapzSt5Bioc5kEI76+LYL2
+bW2i32VTV07boZbiOI8S/qzjupqiRlUstdkVDNmiXAvjUCjj3UqykZPUQrPNIDjj
+lQ+h8bHj6XivjhbRAdruy4LgSx30k0DioRatEeB0yvHloLZO6p6sylS7O8MsSbJX
+OHVH0HroqqwDQ7PQf/Te44y1D4taZ6gcL70xqdV4+MtBpmHJxy7QPrleMMJCzJr+
+R2Ei++IkWMesNTqdWpF8rT3wNatjCp2UKcC7L5bAsccu2MB97dsA8oubYb+gl7I1
+Gp3whGnx9gmSr2ENk6WR9hBGbxUD1H7/2FAN98Xyyy/cbp2SFeR2nWofRJWn9Q==
+						</ds:X509Certificate>
+					</ds:X509Data>
+				</ds:KeyInfo>
+			</KeyDescriptor>
+			<KeyDescriptor use="encryption">
+				<ds:KeyInfo>
+					<ds:X509Data>
+						<ds:X509Certificate>
+							MIIDEDCCAfigAwIBAgIVAIsCjMQSB2mmkGcSPsAHGzYSTHrxMA0GCSqGSIb3DQEB
+							CwUAMBQxEjAQBgNVBAMMCWxvY2FsaG9zdDAeFw0xODA1MTExMDI1NDJaFw0zODA1
+							MTExMDI1NDJaMBQxEjAQBgNVBAMMCWxvY2FsaG9zdDCCASIwDQYJKoZIhvcNAQEB
+							BQADggEPADCCAQoCggEBALQrid1UMP8xtsdRFViKpcbMtZSGEziOLfbWJV+ap2eq
+							Fqe1t9ggn+Re3xcIjFwuI+HS7pvNWEhApZu9B9du8jKUWy9WPAn+zl9Kk/ptCYuy
+							ZHYMLqgOiEMI/DVU3CLuQE3VINclDaZTXNhOD8OD7k53nixmDERZ5ZnvccqWJmYw
+							cG4AC3zUIWqgstTsn2WjdF8eLjIeS2p6nL+wXt9TSl8F1mlstTODOgJdUh/L1ak/
+							AFLWkWzmMD2VfIlDp8bWDw+dWCKdYeLHQaLIUG+VB8f99hIdRmHFFHcAf6dFoy68
+							WRBOl6nQHY+vSFQd0l20hRW4Wp4RurRXnjZwOsg4vlECAwEAAaNZMFcwHQYDVR0O
+							BBYEFNVzZz4xnD3VDRRRY0B2atbBMeytMDYGA1UdEQQvMC2CCWxvY2FsaG9zdIYg
+							aHR0cHM6Ly9sb2NhbGhvc3QvaWRwL3NoaWJib2xldGgwDQYJKoZIhvcNAQELBQAD
+							ggEBAJxN2sMPEJ1WFFRxAekuBcjAbZNrsILneHXxdOOTZIZ37QGLFOQSIo1ZmnfR
+							lfJACsXv2pSQMDG7v6/vPnJ1e2oNdvROKq1y0ioCbQVY/X8tOlJ2wMwLCIxaSQJa
+							m+fKbnRkKH/Yc0G6pzIvfvEj3aRIQf1NsjV+hQgVvFeexH+5j3lQvuGu1J/bJKjo
+							n3dmToRfefpObktWpQ1Z3l+jZkGJRlVycqdoWPvQ56FzCSnM6gXv2J8sIRuDZDnF
+							6i2pq3cvT50C9j1oE5fI11mKn12AO+0Thie4OwO8SeCCfX64l5b/4gbJqQfOtqeK
+							jEI8JN1abgJZ5YfSsgB+yT6/ySA=
+						</ds:X509Certificate>
+					</ds:X509Data>
+				</ds:KeyInfo>
+
+			</KeyDescriptor>
+
+			<ArtifactResolutionService
+				Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding"
+				Location="https://rapuptest.osbi.ok.gov/idp/profile/SAML1/SOAP/ArtifactResolution"
+				index="1" />
+			<ArtifactResolutionService
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
+				Location="https://rapuptest.osbi.ok.gov/idp/profile/SAML2/SOAP/ArtifactResolution"
+				index="2" />
+
+
+			<SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest"
+				Location="https://rapuptest.osbi.ok.gov/idp/profile/Shibboleth/SSO" />
+			<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+				Location="https://rapuptest.osbi.ok.gov/idp/profile/SAML2/POST/SSO" />
+			<SingleSignOnService
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign"
+				Location="https://rapuptest.osbi.ok.gov/idp/profile/SAML2/POST-SimpleSign/SSO" />
+			<SingleSignOnService
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+				Location="https://rapuptest.osbi.ok.gov/idp/profile/SAML2/Redirect/SSO" />
+
+		</IDPSSODescriptor>
+
+	</EntityDescriptor>
+	
+	<!-- OSBI SP -->
+	<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+		ID="_7d59665aff13015a57266c39974cecddddbe3ea0" entityID="https://rapuptest.osbi.ok.gov/shibboleth">
+
+		<md:Extensions xmlns:alg="urn:oasis:names:tc:SAML:metadata:algsupport">
+			<alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512" />
+			<alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha384" />
+			<alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
+			<alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha224" />
+			<alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+			<alg:SigningMethod
+				Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha512" />
+			<alg:SigningMethod
+				Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha384" />
+			<alg:SigningMethod
+				Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256" />
+			<alg:SigningMethod
+				Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha224" />
+			<alg:SigningMethod
+				Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512" />
+			<alg:SigningMethod
+				Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha384" />
+			<alg:SigningMethod
+				Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" />
+			<alg:SigningMethod Algorithm="http://www.w3.org/2009/xmldsig11#dsa-sha256" />
+			<alg:SigningMethod
+				Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha1" />
+			<alg:SigningMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+			<alg:SigningMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1" />
+		</md:Extensions>
+
+		<md:SPSSODescriptor
+			protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:1.0:protocol" WantAssertionsSigned="true">
+			<md:Extensions>
+				<init:RequestInitiator
+					xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init"
+					Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init"
+					Location="https://rapuptest.osbi.ok.gov/Shibboleth.sso/Login" />
+			</md:Extensions>
+			<md:KeyDescriptor>
+				<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+					<ds:KeyName>dw</ds:KeyName>
+					<ds:X509Data>
+						<ds:X509SubjectName>CN=dw</ds:X509SubjectName>
+						<ds:X509Certificate>MIICzTCCAbWgAwIBAgIJAKHE2DUzINUaMA0GCSqGSIb3DQEBBQUAMA0xCzAJBgNV
+							BAMTAmR3MB4XDTE0MDkyNTE0MzUzNFoXDTI0MDkyMjE0MzUzNFowDTELMAkGA1UE
+							AxMCZHcwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDUNwgzQq9gGDlC
+							UB8GHQaEKU2aeq6E6ifmXMQz2zar1+nKGNDSvtU1PkozCnB/3nbV+ENAuR7o+Wi2
+							2ld7Wgaf0w+2mNUbugkPLFWK944FgoUnvW39NZzNsT/UbQ/YLVKXHzRJd9RpPRw3
+							UXcOXlUfqDdbyYVKDJ+wjBj+HFZq0QkbfcX1K0wr6ldTw+vHCNJlvSZoMh6WLlve
+							dszbmMljgtAQ01n4FNNdYY3mc0pIO5bBiOlajEGJZoxm1Wf0xbTMJ6QvzZ0P/fkK
+							aFIzQhxaqGY9nuMXsysJDD43UZg0aU/BMAt2u9KG+cDiqhzSnfHejoietsqKVdB/
+							PnxMQPubAgMBAAGjMDAuMA0GA1UdEQQGMASCAmR3MB0GA1UdDgQWBBQgrEvgZn5R
+							uquDYYO6VBuL7v712DANBgkqhkiG9w0BAQUFAAOCAQEAwlOGOptwAdY3EgCyzR5L
+							SbUDgvsxnFHh7Dt9/MFVlTs8+BF+tCGDaYtownl7Im0aNmSsPlB6LxQZSDLdPbb5
+							WDEQ+yckkqMrLbWgi9MVkBLMqdU2RcscFVxIJJSWSEiolm6mSh51TjFUnrWTxWfj
+							C16sNw7RA/H091OsGFw9a3RNjbXo3Vc6bQcjAs4zFA/NSDUe/qx0glMKL/5Ugzu7
+							b85H27+aniDnRHE9WUCG4c0eUzHQ3MFRNjelKCk4qc01dykhpvoNlMjO1CngxkOm
+							S4fzlim8pRr1XjugRddJx6GOPHpYysRGTDQwLWpqRZS1gu2fuEYeza+A3qt2EbZI
+							Mw==
+						</ds:X509Certificate>
+					</ds:X509Data>
+				</ds:KeyInfo>
+				<md:EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#aes128-gcm" />
+				<md:EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#aes192-gcm" />
+				<md:EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#aes256-gcm" />
+				<md:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc" />
+				<md:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes192-cbc" />
+				<md:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+				<md:EncryptionMethod
+					Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
+				<md:EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#rsa-oaep" />
+				<md:EncryptionMethod
+					Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p" />
+			</md:KeyDescriptor>
+			<md:ArtifactResolutionService
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://rapuptest.osbi.ok.gov/Shibboleth.sso/Artifact/SOAP"
+				index="1" />
+			<md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
+				Location="https://rapuptest.osbi.ok.gov/Shibboleth.sso/SLO/SOAP" />
+			<md:SingleLogoutService
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+				Location="https://rapuptest.osbi.ok.gov/Shibboleth.sso/SLO/Redirect" />
+			<md:SingleLogoutService
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://rapuptest.osbi.ok.gov/Shibboleth.sso/SLO/POST" />
+			<md:SingleLogoutService
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"
+				Location="https://rapuptest.osbi.ok.gov/Shibboleth.sso/SLO/Artifact" />
+			<md:AssertionConsumerService
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://rapuptest.osbi.ok.gov/Shibboleth.sso/SAML2/POST"
+				index="1" />
+			<md:AssertionConsumerService
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign"
+				Location="https://rapuptest.osbi.ok.gov/Shibboleth.sso/SAML2/POST-SimpleSign"
+				index="2" />
+			<md:AssertionConsumerService
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"
+				Location="https://rapuptest.osbi.ok.gov/Shibboleth.sso/SAML2/Artifact"
+				index="3" />
+			<md:AssertionConsumerService
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://rapuptest.osbi.ok.gov/Shibboleth.sso/SAML2/ECP"
+				index="4" />
+			<md:AssertionConsumerService
+				Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post"
+				Location="https://rapuptest.osbi.ok.gov/Shibboleth.sso/SAML/POST" index="5" />
+			<md:AssertionConsumerService
+				Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01" Location="https://rapuptest.osbi.ok.gov/Shibboleth.sso/SAML/Artifact"
+				index="6" />
+		</md:SPSSODescriptor>
+
+	</md:EntityDescriptor>
+</EntitiesDescriptor>
