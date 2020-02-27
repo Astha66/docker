@@ -15,7 +15,7 @@
 # Copyright 2012-2016 Open Justice Broker Consortium
 # 
 
-# This is intended to be for the demo.search.org server where we run the CCH analytics demo.
+# This is intended to be for the test.ojbc.org server where we run the CCH analytics demo.
 
 FROM ojbc/apache-shib-sp
 
@@ -31,5 +31,5 @@ COPY files/ssl.conf /usr/local/apache2/conf/extra/
 COPY files/shib.conf /usr/local/apache2/conf/extra/shib.conf
 COPY files/CTF.xml /etc/shibboleth/CTF.xml
 COPY files/shibboleth2.xml /etc/shibboleth/shibboleth2.xml
-#COPY files/demo.search.org.crt /opt/ojbc/certs/demo.search.org.crt
-#COPY files/demo.search.org.key /opt/ojbc/certs/demo.search.org.key
+#COPY files/test.ojbc.org.crt /opt/ojbc/certs/test.ojbc.org.crt
+#COPY files/test.ojbc.org.key /opt/ojbc/certs/test.ojbc.org.key

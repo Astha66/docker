@@ -27,55 +27,16 @@
 		topic. -->
 
 	<RequestMapper type="Native">
-		<RequestMap redirectToSSL="443">
-			<Host name="demo.search.org">
+	<RequestMap redirectToSSL="443">
+			<Host name="test.ojbc.org">
 				<Path name="ojb-web-util" authType="shibboleth" requireSession="true" exportAssertion="true" />
-				<Path name="dashboard" authType="shibboleth" requireSession="true" exportAssertion="true">
-					<AccessControl>
-						<OR>
-							<RuleRegex require="email" ignoreCase="true">becki.goggins@search.org</RuleRegex>
-							<RuleRegex require="email" ignoreCase="true">andrew@search.org</RuleRegex>
-							<RuleRegex require="email" ignoreCase="true">Mark@search.org</RuleRegex>
-						</OR>
-					</AccessControl>
-				</Path>
-				<Path name="mondrian-rest" authType="shibboleth"
-					requireSession="true" exportAssertion="true">
-					<AccessControl>
-						<OR>
-							<RuleRegex require="email" ignoreCase="true">becki.goggins@search.org</RuleRegex>
-							<RuleRegex require="email" ignoreCase="true">andrew@search.org</RuleRegex>
-							<RuleRegex require="email" ignoreCase="true">Mark@search.org</RuleRegex>
-						</OR>
-					</AccessControl>
-				</Path>
-				<Path name="saiku-ui" authType="shibboleth" requireSession="true"
-					exportAssertion="true">
-					<AccessControl>
-						<OR>
-							<RuleRegex require="email" ignoreCase="true">becki.goggins@search.org</RuleRegex>
-							<RuleRegex require="email" ignoreCase="true">andrew@search.org</RuleRegex>
-							<RuleRegex require="email" ignoreCase="true">Mark@search.org</RuleRegex>
-						</OR>
-					</AccessControl>
-				</Path>
-				<Path name="saiku" authType="shibboleth" requireSession="true"
-					exportAssertion="true">
-					<AccessControl>
-						<OR>
-							<RuleRegex require="email" ignoreCase="true">becki.goggins@search.org</RuleRegex>
-							<RuleRegex require="email" ignoreCase="true">andrew@search.org</RuleRegex>
-							<RuleRegex require="email" ignoreCase="true">Mark@search.org</RuleRegex>
-						</OR>
-					</AccessControl>
-				</Path>
 			</Host>
 		</RequestMap>
 	</RequestMapper>
 
 	<!-- The ApplicationDefaults element is where most of Shibboleth's SAML 
 		bits are defined. -->
-	<ApplicationDefaults entityID="https://demo.search.org/shibboleth" REMOTE_USER="localIdentifier">
+	<ApplicationDefaults entityID="https://test.ojbc.org/shibboleth" REMOTE_USER="localIdentifier">
 
 
 		<!-- Controls session lifetimes, address checks, cookie handling, and the 
@@ -102,9 +63,9 @@
 
 			<!-- Single IDP method: -->
 
-			<SSO entityID="https://idp.nibrs.local/idp/shibboleth">
+			<!--  SSO entityID="https://idp.nibrs.local/idp/shibboleth">
 				SAML2 SAML1
-			</SSO>
+			</SSO -->
 
 
 			<!-- DS method: -->

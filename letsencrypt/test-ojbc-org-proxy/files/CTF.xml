@@ -3,9 +3,9 @@
 
 <md:EntitiesDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata">
 
-<!-- demo.search.org SP -->
+<!-- test.ojbc.org SP -->
 	<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
-		ID="_65b68eec773e5a68b0ee5f77f106978d25bac834" entityID="https://demo.search.org/shibboleth">
+		ID="_65b68eec773e5a68b0ee5f77f106978d25bac834" entityID="https://test.ojbc.org/shibboleth">
 
 		<md:Extensions xmlns:alg="urn:oasis:names:tc:SAML:metadata:algsupport">
 			<alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512" />
@@ -40,7 +40,7 @@
 				<init:RequestInitiator
 					xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init"
 					Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init"
-					Location="https://demo.search.org/Shibboleth.sso/Login" />
+					Location="https://test.ojbc.org/Shibboleth.sso/Login" />
 			</md:Extensions>
 			<md:KeyDescriptor>
 				<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
@@ -79,37 +79,37 @@
 					Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p" />
 			</md:KeyDescriptor>
 			<md:ArtifactResolutionService
-				Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://demo.search.org/Shibboleth.sso/Artifact/SOAP"
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://test.ojbc.org/Shibboleth.sso/Artifact/SOAP"
 				index="1" />
 			<md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
-				Location="https://demo.search.org/Shibboleth.sso/SLO/SOAP" />
+				Location="https://test.ojbc.org/Shibboleth.sso/SLO/SOAP" />
 			<md:SingleLogoutService
 				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
-				Location="https://demo.search.org/Shibboleth.sso/SLO/Redirect" />
+				Location="https://test.ojbc.org/Shibboleth.sso/SLO/Redirect" />
 			<md:SingleLogoutService
-				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://demo.search.org/Shibboleth.sso/SLO/POST" />
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://test.ojbc.org/Shibboleth.sso/SLO/POST" />
 			<md:SingleLogoutService
 				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"
-				Location="https://demo.search.org/Shibboleth.sso/SLO/Artifact" />
+				Location="https://test.ojbc.org/Shibboleth.sso/SLO/Artifact" />
 			<md:AssertionConsumerService
-				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://demo.search.org/Shibboleth.sso/SAML2/POST"
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://test.ojbc.org/Shibboleth.sso/SAML2/POST"
 				index="1" />
 			<md:AssertionConsumerService
 				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign"
-				Location="https://demo.search.org/Shibboleth.sso/SAML2/POST-SimpleSign"
+				Location="https://test.ojbc.org/Shibboleth.sso/SAML2/POST-SimpleSign"
 				index="2" />
 			<md:AssertionConsumerService
 				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"
-				Location="https://demo.search.org/Shibboleth.sso/SAML2/Artifact"
+				Location="https://test.ojbc.org/Shibboleth.sso/SAML2/Artifact"
 				index="3" />
 			<md:AssertionConsumerService
-				Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://demo.search.org/Shibboleth.sso/SAML2/ECP"
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://test.ojbc.org/Shibboleth.sso/SAML2/ECP"
 				index="4" />
 			<md:AssertionConsumerService
 				Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post"
-				Location="https://demo.search.org/Shibboleth.sso/SAML/POST" index="5" />
+				Location="https://test.ojbc.org/Shibboleth.sso/SAML/POST" index="5" />
 			<md:AssertionConsumerService
-				Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01" Location="https://demo.search.org/Shibboleth.sso/SAML/Artifact"
+				Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01" Location="https://test.ojbc.org/Shibboleth.sso/SAML/Artifact"
 				index="6" />
 		</md:SPSSODescriptor>
 
@@ -160,8 +160,8 @@ hSJO+K+CABSBa4u3mYGQWD+eR0v3zP39pFCGJ558wnpdT8QsowxLLoAPJ/A=</ds:X509Certificate
             </KeyDescriptor>
 
             
-            <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding" Location="https://nibrs.search.org/idp/profile/SAML1/SOAP/ArtifactResolution" index="1"/>
-            <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://nibrs.search.org/idp/profile/SAML2/SOAP/ArtifactResolution" index="2"/>
+            <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding" Location="https://test.ojbc.org/idp/profile/SAML1/SOAP/ArtifactResolution" index="1"/>
+            <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://test.ojbc.org/idp/profile/SAML2/SOAP/ArtifactResolution" index="2"/>
             
             <!--
              <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://localhost/idp/profile/SAML2/Redirect/SLO"/>
@@ -170,10 +170,10 @@ hSJO+K+CABSBa4u3mYGQWD+eR0v3zP39pFCGJ558wnpdT8QsowxLLoAPJ/A=</ds:X509Certificate
              <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://localhost:8443/idp/profile/SAML2/SOAP/SLO"/>
              -->
             
-            <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="https://nibrs.search.org/idp/profile/Shibboleth/SSO"/>
-            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://nibrs.search.org/idp/profile/SAML2/POST/SSO"/>
-            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://nibrs.search.org/idp/profile/SAML2/POST-SimpleSign/SSO"/>
-            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://nibrs.search.org/idp/profile/SAML2/Redirect/SSO"/>
+            <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="https://test.ojbc.org/idp/profile/Shibboleth/SSO"/>
+            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://test.ojbc.org/idp/profile/SAML2/POST/SSO"/>
+            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://test.ojbc.org/idp/profile/SAML2/POST-SimpleSign/SSO"/>
+            <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://test.ojbc.org/idp/profile/SAML2/Redirect/SSO"/>
             
         </IDPSSODescriptor>
 

@@ -1,0 +1,32 @@
+# Docker Compose file that brings up containers necessary for test.ojbc.org which includes CCH demo stuff
+# To run:  docker-compose -f test-ojbc-org-proxy.yaml up -d
+#
+version: "3.2"
+
+networks:
+   test-ojbc:
+     ipam:
+       config:
+         - subnet: 172.24.0.0/16
+services:
+
+ test-ojbc-org-proxy:
+    container_name: test-ojbc-org-proxy
+    image: ojbc/test-ojbc-org-proxy
+    build: ./test-ojbc-org-proxy
+    networks:
+      - test-ojbc
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+# The following volume is only need when first creating certs using letsencrypt.  Leave it commented out when running the container after cert creation with cerbot.
+#      - "/opt/apache-webroot:/usr/local/apache2/htdocs"    
+      - "/opt/apache-certs:/apache-certs"
+      - "/opt/data/search/docker-mounts/letsencrypt-etc:/opt/data/search/docker-mounts/letsencrypt-etc"
+
+ ojb-web-util:
+    container_name: ojb-web-util
+    image: ojbc/ojb-web-util
+    networks:
+     - test-ojbc

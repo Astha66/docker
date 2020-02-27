@@ -1,5 +1,5 @@
 # Docker Compose file that creates the cerbot image
-# To run:  docker-compose -f certbot-image.yaml up -d
+# To run:  docker-compose -f certbot-image.yaml build
 version: "3.2"
 
 services:

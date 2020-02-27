@@ -16,7 +16,7 @@
 # 
 #    
 # Docker Compose file that runs the demo container
-# To run:  docker-compose -f apache-backend-proxy-demo-search.yaml up -d
+# To run:  docker-compose -f apache-shib-sp-NEW.yaml up -d
 #
 
 version: '3'
@@ -31,10 +31,10 @@ networks:
 
 services:
 
- apache-backend-proxy-demo-search:
-  container_name: apache-proxy-search
-  image: ojbc/apache-backend-proxy-demo-search
-  build: ./apache-backend-proxy-demo-search
+ apache-shib-sp:
+  container_name: apache-shib-sp-NEW
+  image: ojbc/apache-shib-sp
+  build: ./apache-shib-sp-NEW
   networks:
    - ojbc_nw
   ports: 

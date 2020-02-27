@@ -26,6 +26,7 @@ WORKDIR /tmp
 COPY files/ojbc-logo.png /tmp/
 
 RUN apk add --update unzip zip tar curl && \
+# NOTE: Version 3.4.6 of the Shibboleth IdP
 	curl -O http://shibboleth.net/downloads/identity-provider/3.4.6/shibboleth-identity-provider-3.4.6.zip && \
 	unzip shibboleth-identity-provider-3.4.6.zip && cd shibboleth-identity-provider-3.4.6 && \
 	echo "idp.entityID=https://idp.ojbc.local/idp/shibboleth" > props && \
