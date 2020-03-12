@@ -21,7 +21,7 @@ Step 3: Create the following directories on the host server:
 	/opt/apache-webroot/.well-known/acme-challenge
 	/opt/data/search/docker-mounts/letsencrypt-etc
 	
-Step 5: Run letsencrypt-create.sh to get letsencrypt certs
+Step 4: Run letsencrypt-create.sh to get letsencrypt certs
  
 	This script will build the letsenctrypt-etc folders on the host and puts certs in the "live" folder (Note: The "certs" in the Live folder are actually links to the Archive folder!)
 	
@@ -35,7 +35,7 @@ Step 5: Run letsencrypt-create.sh to get letsencrypt certs
 		- Changes directory
 		- Restarts the apache proxy server
 
-Step 9: Add the following line to /etc/crontab to renew the certs in a 2 month interval:
+Step 5: Add the following line to /etc/crontab to renew the certs in a 2 month interval:
 
 	10 0   1 */2 * root    /opt/ojbc/letsencrypt/letsencrypt-renewal.sh
 
@@ -62,7 +62,7 @@ NOTES:
 	https://certbot.eff.org/docs/using.html#where-are-my-certificates
 
 
-TO Run cerbot interactively:
+	TO Run cerbot interactively:
 
 	docker run -it --rm \
 	--mount type=bind,source=/opt/apache-certs,target=/apache-certs \
