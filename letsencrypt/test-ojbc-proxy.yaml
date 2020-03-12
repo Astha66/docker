@@ -1,0 +1,23 @@
+# Docker Compose file that brings up containers necessary for test.ojbc.org which includes CCH demo stuff
+# To run:  docker-compose -f test-ojbc-proxy.yaml up -d
+
+version: "3.0"
+
+networks:
+   test-demo:
+     ipam:
+       config:
+         - subnet: 172.25.0.0/16
+services:
+
+  test-ojbc-proxy:
+    container_name: test-ojbc-proxy
+    image: ojbc/test-ojbc-proxy
+    build: ./test-ojbc-proxy
+    ports:
+      - "80:80"
+      - "443:443"      
+    networks:
+      - test-demo
+    volumes:
+      - /opt/data/search/docker-mounts/letsencrypt-etc:/etc/letsencrypt

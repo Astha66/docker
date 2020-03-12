@@ -22,8 +22,6 @@ FROM ojbc/apache-shib-sp
 MAINTAINER Open Justice Broker Consortium "http://www.ojbc.org"
 
 WORKDIR /tmp
-
-EXPOSE 443	
 	
 COPY files/httpd.conf /usr/local/apache2/conf/httpd.conf
 COPY files/proxy.conf /usr/local/apache2/conf/extra/proxy.conf
@@ -31,5 +29,6 @@ COPY files/ssl.conf /usr/local/apache2/conf/extra/
 COPY files/shib.conf /usr/local/apache2/conf/extra/shib.conf
 COPY files/CTF.xml /etc/shibboleth/CTF.xml
 COPY files/shibboleth2.xml /etc/shibboleth/shibboleth2.xml
-#COPY files/test.ojbc.org.crt /opt/ojbc/certs/test.ojbc.org.crt
-#COPY files/test.ojbc.org.key /opt/ojbc/certs/test.ojbc.org.key
+COPY files/test.ojbc.org.crt /opt/ojbc/certs/test.ojbc.org.crt
+COPY files/test.ojbc.org.key /opt/ojbc/certs/test.ojbc.org.key
+COPY files/index.html /usr/local/apache2/htdocs/index.html

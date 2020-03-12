@@ -1,0 +1,28 @@
+# Docker Compose file that brings up the certbot image and reconfigures the apache proxy for letsencrypt cert creation
+# To run:  docker-compose -f letsencrypt.yaml up -d
+
+version: "3.0"
+
+networks:
+   test-demo:
+     ipam:
+       config:
+         - subnet: 172.25.0.0/16
+services:
+
+  test-ojbc-proxy:
+    container_name: test-ojbc-proxy
+    image: ojbc/test-ojbc-proxy
+    build: ./test-ojbc-proxy
+        
+    ports:
+      - "80:80"
+      - "443:443"      
+    networks:
+      - test-demo
+    volumes:
+      - "/opt/apache-webroot:/usr/local/apache2/htdocs"          
+      - "/opt/apache-certs:/apache-certs"
+      - "/opt/data/search/docker-mounts/letsencrypt-etc:/etc/letsencrypt"
+   
+  
